@@ -12,7 +12,5 @@ $$\int_{\mathbb{R}^n} \exp\left(-\frac{1}{2}(x_1^2+\dots+x_n^2)\right)$$ | $$E^{
 
   Description | Closed form   | recurrence
 |:-----------:|:-------------:|:-----------:|
-[Chebyshev, first kind](https://en.wikipedia.org/wiki/Chebyshev_polynomials)
-$$\int_{-1}^1 \frac{x^k}{\sqrt{1 - x^2}} dx$$ | $$I_0 =\pi, \quad I_k = \frac{\sqrt{\pi} ((-1)^k + 1)  \Gamma(\frac{k+1}{2})}{k\Gamma(\frac{k}{2})}$$ | $$I_k = I_{k-2} \times \frac{k-1}{k},\quad I_0 = \pi,\quad I_1 = 0$$
-[Chebyshev, second kind](https://en.wikipedia.org/wiki/Chebyshev_polynomials)
-$$\int_{-1}^1 x^k \sqrt{1 - x^2} dx$$ | $$I_0 =\frac{\pi}{2}, \quad I_k = \frac{\sqrt{\pi} ((-1)^k + 1)  \Gamma(\frac{k+1}{2})}{4 \Gamma(\frac{k}{2} + 2)}$$ | $$I_k = I_{k-2} \times \frac{k-1}{k + 2},\quad I_0 = \frac{\pi}{2},\quad I_1 = 0$$
+[Chebyshev, first kind](https://en.wikipedia.org/wiki/Chebyshev_polynomials) $$\int_{-1}^1 \frac{x^k}{\sqrt{1 - x^2}} dx$$ | $$I_0 =\pi, \quad I_k = \frac{\sqrt{\pi} ((-1)^k + 1)  \Gamma(\frac{k+1}{2})}{k\Gamma(\frac{k}{2})}$$ | $$I_k = I_{k-2} \times \frac{k-1}{k},\quad I_0 = \pi,\quad I_1 = 0$$
+[Chebyshev, second kind](https://en.wikipedia.org/wiki/Chebyshev_polynomials) $$\int_{-1}^1 x^k \sqrt{1 - x^2} dx$$ | $$I_0 =\frac{\pi}{2}, \quad I_k = \frac{\sqrt{\pi} ((-1)^k + 1)  \Gamma(\frac{k+1}{2})}{4 \Gamma(\frac{k}{2} + 2)}$$ | $$I_k = I_{k-2} \times \frac{k-1}{k + 2},\quad I_0 = \frac{\pi}{2},\quad I_1 = 0$$
