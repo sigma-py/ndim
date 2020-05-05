@@ -5,4 +5,4 @@
  x        | Closed form   | recurrence
 |:-------:|:-------------:|:-----------:|
 Volume of a unit $n$-ball | $$V_n = \frac{\sqrt{\pi}^n}{\Gamma(\frac{n}{2}+1)}$$ | $$V_n = V_{n-2} \frac{2\pi}{n},\quad V_0 = 1,\quad V_1 = 2$$
-Surface of a unit $n$-sphere | $$S_n = \frac{n \sqrt{\pi}^n}{\Gamma(\frac{n}{2}+1)}$$ | $$S_n = S_{n-2} \frac{2\pi}{n - 2},\quad V_1 = 2,\quad V_2 = 2\pi$$
+Surface of a unit $n$-sphere | $$S_{n-1} = \frac{n \sqrt{\pi}^n}{\Gamma(\frac{n}{2}+1)}$$ | $$S_n = S_{n-2} \frac{2\pi}{n - 1},\quad S_0 = 2,\quad S_1 = 2\pi$$
