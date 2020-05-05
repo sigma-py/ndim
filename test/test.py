@@ -1,6 +1,6 @@
-from math import gamma, sqrt, pi
-import pytest
+from math import gamma, pi, sqrt
 
+import pytest
 
 tol = 1.0e-10
 
@@ -49,6 +49,22 @@ def test_enr(n):
 
     def closed(n):
         return 2 * sqrt(pi) ** n * gamma(n) / gamma(n / 2)
+
+    assert abs(closed(n) - rec(n)) < closed(n) * tol
+
+
+@pytest.mark.parametrize("n", range(1, 10))
+def test_enr2(n):
+    def rec(n):
+        assert n >= 0
+        if n == 0:
+            return 1
+        elif n == 1:
+            return sqrt(2 * pi)
+        return rec(n - 2) * 2 * pi
+
+    def closed(n):
+        return sqrt(2 * pi) ** n
 
     assert abs(closed(n) - rec(n)) < closed(n) * tol
 
