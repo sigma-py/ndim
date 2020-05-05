@@ -69,5 +69,24 @@ def test_enr2(n):
     assert abs(closed(n) - rec(n)) < closed(n) * tol
 
 
+# \int_-1^1 x^k / sqrt(1 - x^2)
+@pytest.mark.parametrize("k", range(1, 10))
+def test_int(k):
+    def rec(k):
+        assert k >= 0
+        if k == 0:
+            return pi
+        elif k == 1:
+            return 0
+        return rec(k - 2) * (k - 1) / k
+
+    def closed(k):
+        if k == 0:
+            return pi
+        return sqrt(pi) * ((-1) ** k + 1) * gamma(0.5 * (k + 1)) / gamma(0.5 * k) / k
+
+    assert abs(closed(k) - rec(k)) < (1 + closed(k)) * tol
+
+
 if __name__ == "__main__":
     test_nsphere(5)
