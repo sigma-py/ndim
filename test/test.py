@@ -118,8 +118,6 @@ def test_chebyshev2(k):
         return rec(k - 2) * (k - 1) / (k + 2)
 
     def closed(k):
-        if k == 0:
-            return 0.5 * pi
         return (
             sqrt(pi) * ((-1) ** k + 1) * gamma(0.5 * (k + 1)) / gamma(0.5 * k + 2) / 4
         )
