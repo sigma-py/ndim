@@ -99,9 +99,7 @@ def test_chebyshev1(k):
         return rec(k - 2) * (k - 1) / k
 
     def closed(k):
-        if k == 0:
-            return pi
-        return sqrt(pi) * ((-1) ** k + 1) * gamma(0.5 * (k + 1)) / gamma(0.5 * k) / k
+        return ((-1) ** k + 1) / 2 * (sqrt(pi) * gamma((k + 1) / 2) / gamma(k / 2 + 1))
 
     assert abs(closed(k) - rec(k)) < (1 + closed(k)) * tol
 
@@ -119,7 +117,9 @@ def test_chebyshev2(k):
 
     def closed(k):
         return (
-            sqrt(pi) * ((-1) ** k + 1) * gamma(0.5 * (k + 1)) / gamma(0.5 * k + 2) / 4
+            ((-1) ** k + 1)
+            / 2
+            * (sqrt(pi) * gamma((k + 1) / 2) / ((k + 2) * gamma(k / 2 + 1)))
         )
 
     assert abs(closed(k) - rec(k)) < (1 + closed(k)) * tol
