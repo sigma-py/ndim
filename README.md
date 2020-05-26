@@ -23,11 +23,13 @@ $$\int_{\mathbb{R}^n} \exp\left(-\sqrt{x_1^2+\dots+x_n^2}\right)$$
 $$E_n = \frac{2 \sqrt{\pi}^n \Gamma(n)}{\Gamma(\frac{n}{2})}$$ | | $$E_n = E_{n-2} \times 2\pi(n-1), \quad E_0=1, \quad E_1=2$$
 |:-----------:|:-------------:|:-----------:|
 
-### $n$-dimensional Hermite volume
+### $n$-dimensional Hermite volume (physicists')
 $$\int_{\mathbb{R}^n} \exp\left(-(x_1^2+\dots+x_n^2)\right)$$
 
 $$E^{(2)}_n = \sqrt{\pi}^n$$ | | $$E_n = E_{n-2} \times \pi, \quad E_0=1, E_1=\sqrt{\pi}$$ or $$E_n = E_{n-1} \times \sqrt{\pi}, \quad E_0=1$$
 |:-----------:|:-------------:|:-----------:|
+
+### $n$-dimensional Hermite volume (probablisists')
 
 $$\frac{1}{\sqrt{2\pi}^n} \int_{\mathbb{R}^n} \exp\left(-\frac{1}{2}(x_1^2+\dots+x_n^2)\right)$$ | | $$E^{(2)}_n = 1$$ |
 |:-----------:|:-------------:|:-----------:|
