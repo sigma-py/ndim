@@ -1,7 +1,8 @@
 """
 \\int_-1^1 x^k * sqrt(1 - x^2)
 """
-from math import sqrt, pi, gamma, factorial
+from math import factorial, gamma, pi, sqrt
+
 import pytest
 
 

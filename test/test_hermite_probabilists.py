@@ -1,7 +1,7 @@
 """
 \\int_-inf^inf x^k * exp(-x^2/2) / sqrt(2*pi)
 """
-from math import gamma, pi, sqrt, factorial
+from math import factorial, gamma, pi, sqrt
 
 import pytest
 

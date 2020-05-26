@@ -1,8 +1,9 @@
 """
 \\int_-inf^inf x^k * exp(-x^2)
 """
+from math import factorial, gamma, pi, sqrt
+
 import pytest
-from math import sqrt, pi, gamma, factorial
 
 
 def closed(k):
@@ -13,7 +14,7 @@ def closed(k):
 
 def cases(k):
     if k % 2 == 0:
-        return sqrt(pi) * factorial(k) / (2 ** k * factorial(k // 2))
+        return sqrt(pi) * factorial(k) / (2 ** k * factorial(k / 2))
     return 0
 
 

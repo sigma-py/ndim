@@ -1,4 +1,4 @@
-from math import pi, gamma, sqrt, factorial
+from math import factorial, gamma, pi, sqrt
 
 import pytest
 
@@ -9,11 +9,10 @@ def closed(n):
 
 def cases(n):
     if n % 2 == 0:
-        n2 = n // 2
-        return pi ** n2 / factorial(n2)
+        return pi ** (n / 2) / factorial(n / 2)
 
     return (
-        pi ** ((n - 1) // 2) * 2 ** (n + 1) * factorial((n + 1) // 2) / factorial(n + 1)
+        pi ** ((n - 1) / 2) * 2 ** (n + 1) * factorial((n + 1) / 2) / factorial(n + 1)
     )
 
 

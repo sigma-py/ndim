@@ -1,4 +1,5 @@
-from math import pi, sqrt, gamma, factorial
+from math import factorial, gamma, pi, sqrt
+
 import pytest
 
 
@@ -8,10 +9,10 @@ def closed(n):
 
 def cases(n):
     if n % 2 == 0:
-        n2 = n // 2
+        n2 = n / 2
         return 2 * pi ** n2 * factorial(n - 1) / factorial(n2 - 1)
 
-    return pi ** ((n - 1) // 2) * 2 ** n * factorial((n - 1) / 2)
+    return pi ** ((n - 1) / 2) * 2 ** n * factorial((n - 1) / 2)
 
 
 def recurrence(n):

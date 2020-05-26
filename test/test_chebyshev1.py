@@ -1,8 +1,9 @@
 """
 \\int_-1^1 x^k / sqrt(1 - x^2)
 """
+from math import factorial, gamma, pi, sqrt
+
 import pytest
-from math import pi, sqrt, gamma, factorial
 
 
 def closed(k):

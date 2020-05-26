@@ -1,7 +1,8 @@
 """
 exp(-(x_1^2 + ... + x_n^2))
 """
-from math import sqrt, pi
+from math import pi, sqrt
+
 import pytest
 
 
@@ -11,8 +12,8 @@ def closed(n):
 
 def cases(n):
     if n % 2 == 0:
-        return pi ** (n // 2)
-    return sqrt(pi) * pi ** (n // 2)
+        return pi ** (n / 2)
+    return sqrt(pi) * pi ** ((n - 1) / 2)
 
 
 def recurrence(n):
