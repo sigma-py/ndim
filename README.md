@@ -14,7 +14,7 @@ $$V_n = \frac{\sqrt{\pi}^n}{\Gamma(\frac{n}{2}+1)}$$ | $$V_n = \begin{cases}\fra
 
 ### Surface of a unit $n$-sphere
 
-$$S_{n-1} = \frac{n \sqrt{\pi}^n}{\Gamma(\frac{n}{2}+1)}$$ |$$S_{n-1} = \frac{n}{(\frac{n}{2})!} \pi^{\frac{n}{2}}\quad&\text{if $n-1$ even}\\ 0\quad&\text{if $n-1$ odd$$ | $$S_n = S_{n-2} \times \frac{2\pi}{n - 1},\quad S_0 = 2,\quad S_1 = 2\pi$$
+$$S_{n-1} = \frac{n \sqrt{\pi}^n}{\Gamma(\frac{n}{2}+1)}$$ |$$S_{n-1} = \begin{cases}\frac{n}{(\frac{n}{2})!} \pi^{\frac{n}{2}}\quad&\text{if $n-1$ even}\\ 0\quad&\text{if $n-1$ odd}\end{cases}$$ | $$S_n = S_{n-2} \times \frac{2\pi}{n - 1},\quad S_0 = 2,\quad S_1 = 2\pi$$
 |:-----------:|:-------------:|:-----------:|
 
 ### $n$-dimensional Laguerre volume
