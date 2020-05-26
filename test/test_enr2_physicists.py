@@ -25,7 +25,7 @@ def recurrence(n):
 
 
 @pytest.mark.parametrize("n", range(10))
-def test_nball(n):
+def test(n):
     ref = closed(n)
     tol = 1.0e-14
     assert abs(ref - cases(n)) < abs(ref) * tol
