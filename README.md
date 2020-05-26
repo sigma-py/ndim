@@ -2,6 +2,7 @@
 
 [![green-pi](https://img.shields.io/badge/Rendered%20with-Green%20Pi-00d571?style=flat-square)](https://github.com/nschloe/green-pi?activate&inlineMath=$)
 
+## Volumes
 
 ### Volume of a unit $n$-ball
 
@@ -34,6 +35,8 @@ $$E^{(2)}_n = \sqrt{\pi}^n$$ | | $$E_n = E_{n-2} \times \pi, \quad E_0=1, E_1=\s
 $$\frac{1}{\sqrt{2\pi}^n} \int_{\mathbb{R}^n} \exp\left(-\frac{1}{2}(x_1^2+\dots+x_n^2)\right)$$ | | $$E^{(2)}_n = 1$$ |
 |:-----------:|:-------------:|:-----------:|
 
+
+## Monomial integrals
 
   Description | Closed form   | recurrence
 |:-----------:|:-------------:|:-----------:|
