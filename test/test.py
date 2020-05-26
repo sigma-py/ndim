@@ -53,24 +53,42 @@ def test_enr(n):
     assert abs(closed(n) - rec(n)) < closed(n) * tol
 
 
-@pytest.mark.parametrize("n", range(1, 10))
-def test_enr2(n):
+# exp(-(x_1^2 + ... + x_n^2))
+@pytest.mark.parametrize("n", range(10))
+def test_enr2_physicists(n):
     def rec(n):
         assert n >= 0
         if n == 0:
             return 1
         elif n == 1:
-            return sqrt(2 * pi)
-        return rec(n - 2) * 2 * pi
+            return sqrt(pi)
+        return rec(n - 2) * pi
 
     def closed(n):
-        return sqrt(2 * pi) ** n
+        return sqrt(pi) ** n
+
+    assert abs(closed(n) - rec(n)) < closed(n) * tol
+
+
+# exp(-(x_1^2 + ... + x_n^2)/2) / sqrt(2*pi) ** n
+@pytest.mark.parametrize("n", range(10))
+def test_enr2_probabilists(n):
+    def rec(n):
+        assert n >= 0
+        if n == 0:
+            return 1
+        elif n == 1:
+            return 1
+        return rec(n - 2)
+
+    def closed(n):
+        return 1
 
     assert abs(closed(n) - rec(n)) < closed(n) * tol
 
 
 # \int_-1^1 x^k / sqrt(1 - x^2)
-@pytest.mark.parametrize("k", range(1, 10))
+@pytest.mark.parametrize("k", range(10))
 def test_chebyshev1(k):
     def rec(k):
         assert k >= 0
