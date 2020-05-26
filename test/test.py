@@ -5,22 +5,6 @@ import pytest
 tol = 1.0e-10
 
 
-@pytest.mark.parametrize("n", range(1, 10))
-def test_enr(n):
-    def rec(n):
-        assert n >= 0
-        if n == 0:
-            return 1
-        elif n == 1:
-            return 2
-        return rec(n - 2) * 2 * pi * (n - 1)
-
-    def closed(n):
-        return 2 * sqrt(pi) ** n * gamma(n) / gamma(n / 2)
-
-    assert abs(closed(n) - rec(n)) < closed(n) * tol
-
-
 # exp(-(x_1^2 + ... + x_n^2))
 @pytest.mark.parametrize("n", range(10))
 def test_enr2_physicists(n):
