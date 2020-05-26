@@ -5,57 +5,6 @@ import pytest
 tol = 1.0e-10
 
 
-# exp(-(x_1^2 + ... + x_n^2))
-@pytest.mark.parametrize("n", range(10))
-def test_enr2_physicists(n):
-    def rec(n):
-        assert n >= 0
-        if n == 0:
-            return 1
-        elif n == 1:
-            return sqrt(pi)
-        return rec(n - 2) * pi
-
-    def closed(n):
-        return sqrt(pi) ** n
-
-    assert abs(closed(n) - rec(n)) < closed(n) * tol
-
-
-# exp(-(x_1^2 + ... + x_n^2)/2) / sqrt(2*pi) ** n
-@pytest.mark.parametrize("n", range(10))
-def test_enr2_probabilists(n):
-    def rec(n):
-        assert n >= 0
-        if n == 0:
-            return 1
-        elif n == 1:
-            return 1
-        return rec(n - 2)
-
-    def closed(n):
-        return 1
-
-    assert abs(closed(n) - rec(n)) < closed(n) * tol
-
-
-# \int_-1^1 x^k / sqrt(1 - x^2)
-@pytest.mark.parametrize("k", range(10))
-def test_chebyshev1(k):
-    def rec(k):
-        assert k >= 0
-        if k == 0:
-            return pi
-        elif k == 1:
-            return 0
-        return rec(k - 2) * (k - 1) / k
-
-    def closed(k):
-        return ((-1) ** k + 1) / 2 * (sqrt(pi) * gamma((k + 1) / 2) / gamma(k / 2 + 1))
-
-    assert abs(closed(k) - rec(k)) < (1 + closed(k)) * tol
-
-
 # \int_-1^1 x^k * sqrt(1 - x^2)
 @pytest.mark.parametrize("k", range(10))
 def test_chebyshev2(k):
@@ -113,7 +62,3 @@ def test_hermite_probabilist(k):
         return 2 ** ((k + 1) / 2) * gamma((k + 1) / 2) / sqrt(2 * pi)
 
     assert abs(closed(k) - rec(k)) < (1 + closed(k)) * tol
-
-
-if __name__ == "__main__":
-    test_nsphere(5)
