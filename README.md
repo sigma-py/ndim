@@ -5,9 +5,9 @@
 
 ### Volume of a unit $n$-ball
 
-See [here](https://en.wikipedia.org/wiki/Volume_of_an_n-ball)
+See [Wikipedia](https://en.wikipedia.org/wiki/Volume_of_an_n-ball).
 
-$$V_n = \frac{\sqrt{\pi}^n}{\Gamma(\frac{n}{2}+1)}$$ | $$V_n = \begin{cases}\frac{\pi^{n/2}, (n/2)!}\quad\text{if $n$ even}\\ \frac{(n+1)!}{2^{n+1} \left(\frac{n+1}{2}\right)!} \pi^{\frac{n+1}{2}} \end{cases}$$| $$V_n = V_{n-2} \times \frac{2\pi}{n},\quad V_0 = 1,\quad V_1 = 2$$
+$$V_n = \frac{\sqrt{\pi}^n}{\Gamma(\frac{n}{2}+1)}$$ | $$V_n = \begin{cases}\frac{\pi^{n/2}}{(n/2)!}\quad&\text{if $n$ even}\\ \frac{(n+1)!}{2^{n+1} \left(\frac{n+1}{2}\right)!} \pi^{\frac{n+1}{2}}\quad&\text{if $n$ odd}\end{cases}$$| $$V_n = V_{n-2} \times \frac{2\pi}{n},\quad V_0 = 1,\quad V_1 = 2$$
 
 
 ### Surface of a unit $n$-sphere
