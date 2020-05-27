@@ -9,8 +9,7 @@ def closed(n):
 
 def cases(n):
     if n % 2 == 0:
-        n2 = n / 2
-        return 2 * pi ** n2 * factorial(n - 1) / factorial(n2 - 1)
+        return 2 * pi ** (n / 2) * factorial(n - 1) / factorial(n / 2 - 1)
 
     return pi ** ((n - 1) / 2) * 2 ** n * factorial((n - 1) / 2)
 
