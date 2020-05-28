@@ -1,0 +1,201 @@
+\documentclass{scrartcl}
+
+\usepackage[utf8]{inputenc}
+
+\usepackage{fixltx2e}
+
+\usepackage{microtype}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+% \usepackage{pgfplots}
+% \pgfplotsset{compat=newest}
+
+\newcommand\mytitle{Useful recurrence relations}
+\newcommand\myauthor{Nico Schlömer}
+
+\usepackage[
+  pdfencoding=unicode,
+  ]{hyperref}
+\hypersetup{
+  pdfauthor={\myauthor},
+  pdftitle={\mytitle}
+}
+
+% \usepackage[T1]{fontenc}
+% \usepackage{newtxtext}
+% \usepackage{newtxmath}
+
+% Okay. Don't use biblatex/biber for now. There are breaking changes in every revision,
+% and we'd have to stick to the exact version that arxiv.org has, otherwise it's error
+% messages like
+% ```
+% Package biblatex Warning: File 'main.bbl' is wrong format version
+% - expected 2.8.
+% ```
+% \usepackage[sorting=none]{biblatex}
+% \bibliography{bib}
+
+\usepackage{bm}
+\newcommand\rgb{\bm{R}}
+
+\title{\mytitle\footnote{The LaTeX sources of this article are on \url{https://github.com/nschloe/note-useful-recurrence}}}
+\author{\myauthor}
+
+\begin{document}
+
+\maketitle
+\begin{abstract}
+  Many mathematical entities, especially when working in arbitrary dimensions, are
+  expressed in terms of the Gamma function, e.g., volume and surface of the hypersphere.
+  These expressions are often complicated and don't provide much insight. Also, many
+  expressions are unsuitable for use in a computer program. This note lists more
+  suitable representations with recurrence relations for many common expressions.
+\end{abstract}
+
+
+\section{Volumes}
+
+\paragraph{Volume of a unit \textit{n}-ball}
+
+\[
+  I_n
+  = \frac{\sqrt{\pi}^n}{\Gamma(\frac{n}{2}+1)}
+  = \begin{rcases}
+    \begin{dcases}
+      \frac{\pi^{\frac{n}{2}}}{(\frac{n}{2})!}&\text{if $n$ even}\\[1.2ex]
+      \frac{(\frac{n+1}{2})!2^{n+1}\pi^{\frac{n-1}{2}}}{\left(n+1\right)!}&\text{if $n$ odd}
+  \end{dcases}
+  \end{rcases}
+  = \begin{dcases}
+     1&\text{if $n = 0$}\\
+     2&\text{if $n = 1$}\\
+     I_{n-2} \times \frac{2\pi}{n}&\text{otherwise}
+  \end{dcases}
+\]
+
+From the explicit expression, it seems that $\sqrt{\pi}$ appears for odd dimensions.
+Also, it is not very clear how $I_n$ behaves in higher dimension.
+
+The recurrence makes it obvious: $I_n$ increases until about $n=5,6$, then decreases.
+
+
+\paragraph{Surface of a unit \textit{n}-sphere}
+
+\[
+I_n
+= \frac{n \sqrt{\pi}^n}{\Gamma(\frac{n}{2}+1)}
+= \begin{rcases}\begin{dcases}
+\frac{n}{(\frac{n}{2})!} \pi^{\frac{n}{2}}&\text{if $n-1$ even}\\
+  \frac{n2^{n+1}(\frac{n+1}{2})!}{(n+1)!}\pi^{\frac{n-1}{2}}&\text{if $n-1$ odd}
+\end{dcases}
+\end{rcases}
+= \begin{dcases}
+  2&\text{if $n = 0$}\\
+  2\pi&\text{if $n = 1$}\\
+  I_{n-2} \times \frac{2\pi}{n - 2}&\text{otherwise}
+\end{dcases}
+\]
+
+
+\paragraph{\textit{n}-dimensional Laguerre volume}
+
+\[
+  I_n = \int_{\mathbb{R}^n} \exp\left(-\sqrt{x_1^2+\dots+x_n^2}\right)
+\]
+\[
+I_n
+= \frac{2 \sqrt{\pi}^n \Gamma(n)}{\Gamma(\frac{n}{2})}
+= \begin{rcases}\begin{dcases}
+  \frac{2 \pi^{\frac{n}{2}} (n - 1)!}{(\frac{n}{2} - 1)!} &\text{if $n$ even}\\
+  \pi^{\frac{n - 1}{2}} 2^n \left(\frac{n - 1}{2}\right)! &\text{if $n$ odd}
+\end{dcases}
+\end{rcases}
+=\begin{dcases}
+  1&\text{if $n=0$}\\
+  2&\text{if $n=1$}\\
+  I_{n-2} \times 2\pi(n-1)&\text{otherwise}
+\end{dcases}
+\]
+
+\paragraph{\textit{n}-dimensional Hermite volume (physicists')}
+\[
+  I_n = \int_{\mathbb{R}^n} \exp\left(-(x_1^2+\dots+x_n^2)\right)
+\]
+\[
+  I_n
+  = \sqrt{\pi}^n
+  = \begin{rcases}\begin{dcases}
+     \pi^{\frac{n}{2}}&\text{if $n$ even}\\
+     \sqrt{\pi} \pi^{\frac{n-1}{2}}&\text{if $n$ odd}
+   \end{dcases}
+   \end{rcases}
+   =\begin{dcases}
+     1&\text{if $n=0$}\\
+     \sqrt{\pi}&\text{if $n=1$}\\
+     I_{n-2} \times \pi&\text{otherwise}
+   \end{dcases}
+\]
+
+\paragraph{\textit{n}-dimensional Hermite volume (probablisists')}
+
+\[
+  I_n = \frac{1}{\sqrt{2\pi}^n} \int_{\mathbb{R}^n} \exp\left(-\frac{1}{2}(x_1^2+\dots+x_n^2)\right)
+\]
+
+\[
+I_n
+= 1
+=\begin{dcases}\begin{rcases}
+  1&\text{if $n$ even}\\
+  1&\text{if $n$ odd}
+\end{rcases}
+\end{dcases}
+   =\begin{dcases}
+     1&\text{if $n=0$}\\
+     1&\text{if $n=1$}\\
+     I_{n-2}&\text{otherwise}
+   \end{dcases}
+\]
+
+
+% ## Monomial integrals
+%
+% ### Chebyshev, first kind
+% See [Wikipedia](https://en.wikipedia.org/wiki/Chebyshev_polynomials).
+%
+% $$I_k = \int_{-1}^1 \frac{x^k}{\sqrt{1 - x^2}} dx$$
+%
+% $$I_k = \frac{(-1)^k + 1}{2} \frac{\sqrt{\pi} \Gamma(\frac{k+1}{2})}{\Gamma(\frac{k}{2} + 1)}$$ | $$I_k=\begin{cases}\frac{\pi k!}{2^k (\frac{k}{2})!^2}\quad&\text{if $k$ even}\\\\0\quad&\text{if $k$ odd}\end{cases}$$ | $$I_k = I_{k-2} \times \frac{k-1}{k},\quad I_0 = \pi,\quad I_1 = 0$$
+% |:-----------:|:-------------:|:-----------:|
+%
+% ### Chebyshev, second kind
+% See [Wikipedia](https://en.wikipedia.org/wiki/Chebyshev_polynomials).
+% $$\int_{-1}^1 x^k \sqrt{1 - x^2} dx$$
+%
+% $$I_k = \frac{(-1)^k + 1}{2} \frac{\sqrt{\pi} \Gamma(\frac{k+1}{2})}{(k + 2) \Gamma(\frac{k}{2} + 1)}$$ |$$I_k=\begin{cases}\frac{\pi k!}{(k+2) 2^k (\frac{k}{2})!^2}\quad&\text{if $k$ even}\\\\0\quad&\text{if $k$ odd}\end{cases}$$| $$I_k = I_{k-2} \times \frac{k-1}{k + 2},\quad I_0 = \frac{\pi}{2},\quad I_1 = 0$$
+% |:-----------:|:-------------:|:-----------:|
+%
+%
+% ### Hermite (Physicists')
+%
+% See [Wikipedia](https://en.wikipedia.org/wiki/Hermite_polynomials).
+% $$\int_{-\infty}^\infty x^k \exp(-x^2) dx$$
+%
+% $$I_k = \frac{(-1)^k + 1}{2} \Gamma\left(\frac{k+1}{2}\right)$$ | $$I_k=\begin{cases}\frac{\sqrt{\pi}k!}{2^k (\frac{k}{2})!}\quad&\text{if $k$ even}\\\\0\quad&\text{if $k$ odd}\end{cases}$$| $$I_k = I_{k-2} \times \frac{k-1}{2},\quad I_0 = \sqrt{\pi},\quad I_1 = 0$$
+% |:-----------:|:-------------:|:-----------:|
+%
+% ### Hermite (Probabilists')
+% https://en.wikipedia.org/wiki/Hermite_polynomials
+% $$\frac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty x^k \exp\left(-\frac{1}{2}x^2\right) dx$$
+%
+% $$I_k = \frac{(-1)^k + 1}{2} \frac{2^{\frac{k+1}{2}}}{\sqrt{2\pi}} \Gamma\left(\frac{k+1}{2}\right)$$ |$$I_k=\begin{cases}\frac{k!}{2^{k/2} (\frac{k}{2})!}\quad&\text{if $k$ even}\\\\0\quad&\text{if $k$ odd}\end{cases}$$| $$I_k = I_{k-2} \times (k-1),\quad I_0 = 1,\quad I_1 = 0$$
+% |:-----------:|:-------------:|:-----------:|
+
+
+% \printbibliography{}
+\bibliography{bib}{}
+\bibliographystyle{plain}
+
+\end{document}
