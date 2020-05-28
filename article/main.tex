@@ -62,17 +62,17 @@
 \[
   I_n
   = \frac{\sqrt{\pi}^n}{\Gamma(\frac{n}{2}+1)}
-  = \begin{rcases}
-    \begin{dcases}
-      \frac{\pi^{\frac{n}{2}}}{(\frac{n}{2})!}&\text{if $n$ even}\\[1.2ex]
-      \frac{(\frac{n+1}{2})!2^{n+1}\pi^{\frac{n-1}{2}}}{\left(n+1\right)!}&\text{if $n$ odd}
-  \end{dcases}
-  \end{rcases}
-  = \begin{dcases}
+  % = \begin{rcases}
+  %   \begin{dcases}
+  %     \frac{\pi^{\frac{n}{2}}}{(\frac{n}{2})!}&\text{if $n$ even}\\[1.2ex]
+  %     \frac{(\frac{n+1}{2})!2^{n+1}\pi^{\frac{n-1}{2}}}{\left(n+1\right)!}&\text{if $n$ odd}
+  % \end{dcases}
+  % \end{rcases}
+  = \begin{cases}
      1&\text{if $n = 0$}\\
      2&\text{if $n = 1$}\\
      I_{n-2} \times \frac{2\pi}{n}&\text{otherwise}
-  \end{dcases}
+  \end{cases}
 \]
 
 From the explicit expression, it seems that $\sqrt{\pi}$ appears for odd dimensions.
@@ -86,112 +86,182 @@ The recurrence makes it obvious: $I_n$ increases until about $n=5,6$, then decre
 \[
 I_n
 = \frac{n \sqrt{\pi}^n}{\Gamma(\frac{n}{2}+1)}
-= \begin{rcases}\begin{dcases}
-\frac{n}{(\frac{n}{2})!} \pi^{\frac{n}{2}}&\text{if $n-1$ even}\\
-  \frac{n2^{n+1}(\frac{n+1}{2})!}{(n+1)!}\pi^{\frac{n-1}{2}}&\text{if $n-1$ odd}
-\end{dcases}
-\end{rcases}
-= \begin{dcases}
+% = \begin{rcases}\begin{dcases}
+% \frac{n}{(\frac{n}{2})!} \pi^{\frac{n}{2}}&\text{if $n-1$ even}\\
+%   \frac{n2^{n+1}(\frac{n+1}{2})!}{(n+1)!}\pi^{\frac{n-1}{2}}&\text{if $n-1$ odd}
+% \end{dcases}
+% \end{rcases}
+= \begin{cases}
   2&\text{if $n = 0$}\\
   2\pi&\text{if $n = 1$}\\
   I_{n-2} \times \frac{2\pi}{n - 2}&\text{otherwise}
-\end{dcases}
+\end{cases}
 \]
 
 
 \paragraph{\textit{n}-dimensional Laguerre volume}
 
-\[
-  I_n = \int_{\mathbb{R}^n} \exp\left(-\sqrt{x_1^2+\dots+x_n^2}\right)
-\]
-\[
-I_n
-= \frac{2 \sqrt{\pi}^n \Gamma(n)}{\Gamma(\frac{n}{2})}
-= \begin{rcases}\begin{dcases}
-  \frac{2 \pi^{\frac{n}{2}} (n - 1)!}{(\frac{n}{2} - 1)!} &\text{if $n$ even}\\
-  \pi^{\frac{n - 1}{2}} 2^n \left(\frac{n - 1}{2}\right)! &\text{if $n$ odd}
-\end{dcases}
-\end{rcases}
-=\begin{dcases}
-  1&\text{if $n=0$}\\
-  2&\text{if $n=1$}\\
-  I_{n-2} \times 2\pi(n-1)&\text{otherwise}
-\end{dcases}
-\]
+\begin{equation}\label{ndimlaguerre}
+  \begin{split}
+  I_n
+  &= \int_{\mathbb{R}^n} \exp\left(-\sqrt{x_1^2+\dots+x_n^2}\right)\\
+  &= \frac{2 \sqrt{\pi}^n \Gamma(n)}{\Gamma(\frac{n}{2})}
+  % = \begin{rcases}\begin{dcases}
+  %   \frac{2 \pi^{\frac{n}{2}} (n - 1)!}{(\frac{n}{2} - 1)!} &\text{if $n$ even}\\
+  %   \pi^{\frac{n - 1}{2}} 2^n \left(\frac{n - 1}{2}\right)! &\text{if $n$ odd}
+  % \end{dcases}
+  % \end{rcases}
+  = \begin{cases}
+    1&\text{if $n=0$}\\
+    2&\text{if $n=1$}\\
+    I_{n-2} \times 2\pi(n-1)&\text{otherwise}
+  \end{cases}
+  \end{split}
+\end{equation}
 
 \paragraph{\textit{n}-dimensional Hermite volume (physicists')}
 \[
-  I_n = \int_{\mathbb{R}^n} \exp\left(-(x_1^2+\dots+x_n^2)\right)
-\]
-\[
+  \begin{split}
   I_n
-  = \sqrt{\pi}^n
-  = \begin{rcases}\begin{dcases}
-     \pi^{\frac{n}{2}}&\text{if $n$ even}\\
-     \sqrt{\pi} \pi^{\frac{n-1}{2}}&\text{if $n$ odd}
-   \end{dcases}
-   \end{rcases}
-   =\begin{dcases}
+  &= \int_{\mathbb{R}^n} \exp\left(-(x_1^2+\dots+x_n^2)\right)\\
+  &= \sqrt{\pi}^n
+%   = \begin{rcases}\begin{dcases}
+%      \pi^{\frac{n}{2}}&\text{if $n$ even}\\
+%      \sqrt{\pi} \pi^{\frac{n-1}{2}}&\text{if $n$ odd}
+%    \end{dcases}
+%    \end{rcases}
+   = \begin{cases}
      1&\text{if $n=0$}\\
      \sqrt{\pi}&\text{if $n=1$}\\
      I_{n-2} \times \pi&\text{otherwise}
-   \end{dcases}
+   \end{cases}
+  \end{split}
 \]
 
 \paragraph{\textit{n}-dimensional Hermite volume (probablisists')}
 
 \[
-  I_n = \frac{1}{\sqrt{2\pi}^n} \int_{\mathbb{R}^n} \exp\left(-\frac{1}{2}(x_1^2+\dots+x_n^2)\right)
+  I_n = \frac{1}{\sqrt{2\pi}^n} \int_{\mathbb{R}^n}
+  \exp\left(-\frac{1}{2}(x_1^2+\dots+x_n^2)\right) = 1
 \]
+
+
+\section{Monomial integrals}
+
+\paragraph{Chebyshev, first kind}
+% See [Wikipedia](https://en.wikipedia.org/wiki/Chebyshev_polynomials).
 
 \[
-I_n
-= 1
-=\begin{dcases}\begin{rcases}
-  1&\text{if $n$ even}\\
-  1&\text{if $n$ odd}
-\end{rcases}
-\end{dcases}
-   =\begin{dcases}
-     1&\text{if $n=0$}\\
-     1&\text{if $n=1$}\\
-     I_{n-2}&\text{otherwise}
-   \end{dcases}
+  \begin{split}
+    I_k
+    &= \int_{-1}^1 \frac{x^k}{\sqrt{1 - x^2}} dx\\
+    &= \frac{(-1)^k + 1}{2} \times \frac{\sqrt{\pi} \Gamma(\frac{k+1}{2})}{\Gamma(\frac{k}{2} + 1)}
+    % = \begin{cases}
+    %   \frac{\pi k!}{2^k (\frac{k}{2})!^2}\quad&\text{if $k$ even}\\
+    %   0\quad&\text{if $k$ odd}\end{cases}
+    = \begin{cases}
+      \pi&\text{if $k = 0$}\\
+      0&\text{if $k = 1$}\\
+      I_{k-2} \times \frac{k-1}{k}&\text{otherwise}
+    \end{cases}
+  \end{split}
 \]
 
 
-% ## Monomial integrals
-%
-% ### Chebyshev, first kind
+\paragraph{Chebyshev, second kind}
 % See [Wikipedia](https://en.wikipedia.org/wiki/Chebyshev_polynomials).
-%
-% $$I_k = \int_{-1}^1 \frac{x^k}{\sqrt{1 - x^2}} dx$$
-%
-% $$I_k = \frac{(-1)^k + 1}{2} \frac{\sqrt{\pi} \Gamma(\frac{k+1}{2})}{\Gamma(\frac{k}{2} + 1)}$$ | $$I_k=\begin{cases}\frac{\pi k!}{2^k (\frac{k}{2})!^2}\quad&\text{if $k$ even}\\\\0\quad&\text{if $k$ odd}\end{cases}$$ | $$I_k = I_{k-2} \times \frac{k-1}{k},\quad I_0 = \pi,\quad I_1 = 0$$
-% |:-----------:|:-------------:|:-----------:|
-%
-% ### Chebyshev, second kind
-% See [Wikipedia](https://en.wikipedia.org/wiki/Chebyshev_polynomials).
-% $$\int_{-1}^1 x^k \sqrt{1 - x^2} dx$$
-%
-% $$I_k = \frac{(-1)^k + 1}{2} \frac{\sqrt{\pi} \Gamma(\frac{k+1}{2})}{(k + 2) \Gamma(\frac{k}{2} + 1)}$$ |$$I_k=\begin{cases}\frac{\pi k!}{(k+2) 2^k (\frac{k}{2})!^2}\quad&\text{if $k$ even}\\\\0\quad&\text{if $k$ odd}\end{cases}$$| $$I_k = I_{k-2} \times \frac{k-1}{k + 2},\quad I_0 = \frac{\pi}{2},\quad I_1 = 0$$
-% |:-----------:|:-------------:|:-----------:|
-%
-%
-% ### Hermite (Physicists')
-%
+\[
+  \begin{split}
+  I_k
+    &= \int_{-1}^1 x^k \sqrt{1 - x^2} dx\\
+    &= \frac{(-1)^k + 1}{2} \times \frac{\sqrt{\pi} \Gamma(\frac{k+1}{2})}{(k + 2) \Gamma(\frac{k}{2} + 1)}
+  % = \begin{cases}
+  %   \frac{\pi k!}{(k+2) 2^k (\frac{k}{2})!^2}&\text{if $k$ even}\\
+  %   0&\text{if $k$ odd}
+  % \end{cases}
+  = \begin{cases}
+    \frac{\pi}{2}&\text{if $k = 0$}\\
+    0&\text{if $k = 1$}\\
+    I_{k-2} \times \frac{k-1}{k + 2}&\text{otherwise}
+  \end{cases}
+  \end{split}
+\]
+
+
+\paragraph{Hermite (physicists')}
+
 % See [Wikipedia](https://en.wikipedia.org/wiki/Hermite_polynomials).
-% $$\int_{-\infty}^\infty x^k \exp(-x^2) dx$$
-%
-% $$I_k = \frac{(-1)^k + 1}{2} \Gamma\left(\frac{k+1}{2}\right)$$ | $$I_k=\begin{cases}\frac{\sqrt{\pi}k!}{2^k (\frac{k}{2})!}\quad&\text{if $k$ even}\\\\0\quad&\text{if $k$ odd}\end{cases}$$| $$I_k = I_{k-2} \times \frac{k-1}{2},\quad I_0 = \sqrt{\pi},\quad I_1 = 0$$
-% |:-----------:|:-------------:|:-----------:|
-%
-% ### Hermite (Probabilists')
+\begin{equation}\label{ndimhermitephys}
+  \begin{split}
+    I_k
+    &= \int_{-\infty}^\infty x^k \exp(-x^2) dx\\
+    &= \frac{(-1)^k + 1}{2} \times \Gamma\left(\frac{k+1}{2}\right)
+    % = \begin{cases}
+    % \frac{\sqrt{\pi}k!}{2^k (\frac{k}{2})!}&\text{if $k$ even}\\
+    % 0&\text{if $k$ odd}
+    % \end{cases}
+    = \begin{cases}
+      \sqrt{\pi}&\text{if $k = 0$}\\
+      0&\text{if $k = 1$}\\
+      I_{k-2} \times \frac{k-1}{2}&\text{otherwise}
+    \end{cases}
+  \end{split}
+\end{equation}
+
+
+\paragraph{Hermite (probabilists')}
 % https://en.wikipedia.org/wiki/Hermite_polynomials
-% $$\frac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty x^k \exp\left(-\frac{1}{2}x^2\right) dx$$
-%
-% $$I_k = \frac{(-1)^k + 1}{2} \frac{2^{\frac{k+1}{2}}}{\sqrt{2\pi}} \Gamma\left(\frac{k+1}{2}\right)$$ |$$I_k=\begin{cases}\frac{k!}{2^{k/2} (\frac{k}{2})!}\quad&\text{if $k$ even}\\\\0\quad&\text{if $k$ odd}\end{cases}$$| $$I_k = I_{k-2} \times (k-1),\quad I_0 = 1,\quad I_1 = 0$$
-% |:-----------:|:-------------:|:-----------:|
+\[
+  \begin{split}
+I_k
+    &= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty x^k \exp\left(-\frac{1}{2}x^2\right) dx\\
+    &= \frac{(-1)^k + 1}{2} \times \frac{2^{\frac{k+1}{2}}}{\sqrt{2\pi}}
+    \Gamma\left(\frac{k+1}{2}\right)
+    % = \begin{cases}
+    % \frac{k!}{2^{k/2} (\frac{k}{2})!}&\text{if $k$ even}\\
+    % 0&\text{if $k$ odd}
+    % \end{cases}
+    = \begin{cases}
+      1&\text{if $k = 0$}\\
+      0&\text{if $k = 1$}\\
+      I_{k-2} \times (k-1)&\text{otherwise}
+    \end{cases}
+  \end{split}
+\]
+
+\paragraph{Monomial integration over \textit{n}-dimensional Laguerre volume}
+\[
+  \begin{split}
+  I_{k_1,\dots,k_n}
+  &= \int_{\mathbb{R}^n} x_1^{k_1}\dots x_n^{k_n} \exp(-\sqrt{x_1^2+\dots+x_n^2})\\
+  &= \frac{
+    2 \left(\left(\sum_{i=1}^n k_i+1\right) - 1\right)
+    \left(\prod_{i=1}^n\Gamma\left(\frac{k_i + 1}{2}\right)\right)
+  }{
+    \Gamma\left(\sum_{i=1}^n\frac{k_i + 1}{2}\right)
+  }\\
+  &=\begin{cases}
+    0&\text{if any $k_i$ is odd}\\
+    I_{0,\dots,0} \text{ (see \eqref{ndimlaguerre}}&\text{if all $k_i=0$}\\
+    I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times (k_{i_0} - 1) \left(\left(\sum_{i=1}^n
+    k_i+1\right) - 1\right)&\text{if $k_{i_0} > 0$}
+  \end{cases}
+  \end{split}
+\]
+
+\paragraph{Monomial integration over \textit{n}-dimensional Hermite volume (physicists'}
+\[
+  \begin{split}
+  I_{k_1,\dots,k_n}
+  &= \int_{\mathbb{R}^n} x_1^{k_1}\dots x_n^{k_n} \exp(-(x_1^2+\dots+x_n^2))\\
+  &= \prod_{i=1}^n \Gamma\left(\frac{k_i+1}{2}\right)\\
+  &=\begin{cases}
+    0&\text{if any $k_i$ is odd}\\
+    I_{0,\dots,0} \text{ (see \eqref{ndimhermitephys}}&\text{if all $k_i=0$}\\
+    I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0} - 1}{2}&\text{if $k_{i_0} > 0$}
+  \end{cases}
+\end{split}
+\]
 
 
 % \printbibliography{}
