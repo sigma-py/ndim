@@ -52,11 +52,9 @@ and monomial integrals}
 
 \maketitle
 \begin{abstract}
-  Many mathematical entities, especially when working in arbitrary dimensions, are
-  expressed in terms of the Gamma function, e.g., volume and surface of the hypersphere.
-  These expressions are often complicated and don't provide much insight. Also, many
-  expressions are unsuitable for use in a computer program. This note lists more
-  suitable representations with recurrence relations for many common expressions.
+  This article gives closed formulas and recurrence expressions for many $n$-dimensional
+  volumes and monomial integrals. The recurrence expressions are often much simpler,
+  more instructive, and better suited for numerical computation.
 \end{abstract}
 
 \subsection*{\textit{n}-dimensional unit cube}
@@ -73,8 +71,7 @@ and monomial integrals}
       \end{cases}
     \end{equation}
   \item Monomial integration.
-  \begin{equation}
-    \begin{split}
+  \begin{align}\nonumber
     I_{k_1,\dots,k_n}
     &= \int_{C_n} x_1^{k_1}\cdots x_n^{k_n}\\
       &= \prod_{i=1}^n \frac{1 + (-1)^{k_i}}{k_i+1}
@@ -83,8 +80,7 @@ and monomial integrals}
       |C_n|&\text{if all $k_i=0$}\\
       I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0}-1}{k_{i_0}+1}&\text{if $k_{i_0} > 0$}
     \end{cases}
-  \end{split}
-  \end{equation}
+  \end{align}
 \end{itemize}
 
 \subsection*{\textit{n}-dimensional unit simplex}
@@ -102,8 +98,7 @@ and monomial integrals}
     \end{equation}
   \item Monomial integration.
   % https://math.stackexchange.com/q/207073/36678
-  \begin{equation}
-    \begin{split}
+  \begin{align}\nonumber
     I_{k_1,\dots,k_n}
     &= \int_{T_n} x_1^{k_1}\cdots x_n^{k_n}\\
     &= \frac{\prod_{i=1}^n\Gamma(k_i)}{\Gamma\left(\sum_{i=1}^n k_i\right)}
@@ -111,8 +106,7 @@ and monomial integrals}
       |T_n|&\text{if all $k_i=0$}\\
       I_{k_1,\dots,k_{i_0}-1,\dots,k_n} \times \frac{k_{i_0}}{\sum_{i=1}^n (k_i+1)}&\text{if $k_{i_0} > 0$}
     \end{cases}
-  \end{split}
-  \end{equation}
+  \end{align}
 \end{itemize}
 
 \subsection*{\textit{n}-dimensional unit sphere}
@@ -122,7 +116,7 @@ and monomial integrals}
 
 \begin{itemize}
   \item Volume.
-\begin{equation*}\label{ndimsphere}
+\begin{equation}\label{ndimsphere}
   |U_n|
   = \frac{n \sqrt{\pi}^n}{\Gamma(\frac{n}{2}+1)}
   % = \begin{rcases}\begin{dcases}
@@ -135,11 +129,10 @@ and monomial integrals}
     2\pi&\text{if $n = 2$}\\
     |U_{n-2}| \times \frac{2\pi}{n - 2}&\text{otherwise}
   \end{cases}
-\end{equation*}
+\end{equation}
 
   \item Monomial integral \cite{folland}.
-\[
-  \begin{split}
+\begin{align}\nonumber
   I_{k_1,\dots,k_n}
   &= \int_{U_n} x_1^{k_1}\cdots x_n^{k_n}\\
   &= 2 \frac{\prod_{i=1}^n
@@ -149,8 +142,7 @@ and monomial integrals}
     |U_n|&\text{if all $k_i=0$}\\
     I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0} - 1}{\sum_{i=1}^n (k_i+1) - 2}&\text{if $k_{i_0} > 0$}
   \end{cases}
-  \end{split}
-\]
+\end{align}
 \end{itemize}
 
 
@@ -179,18 +171,16 @@ and monomial integrals}
 \end{equation}
 
 \item Monomial integral \cite{folland}.
-\begin{equation}
-  \begin{split}
-    I_{k_1,\dots,k_n}
-    &= \int_{S_n} x_1^{k_1}\cdots x_n^{k_n}\\
-    &= \frac{2^p}{p} |S_n|
-    =\begin{cases}
-      0&\text{if any $k_i$ is odd}\\
-      |S_n|&\text{if all $k_i=0$}\\
-      I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{(k_{i_0} - 1)}{p - 2}&\text{if $k_{i_0} > 0$}
-    \end{cases}
-  \end{split}
-\end{equation}
+\begin{align}\nonumber
+  I_{k_1,\dots,k_n}
+  &= \int_{S_n} x_1^{k_1}\cdots x_n^{k_n}\\
+  &= \frac{2^p}{p} |S_n|
+  =\begin{cases}
+    0&\text{if any $k_i$ is odd}\\
+    |S_n|&\text{if all $k_i=0$}\\
+    I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{(k_{i_0} - 1)}{p - 2}&\text{if $k_{i_0} > 0$}
+  \end{cases}
+\end{align}
 with $p=\sum_{i=1}^n (k_i+1)$.
 \end{itemize}
 
@@ -207,8 +197,7 @@ with $p=\sum_{i=1}^n (k_i+1)$.
   $\lambda > -1.$ (Compare with \eqref{ndimball} for $\lambda = 0$.) \cite{3695653}
 \begin{itemize}
   \item Volume.
-  \[
-    \begin{split}
+    \begin{align}\nonumber
     |G_n^{\lambda}|
       &= \int_{S^n} \left(1 - \sum_{i=1}^n x_i^2\right)^\lambda\\
       &= \frac{
@@ -221,12 +210,10 @@ with $p=\sum_{i=1}^n (k_i+1)$.
         \frac{\Gamma(1+\lambda)\sqrt{\pi}}{\Gamma\left(\frac{3}{2} + \lambda\right)}&\text{for $n=1$}\\
         |G_{n-2}^{\lambda}|\times \frac{2\pi}{2\lambda + n}&\text{otherwise}
       \end{cases}
-    \end{split}
-  \]
+  \end{align}
 
   \item Monomial integration.
-  \[
-    \begin{split}
+  \begin{align}\nonumber
     I_{k_1,\dots,k_n}
       &= \int_{S^n} x_1^{k_1}\cdots x_n^{k_n} \left(1 - \sum_{i=1}^n
       x_i^2\right)^\lambda\\
@@ -240,8 +227,7 @@ with $p=\sum_{i=1}^n (k_i+1)$.
         |G_n^{\lambda}|&\text{if all $k_i=0$}\\
         I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0}-1}{2\lambda + \sum_{i=1}^n(k_i+1)}&\text{if $k_{i_0} > 0$}
       \end{cases}
-    \end{split}
-  \]
+  \end{align}
 \end{itemize}
 
 
@@ -252,8 +238,7 @@ Gegenbauer with $\lambda=-\frac{1}{2}.$
 
 \begin{itemize}
   \item Volume.
-  \[
-    \begin{split}
+    \begin{align}\nonumber
     |G_n^{-1/2}|
       &= \int_{S^n} \frac{1}{\sqrt{1 - \sum_{i=1}^n x_i^2}}\\
       &= \frac{
@@ -266,12 +251,10 @@ Gegenbauer with $\lambda=-\frac{1}{2}.$
         \pi&\text{if $n=1$}\\
         |G_{n-2}^{-1/2}| \times \frac{2\pi}{n-1}&\text{otherwise}
       \end{cases}
-    \end{split}
-  \]
+    \end{align}
 
   \item Monomial integration.
-  \[
-    \begin{split}
+    \begin{align}\nonumber
     I_{k_1,\dots,k_n}
       &= \int_{S^n} \frac{x_1^{k_1}\cdots x_n^{k_n}}{\sqrt{1 - \sum_{i=1}^n x_i^2}}\\
       &= \frac{
@@ -284,8 +267,7 @@ Gegenbauer with $\lambda=-\frac{1}{2}.$
         |G_n^{-1/2}|&\text{if all $k_i=0$}\\
         I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0}-1}{-1 + \sum_{i=1}^n(k_i+1)}&\text{if $k_{i_0} > 0$}
       \end{cases}
-    \end{split}
-  \]
+    \end{align}
 \end{itemize}
 
 
@@ -295,8 +277,7 @@ Gegenbauer with $\lambda = +\frac{1}{2}.$
 
 \begin{itemize}
   \item Volume.
-  \[
-    \begin{split}
+    \begin{align}\nonumber
     |G_n^{+1/2}|
       &= \int_{S^n} \sqrt{1 - \sum_{i=1}^n x_i^2}\\
       &= \frac{
@@ -309,12 +290,10 @@ Gegenbauer with $\lambda = +\frac{1}{2}.$
         \frac{\pi}{2}&\text{if $n=1$}\\
         |G_{n-2}^{+1/2}| \times \frac{2\pi}{n+1}&\text{otherwise}
       \end{cases}
-  \end{split}
-  \]
+    \end{align}
 
   \item Monomial integration.
-  \[
-    \begin{split}
+    \begin{align}\nonumber
     I_{k_1,\dots,k_n}
       &= \int_{S^n} x_1^{k_1}\cdots x_n^{k_n} \sqrt{1 - \sum_{i=1}^n
       x_i^2}\\
@@ -328,8 +307,7 @@ Gegenbauer with $\lambda = +\frac{1}{2}.$
         |G_n^{+1/2}|&\text{if all $k_i=0$}\\
         I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0}-1}{1 + \sum_{i=1}^n(k_i+1)}&\text{if $k_{i_0} > 0$}
       \end{cases}
-    \end{split}
-  \]
+    \end{align}
 \end{itemize}
 
 
@@ -339,8 +317,7 @@ $\alpha > -1.$
 
 \begin{itemize}
   \item Volume.
-\begin{equation*}\label{ndimlaguerre}
-  \begin{split}
+    \begin{align}\nonumber
   V_n
     &= \int_{\mathbb{R}^n} \left(\sqrt{x_1^2+\dots+x_n^2}\right)^\alpha \exp\left(-\sqrt{x_1^2+\dots+x_n^2}\right)\\
     &= \frac{2 \sqrt{\pi}^n \Gamma(n+\alpha)}{\Gamma(\frac{n}{2})}
@@ -354,12 +331,10 @@ $\alpha > -1.$
     2\pi\Gamma(2 + \alpha)&\text{if $n=2$}\\
     V_{n-2} \times \frac{2\pi(n+\alpha-1) (n+\alpha-2)}{n-2}&\text{otherwise}
   \end{cases}
-  \end{split}
-\end{equation*}
+\end{align}
 
 \item Monomial integration.
-\[
-  \begin{split}
+    \begin{align}\nonumber
   I_{k_1,\dots,k_n}
   &= \int_{\mathbb{R}^n} x_1^{k_1}\cdots x_n^{k_n}
     \left(\sqrt{x_1^2+\dots+x_n^2}\right)^\alpha \exp\left(-\sqrt{x_1^2+\dots+x_n^2}\right)\\
@@ -378,16 +353,14 @@ $\alpha > -1.$
         p - 2
     }&\text{if $k_{i_0} > 0$}
   \end{cases}
-  \end{split}
-\]
+\end{align}
 with $p=\sum_{k=1}^n (k_i + 1)$.
 \end{itemize}
 
 \subsection*{\textit{n}-dimensional Hermite (physicists')}
 \begin{itemize}
   \item Volume.
-\[
-  \begin{split}
+\begin{align}\nonumber
   V_n
   &= \int_{\mathbb{R}^n} \exp\left(-(x_1^2+\dots+x_n^2)\right)\\
   &= \sqrt{\pi}^n
@@ -401,8 +374,7 @@ with $p=\sum_{k=1}^n (k_i + 1)$.
      \sqrt{\pi}&\text{if $n=1$}\\
      V_{n-2} \times \pi&\text{otherwise}
    \end{cases}
-  \end{split}
-\]
+\end{align}
 %   \item Monomial 1D.
 % % See [Wikipedia](https://en.wikipedia.org/wiki/Hermite_polynomials).
 % \begin{equation*}
@@ -423,8 +395,7 @@ with $p=\sum_{k=1}^n (k_i + 1)$.
 % \end{equation*}
 
   \item Monomial integration.
-  \[
-    \begin{split}
+\begin{align}\nonumber
     I_{k_1,\dots,k_n}
     &= \int_{\mathbb{R}^n} x_1^{k_1}\cdots x_n^{k_n} \exp(-(x_1^2+\dots+x_n^2))\\
     &= \prod_{i=1}^n \frac{(-1)^{k_i} + 1}{2} \times \Gamma\left(\frac{k_i+1}{2}\right)\\
@@ -433,18 +404,17 @@ with $p=\sum_{k=1}^n (k_i + 1)$.
       V_n&\text{if all $k_i=0$}\\
       I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0} - 1}{2}&\text{if $k_{i_0} > 0$}
     \end{cases}
-    \end{split}
-  \]
+\end{align}
 \end{itemize}
 
 
 \subsection*{\textit{n}-dimensional Hermite (probablisists')}
 \begin{itemize}
   \item Volume.
-\[
-  V_n = \frac{1}{\sqrt{2\pi}^n} \int_{\mathbb{R}^n}
-  \exp\left(-\frac{1}{2}(x_1^2+\dots+x_n^2)\right) = 1
-\]
+    \begin{equation}
+      V_n = \frac{1}{\sqrt{2\pi}^n} \int_{\mathbb{R}^n}
+      \exp\left(-\frac{1}{2}(x_1^2+\dots+x_n^2)\right) = 1
+    \end{equation}
 
 %   \item Monomial 1D.
 % % https://en.wikipedia.org/wiki/Hermite_polynomials
@@ -466,8 +436,7 @@ with $p=\sum_{k=1}^n (k_i + 1)$.
 % \]
 
   \item Monomial integration.
-  \[
-    \begin{split}
+  \begin{align}\nonumber
     I_{k_1,\dots,k_n}
       &= \frac{1}{\sqrt{2\pi}^n} \int_{\mathbb{R}^n} x_1^{k_1}\cdots x_n^{k_n}
       \exp\left(-\frac{1}{2}(x_1^2+\dots+x_n^2)\right)\\
@@ -478,8 +447,7 @@ with $p=\sum_{k=1}^n (k_i + 1)$.
       V_n&\text{if all $k_i=0$}\\
       I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times (k_{i_0} - 1)&\text{if $k_{i_0} > 0$}
     \end{cases}
-    \end{split}
-  \]
+  \end{align}
 \end{itemize}
 
 
