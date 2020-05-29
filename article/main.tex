@@ -55,6 +55,62 @@
   suitable representations with recurrence relations for many common expressions.
 \end{abstract}
 
+\subsection*{\textit{n}-dimensional unit cube}
+\[
+  C_n = \left\{(x_1,\dots,x_n): -1 \le x_i \le 1\right\}
+\]
+
+\begin{itemize}
+  \item Volume.
+    \[
+      |C_n| = 2^n = \begin{cases}
+        1&\text{if $n=0$}\\
+        |C_{n-1}| \times 2&\text{otherwise}
+      \end{cases}
+    \]
+  \item Monomial integration.
+  \[
+    \begin{split}
+    I_{k_1,\dots,k_n}
+    &= \int_{C_n} x_1^{k_1}\cdots x_n^{k_n}\\
+      &= \prod_{i=1}^n \frac{1 + (-1)^{k_i}}{k_i+1}
+    =\begin{cases}
+      0&\text{if any $k_i$ is odd}\\
+      |C_n|&\text{if all $k_i=0$}\\
+      I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0}-1}{k_{i_0}+1}&\text{if $k_{i_0} > 0$}
+    \end{cases}
+  \end{split}
+  \]
+\end{itemize}
+
+\subsection*{\textit{n}-dimensional unit simplex}
+\[
+  T_n = \left\{(x_1,\dots,x_n):x_i \geq 0, \sum_{i=1}^n x_i \leq 1\right\}
+\]
+
+\begin{itemize}
+  \item Volume.
+    \[
+      |T_n| = \frac{1}{n!} = \begin{cases}
+        1&\text{if $n=0$}\\
+        |T_{n-1}| \times \frac{1}{n}&\text{otherwise}
+      \end{cases}
+    \]
+  \item Monomial integration.
+  % https://math.stackexchange.com/q/207073/36678
+  \[
+    \begin{split}
+    I_{k_1,\dots,k_n}
+    &= \int_{T_n} x_1^{k_1}\cdots x_n^{k_n}\\
+    &= \frac{\prod_{i=1}^n\Gamma(k_i)}{\Gamma\left(\sum_{i=1}^n k_i\right)}
+    =\begin{cases}
+      |T_n|&\text{if all $k_i=0$}\\
+      I_{k_1,\dots,k_{i_0}-1,\dots,k_n} \times \frac{k_{i_0}}{\sum_{i=1}^n (k_i+1)}&\text{if $k_{i_0} > 0$}
+    \end{cases}
+  \end{split}
+  \]
+\end{itemize}
+
 
 \subsection*{The unit \textit{n}-ball}
 \[
@@ -101,7 +157,7 @@ The recurrence makes it obvious: $I_n$ increases until about $n=5,6$, then decre
 with $p=\sum_{i=1}^n (k_i+1)$.
 \end{itemize}
 
-\subsection*{The unit \textit{n--1}-sphere}
+\subsection*{The unit \textit{n}-sphere}
 \[
   U_n = \left\{(x_1,\dots,x_n): \sum_{i=1}^n x_i^2 = 1\right\}
 \]
@@ -203,24 +259,24 @@ with $p=\sum_{i=1}^n (k_i+1)$.
    \end{cases}
   \end{split}
 \]
-  \item Monomial 1D.
-% See [Wikipedia](https://en.wikipedia.org/wiki/Hermite_polynomials).
-\begin{equation*}
-  \begin{split}
-    I_k
-    &= \int_{-\infty}^\infty x^k \exp(-x^2) dx\\
-    &= \frac{(-1)^k + 1}{2} \times \Gamma\left(\frac{k+1}{2}\right)
-    % = \begin{cases}
-    % \frac{\sqrt{\pi}k!}{2^k (\frac{k}{2})!}&\text{if $k$ even}\\
-    % 0&\text{if $k$ odd}
-    % \end{cases}
-    = \begin{cases}
-      \sqrt{\pi}&\text{if $k = 0$}\\
-      0&\text{if $k = 1$}\\
-      I_{k-2} \times \frac{k-1}{2}&\text{otherwise}
-    \end{cases}
-  \end{split}
-\end{equation*}
+%   \item Monomial 1D.
+% % See [Wikipedia](https://en.wikipedia.org/wiki/Hermite_polynomials).
+% \begin{equation*}
+%   \begin{split}
+%     I_k
+%     &= \int_{-\infty}^\infty x^k \exp(-x^2) dx\\
+%     &= \frac{(-1)^k + 1}{2} \times \Gamma\left(\frac{k+1}{2}\right)
+%     % = \begin{cases}
+%     % \frac{\sqrt{\pi}k!}{2^k (\frac{k}{2})!}&\text{if $k$ even}\\
+%     % 0&\text{if $k$ odd}
+%     % \end{cases}
+%     = \begin{cases}
+%       \sqrt{\pi}&\text{if $k = 0$}\\
+%       0&\text{if $k = 1$}\\
+%       I_{k-2} \times \frac{k-1}{2}&\text{otherwise}
+%     \end{cases}
+%   \end{split}
+% \end{equation*}
 
   \item Monomial integration.
   \[
@@ -246,25 +302,40 @@ with $p=\sum_{i=1}^n (k_i+1)$.
   \exp\left(-\frac{1}{2}(x_1^2+\dots+x_n^2)\right) = 1
 \]
 
-  \item Monomial 1D.
-% https://en.wikipedia.org/wiki/Hermite_polynomials
-\[
-  \begin{split}
-I_k
-    &= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty x^k \exp\left(-\frac{1}{2}x^2\right) dx\\
-    &= \frac{(-1)^k + 1}{2} \times \frac{2^{\frac{k+1}{2}}}{\sqrt{2\pi}}
-    \Gamma\left(\frac{k+1}{2}\right)
-    % = \begin{cases}
-    % \frac{k!}{2^{k/2} (\frac{k}{2})!}&\text{if $k$ even}\\
-    % 0&\text{if $k$ odd}
-    % \end{cases}
-    = \begin{cases}
-      1&\text{if $k = 0$}\\
-      0&\text{if $k = 1$}\\
-      I_{k-2} \times (k-1)&\text{otherwise}
+%   \item Monomial 1D.
+% % https://en.wikipedia.org/wiki/Hermite_polynomials
+% \[
+%   \begin{split}
+% I_k
+%     &= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty x^k \exp\left(-\frac{1}{2}x^2\right) dx\\
+%     &= \frac{(-1)^k + 1}{2} \times \frac{2^{\frac{k+1}{2}}}{\sqrt{2\pi}} \Gamma\left(\frac{k+1}{2}\right)
+%     % = \begin{cases}
+%     % \frac{k!}{2^{k/2} (\frac{k}{2})!}&\text{if $k$ even}\\
+%     % 0&\text{if $k$ odd}
+%     % \end{cases}
+%     = \begin{cases}
+%       1&\text{if $k = 0$}\\
+%       0&\text{if $k = 1$}\\
+%       I_{k-2} \times (k-1)&\text{otherwise}
+%     \end{cases}
+%   \end{split}
+% \]
+
+  \item Monomial integration.
+  \[
+    \begin{split}
+    I_{k_1,\dots,k_n}
+      &= \frac{1}{\sqrt{2\pi}^n} \int_{\mathbb{R}^n} x_1^{k_1}\dots x_n^{k_n}
+      \exp\left(-\frac{1}{2}(x_1^2+\dots+x_n^2)\right)\\
+    &= \prod_{i=1}^n \frac{(-1)^{k_i} + 1}{2} \times
+      \frac{2^{\frac{k_i+1}{2}}}{\sqrt{2\pi}} \Gamma\left(\frac{k_i+1}{2}\right)\\
+    &=\begin{cases}
+      0&\text{if any $k_i$ is odd}\\
+      V_n&\text{if all $k_i=0$}\\
+      I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times (k_{i_0} - 1)&\text{if $k_{i_0} > 0$}
     \end{cases}
-  \end{split}
-\]
+    \end{split}
+  \]
 \end{itemize}
 
 \paragraph{Chebyshev, first kind}
@@ -306,28 +377,6 @@ I_k
   \end{split}
 \]
 
-
-\subsection*{\textit{n}-dimensional simplex}
-\[
-  T_n = \{(x_1,\dots,x_n):x_i \geq 0, \sum_{i=1}^n x_i \leq 1\}
-\]
-
-\begin{itemize}
-  \item Volume. TODO
-  \item Monomial integration.
-  % https://math.stackexchange.com/q/207073/36678
-  \[
-    \begin{split}
-    I_{k_1,\dots,k_n}
-    &= \int_{T_n} x_1^{k_1}\cdots x_n^{k_n}\\
-    &= \frac{\prod_{i=1}^n\Gamma(k_i)}{\Gamma\left(\sum_{i=1}^n k_i\right)}
-    =\begin{cases}
-      \frac{1}{n!}&\text{if all $k_i=0$}\\
-      I_{k_1,\dots,k_{i_0}-1,\dots,k_n} \times \frac{k_{i_0}}{\sum_{i=1}^n k_i+1}&\text{if $k_{i_0} > 0$}
-    \end{cases}
-  \end{split}
-  \]
-\end{itemize}
 
 % \printbibliography{}
 \bibliography{bib}{}
