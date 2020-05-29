@@ -8,13 +8,15 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{mathtools}
+\usepackage{pgfplots}
 
 % \usepackage{pgfplots}
 % \pgfplotsset{compat=newest}
 \DeclareMathOperator{\Conv}{Conv}
 
-\newcommand\mytitle{Useful recurrence relations for multidimensional volumes and
-monomial integrals}
+\newcommand\mytitle{Useful recurrence relations\\
+for multidimensional volumes\\
+and monomial integrals}
 \newcommand\myauthor{Nico Schlömer}
 
 \usepackage[
@@ -22,7 +24,7 @@ monomial integrals}
   ]{hyperref}
 \hypersetup{
   pdfauthor={\myauthor},
-  pdftitle={\mytitle}
+  pdftitle={Useful recurrence relations for multidimensional volumes and monomial integrals}
 }
 
 % \usepackage[T1]{fontenc}
@@ -176,11 +178,6 @@ monomial integrals}
   \end{cases}
 \end{equation}
 
-From the explicit expression, it seems that $\sqrt{\pi}$ appears for odd dimensions.
-Also, it is not very clear how $I_n$ behaves in higher dimension.
-
-The recurrence makes it obvious: $I_n$ increases until about $n=5,6$, then decreases.
-
 \item Monomial integral \cite{folland}.
 \begin{equation}
   \begin{split}
@@ -197,6 +194,13 @@ The recurrence makes it obvious: $I_n$ increases until about $n=5,6$, then decre
 with $p=\sum_{i=1}^n (k_i+1)$.
 \end{itemize}
 
+\begin{figure}
+\centering
+\input{fig1.tex}
+  \caption{The volume of the $n$-dimensional ball (and sphere) mysteriously peak at $5$
+  (and $7$, respectively). The recurrence relations make it obvious why: The factor
+  $\frac{2\pi}{n}$ ($\frac{2\pi}{n-2}$) becomes smaller than $1$.}
+\end{figure}
 
 \subsection*{\textit{n}-dimensional unit ball with Gegenbauer weight}
   % https://math.stackexchange.com/a/3695653/36678
