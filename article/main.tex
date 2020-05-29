@@ -155,9 +155,9 @@ See also~\cite{tau}.
 \begin{align}\nonumber
   I_{k_1,\dots,k_n}
   &= \int_{U_n} x_1^{k_1}\cdots x_n^{k_n}\\
-  &= 2 \frac{\prod_{i=1}^n
-    \Gamma\left(\frac{k_i+1}{2}\right)}{\Gamma\left(\sum_{i=1}^n\frac{k_i+1}{2}\right)}
-  =\begin{cases}
+  &= \frac{2\prod_{i=1}^n
+    \Gamma\left(\frac{k_i+1}{2}\right)}{\Gamma\left(\sum_{i=1}^n\frac{k_i+1}{2}\right)}\label{sphere:closed}\\
+  &=\begin{cases}
     0&\text{if any $k_i$ is odd}\\
     |U_n|&\text{if all $k_i=0$}\\
     I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0} - 1}{n - 2 + \sum_{i=1}^n k_i}&\text{if $k_{i_0} > 0$}
@@ -215,7 +215,9 @@ with $p=\sum_{i=1}^n k_i$.
 
 \subsection*{\textit{n}-dimensional unit ball with Gegenbauer weight}
   % https://math.stackexchange.com/a/3695653/36678
-  $\lambda > -1.$ (Compare with \eqref{ndimball} for $\lambda = 0$.) \cite{3695653}
+  $\lambda > -1.$ (Compare with \eqref{ndimball} for $\lambda = 0$.) See
+  \ref{gegenbauer:proof} for a proof.
+
 \begin{itemize}
   \item Volume.
     \begin{align}\nonumber
@@ -429,7 +431,7 @@ with $p=\sum_{k=1}^n k_i$.
 \end{itemize}
 
 
-\subsection*{\textit{n}-dimensional Hermite (probablisists')}
+\subsection*{\textit{n}-dimensional Hermite (probabilists')}
 \begin{itemize}
   \item Volume.
     \begin{equation}
@@ -471,6 +473,54 @@ with $p=\sum_{k=1}^n k_i$.
   \end{align}
 \end{itemize}
 
+
+\appendix
+
+\section{Some proofs}
+
+\subsection{Gegenbauer}\label{gegenbauer:proof}
+\begin{proof}
+\[
+\begin{split}
+\int_{\mathbb{R}^n}  x^{k_1}\cdots x^{k_n} \left(1 - \sum_{i=1}^n x_i^2\right)^\lambda \,dx
+&= \int_{S_n}\int_0^1 r^{n-1} r^{\sum{k_i}} (1-r^2)^\lambda x'^{k_1}\cdots x_n'^{k_n} \,dr\,d\sigma(x')\\
+&= \int_0^1 r^{n-1} r^{\sum{k_i}} (1-r^2)^\lambda\,dr \times \int_{S_n} x'^{k_1}\cdots x_n'^{k_n} \,d\sigma(x')
+\end{split}
+\]
+with $x_i' = x_i / r$. The one-dimensional integral in $r$ can be evaluated explicitly
+  such that, with the spherical integral taken from \eqref{sphere:closed},
+\[
+\begin{split}
+I_{k_1,\dots,k_n}
+&= \frac{\Gamma\left(\frac{n + \sum k_i}{2}\right)\Gamma(1+\lambda)}{2\Gamma\left(\frac{n+\sum k_i}{2} + \lambda + 1\right)}
+\times
+ \frac{2\prod_{i=1}^n\Gamma\left(\frac{k_i+1}{2}\right)}{\Gamma\left(\sum_{i=1}^n\frac{k_i+1}{2}\right)}\\
+&= \frac{
+  \Gamma(1+\lambda)\prod_{i=1}^n\Gamma\left(\frac{k_i+1}{2}\right)
+}{
+\Gamma\left(\sum\frac{k_i+1}{2} + \lambda + 1\right)
+}.
+\end{split}
+\]
+\end{proof}
+
+\subsection{Generalized Laguerre}\label{gegenbauer:proof}
+\begin{proof}
+\[
+\begin{split}
+  \int_{\mathbb{R}^n}  x^{k_1}\cdots x^{k_n} r^\alpha \exp(-r) \,dx
+  &= \int_{S_n}\int_0^\infty r^{n-1} r^{\sum{k_i}} r^\alpha \exp(-r) x'^{k_1}\cdots x_n'^{k_n} \,dr\,d\sigma(x')\\
+  &= \int_0^\infty r^{n-1} r^{\sum{k_i}} r^\alpha \exp(-r)\,dr \times \int_{S_n} x'^{k_1}\cdots x_n'^{k_n} \,d\sigma(x')
+\end{split}
+\]
+with $x_i' = x_i / r$. The one-dimensional integral in $r$ can be evaluated explicitly
+  such that, with the spherical integral taken from \eqref{sphere:closed},
+\[
+I_{k_1,\dots,k_n}
+  = \Gamma\left(\alpha + n + \sum k_i\right) \times
+ \frac{2\prod_{i=1}^n\Gamma\left(\frac{k_i+1}{2}\right)}{\Gamma\left(\sum_{i=1}^n\frac{k_i+1}{2}\right)}.
+\]
+\end{proof}
 
 % \printbibliography{}
 \bibliography{bib}{}
