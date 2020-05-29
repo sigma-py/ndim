@@ -13,7 +13,8 @@
 % \pgfplotsset{compat=newest}
 \DeclareMathOperator{\Conv}{Conv}
 
-\newcommand\mytitle{Useful recurrence relations}
+\newcommand\mytitle{Useful recurrence relations for multidimensional volumes and
+monomial integrals}
 \newcommand\myauthor{Nico Schlömer}
 
 \usepackage[
@@ -41,7 +42,8 @@
 \usepackage{bm}
 \newcommand\rgb{\bm{R}}
 
-\title{\mytitle\footnote{The LaTeX sources of this article are on \url{https://github.com/nschloe/note-useful-recurrence}}}
+\title{\mytitle\footnote{The LaTeX sources of this article are on
+\url{https://github.com/nschloe/useful-recurrence-relations}}}
 \author{\myauthor}
 
 \begin{document}
@@ -62,14 +64,14 @@
 
 \begin{itemize}
   \item Volume.
-    \[
+    \begin{equation}
       |C_n| = 2^n = \begin{cases}
         1&\text{if $n=0$}\\
         |C_{n-1}| \times 2&\text{otherwise}
       \end{cases}
-    \]
+    \end{equation}
   \item Monomial integration.
-  \[
+  \begin{equation}
     \begin{split}
     I_{k_1,\dots,k_n}
     &= \int_{C_n} x_1^{k_1}\cdots x_n^{k_n}\\
@@ -80,7 +82,7 @@
       I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0}-1}{k_{i_0}+1}&\text{if $k_{i_0} > 0$}
     \end{cases}
   \end{split}
-  \]
+  \end{equation}
 \end{itemize}
 
 \subsection*{\textit{n}-dimensional unit simplex}
@@ -90,15 +92,15 @@
 
 \begin{itemize}
   \item Volume.
-    \[
+    \begin{equation}
       |T_n| = \frac{1}{n!} = \begin{cases}
         1&\text{if $n=0$}\\
         |T_{n-1}| \times \frac{1}{n}&\text{otherwise}
       \end{cases}
-    \]
+    \end{equation}
   \item Monomial integration.
   % https://math.stackexchange.com/q/207073/36678
-  \[
+  \begin{equation}
     \begin{split}
     I_{k_1,\dots,k_n}
     &= \int_{T_n} x_1^{k_1}\cdots x_n^{k_n}\\
@@ -108,56 +110,10 @@
       I_{k_1,\dots,k_{i_0}-1,\dots,k_n} \times \frac{k_{i_0}}{\sum_{i=1}^n (k_i+1)}&\text{if $k_{i_0} > 0$}
     \end{cases}
   \end{split}
-  \]
+  \end{equation}
 \end{itemize}
 
-
-\subsection*{The unit \textit{n}-ball}
-\[
-  S_n = \left\{(x_1,\dots,x_n): \sum_{i=1}^n x_i^2 \le 1\right\}
-\]
-
-\begin{itemize}
-  \item Volume.
-
-\begin{equation*}\label{ndimball}
-  |S_n|
-  = \frac{\sqrt{\pi}^n}{\Gamma(\frac{n}{2}+1)}
-  % = \begin{rcases}
-  %   \begin{dcases}
-  %     \frac{\pi^{\frac{n}{2}}}{(\frac{n}{2})!}&\text{if $n$ even}\\[1.2ex]
-  %     \frac{(\frac{n+1}{2})!2^{n+1}\pi^{\frac{n-1}{2}}}{\left(n+1\right)!}&\text{if $n$ odd}
-  % \end{dcases}
-  % \end{rcases}
-  = \begin{cases}
-     1&\text{if $n = 0$}\\
-     2&\text{if $n = 1$}\\
-     |S_{n-2}| \times \frac{2\pi}{n}&\text{otherwise}
-  \end{cases}
-\end{equation*}
-
-From the explicit expression, it seems that $\sqrt{\pi}$ appears for odd dimensions.
-Also, it is not very clear how $I_n$ behaves in higher dimension.
-
-The recurrence makes it obvious: $I_n$ increases until about $n=5,6$, then decreases.
-
-\item Monomial integral \cite{folland}.
-\[
-  \begin{split}
-    I_{k_1,\dots,k_n}
-    &= \int_{S_n} x_1^{k_1}\cdots x_n^{k_n}\\
-    &= \frac{2^p}{p} |S_n|
-    =\begin{cases}
-      0&\text{if any $k_i$ is odd}\\
-      |S_n|&\text{if all $k_i=0$}\\
-      I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{(k_{i_0} - 1) r^2}{p - 2}&\text{if $k_{i_0} > 0$}
-    \end{cases}
-  \end{split}
-\]
-with $p=\sum_{i=1}^n (k_i+1)$.
-\end{itemize}
-
-\subsection*{The unit \textit{n}-sphere}
+\subsection*{\textit{n}-dimensional unit sphere}
 \[
   U_n = \left\{(x_1,\dots,x_n): \sum_{i=1}^n x_i^2 = 1\right\}
 \]
@@ -193,6 +149,183 @@ with $p=\sum_{i=1}^n (k_i+1)$.
   \end{cases}
   \end{split}
 \]
+\end{itemize}
+
+
+\subsection*{\textit{n}-dimensional unit ball}
+\[
+  S_n = \left\{(x_1,\dots,x_n): \sum_{i=1}^n x_i^2 \le 1\right\}
+\]
+
+\begin{itemize}
+  \item Volume.
+
+\begin{equation}\label{ndimball}
+  |S_n|
+  = \frac{\sqrt{\pi}^n}{\Gamma(\frac{n}{2}+1)}
+  % = \begin{rcases}
+  %   \begin{dcases}
+  %     \frac{\pi^{\frac{n}{2}}}{(\frac{n}{2})!}&\text{if $n$ even}\\[1.2ex]
+  %     \frac{(\frac{n+1}{2})!2^{n+1}\pi^{\frac{n-1}{2}}}{\left(n+1\right)!}&\text{if $n$ odd}
+  % \end{dcases}
+  % \end{rcases}
+  = \begin{cases}
+     1&\text{if $n = 0$}\\
+     2&\text{if $n = 1$}\\
+     |S_{n-2}| \times \frac{2\pi}{n}&\text{otherwise}
+  \end{cases}
+\end{equation}
+
+From the explicit expression, it seems that $\sqrt{\pi}$ appears for odd dimensions.
+Also, it is not very clear how $I_n$ behaves in higher dimension.
+
+The recurrence makes it obvious: $I_n$ increases until about $n=5,6$, then decreases.
+
+\item Monomial integral \cite{folland}.
+\begin{equation}
+  \begin{split}
+    I_{k_1,\dots,k_n}
+    &= \int_{S_n} x_1^{k_1}\cdots x_n^{k_n}\\
+    &= \frac{2^p}{p} |S_n|
+    =\begin{cases}
+      0&\text{if any $k_i$ is odd}\\
+      |S_n|&\text{if all $k_i=0$}\\
+      I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{(k_{i_0} - 1) r^2}{p - 2}&\text{if $k_{i_0} > 0$}
+    \end{cases}
+  \end{split}
+\end{equation}
+with $p=\sum_{i=1}^n (k_i+1)$.
+\end{itemize}
+
+
+\subsection*{\textit{n}-dimensional unit ball with Gegenbauer weight}
+  % https://math.stackexchange.com/a/3695653/36678
+  $\lambda > -1.$ (Compare with \eqref{ndimball} for $\lambda = 0$.)
+\begin{itemize}
+  \item Volume.
+  \[
+    \begin{split}
+    |G_n^{\lambda}|
+      &= \int_{S^n} \left(1 - \sum_{i=1}^n x_i^2\right)^\lambda\\
+      &= \frac{
+        \Gamma(1+\lambda)\sqrt{\pi}^n
+      }{
+        \Gamma\left(1+\lambda + \frac{n}{2}\right)
+      }
+      = \begin{cases}
+        1&\text{for $n=0$}\\
+        \frac{\Gamma(1+\lambda)\sqrt{\pi}}{\Gamma\left(\frac{3}{2} + \lambda\right)}&\text{for $n=1$}\\
+        |G_{n-2}^{\lambda}|\times \frac{2\pi}{2\lambda + n}&\text{otherwise}
+      \end{cases}
+    \end{split}
+  \]
+
+  \item Monomial integration.
+  \[
+    \begin{split}
+    I_{k_1,\dots,k_n}
+      &= \int_{S^n} x_1^{k_1}\dots x_n^{k_n} \left(1 - \sum_{i=1}^n
+      x_i^2\right)^\lambda\\
+      &= \frac{
+        \Gamma(1+\lambda)\prod_{i=1}^n \Gamma\left(\frac{k_i+1}{2}\right)
+      }{
+        \Gamma\left(1+\lambda + \sum_{i=1}^n \frac{k_i+1}{2}\right)
+      }\\
+      &= \begin{cases}
+        0&\text{if any $k_i$ is odd}\\
+        |G_n^{\lambda}|&\text{if all $k_i=0$}\\
+        I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0}-1}{2\lambda + \sum_{i=1}^n(k_i+1)}&\text{if $k_{i_0} > 0$}
+      \end{cases}
+    \end{split}
+  \]
+\end{itemize}
+
+
+\subsection*{\textit{n}-dimensional unit ball with Chebyshev-1 weight}
+% See [Wikipedia](https://en.wikipedia.org/wiki/Chebyshev_polynomials).
+
+Gegenbauer with $\lambda=-\frac{1}{2}.$
+
+\begin{itemize}
+  \item Volume.
+  \[
+    \begin{split}
+    |G_n^{-1/2}|
+      &= \int_{S^n} \frac{1}{\sqrt{1 - \sum_{i=1}^n x_i^2}}\\
+      &= \frac{
+        \sqrt{\pi}^{n+1}
+      }{
+        \Gamma\left(\frac{n+1}{2}\right)
+      }
+      =\begin{cases}
+        1&\text{if $n=0$}\\
+        \pi&\text{if $n=1$}\\
+        |G_{n-2}^{-1/2}| \times \frac{2\pi}{n-1}&\text{otherwise}
+      \end{cases}
+    \end{split}
+  \]
+
+  \item Monomial integration.
+  \[
+    \begin{split}
+    I_{k_1,\dots,k_n}
+      &= \int_{S^n} \frac{x_1^{k_1}\dots x_n^{k_n}}{\sqrt{1 - \sum_{i=1}^n x_i^2}}\\
+      &= \frac{
+        \sqrt{\pi} \prod_{i=1}^n \Gamma\left(\frac{k_i+1}{2}\right)
+      }{
+        \Gamma\left(\frac{1}{2} + \sum_{i=1}^n \frac{k_i+1}{2}\right)
+      }\\
+      &= \begin{cases}
+        0&\text{if any $k_i$ is odd}\\
+        |G_n^{-1/2}|&\text{if all $k_i=0$}\\
+        I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0}-1}{-1 + \sum_{i=1}^n(k_i+1)}&\text{if $k_{i_0} > 0$}
+      \end{cases}
+    \end{split}
+  \]
+\end{itemize}
+
+
+\subsection*{\textit{n}-dimensional unit ball with Chebyshev-2 weight}
+% See [Wikipedia](https://en.wikipedia.org/wiki/Chebyshev_polynomials).
+Gegenbauer with $\lambda = +\frac{1}{2}.$
+
+\begin{itemize}
+  \item Volume.
+  \[
+    \begin{split}
+    |G_n^{+1/2}|
+      &= \int_{S^n} \sqrt{1 - \sum_{i=1}^n x_i^2}\\
+      &= \frac{
+        \sqrt{\pi}^{n+1}
+      }{
+        2\Gamma\left(\frac{n+3}{2}\right)
+      }
+      = \begin{cases}
+        1&\text{if $n=0$}\\
+        \frac{\pi}{2}&\text{if $n=1$}\\
+        |G_{n-2}^{+1/2}| \times \frac{2\pi}{n+1}&\text{otherwise}
+      \end{cases}
+  \end{split}
+  \]
+
+  \item Monomial integration.
+  \[
+    \begin{split}
+    I_{k_1,\dots,k_n}
+      &= \int_{S^n} x_1^{k_1}\dots x_n^{k_n} \sqrt{1 - \sum_{i=1}^n
+      x_i^2}\\
+      &= \frac{
+        \sqrt{\pi}\prod_{i=1}^n \Gamma\left(\frac{k_i+1}{2}\right)
+      }{
+        2\Gamma\left(\frac{3}{2} + \sum_{i=1}^n \frac{k_i+1}{2}\right)
+      }\\
+      &= \begin{cases}
+        0&\text{if any $k_i$ is odd}\\
+        |G_n^{+1/2}|&\text{if all $k_i=0$}\\
+        I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0}-1}{1 + \sum_{i=1}^n(k_i+1)}&\text{if $k_{i_0} > 0$}
+      \end{cases}
+    \end{split}
+  \]
 \end{itemize}
 
 
@@ -337,45 +470,6 @@ with $p=\sum_{i=1}^n (k_i+1)$.
     \end{split}
   \]
 \end{itemize}
-
-\paragraph{Chebyshev, first kind}
-% See [Wikipedia](https://en.wikipedia.org/wiki/Chebyshev_polynomials).
-
-\[
-  \begin{split}
-    I_k
-    &= \int_{-1}^1 \frac{x^k}{\sqrt{1 - x^2}} dx\\
-    &= \frac{(-1)^k + 1}{2} \times \frac{\sqrt{\pi} \Gamma(\frac{k+1}{2})}{\Gamma(\frac{k}{2} + 1)}
-    % = \begin{cases}
-    %   \frac{\pi k!}{2^k (\frac{k}{2})!^2}\quad&\text{if $k$ even}\\
-    %   0\quad&\text{if $k$ odd}\end{cases}
-    = \begin{cases}
-      \pi&\text{if $k = 0$}\\
-      0&\text{if $k = 1$}\\
-      I_{k-2} \times \frac{k-1}{k}&\text{otherwise}
-    \end{cases}
-  \end{split}
-\]
-
-
-\paragraph{Chebyshev, second kind}
-% See [Wikipedia](https://en.wikipedia.org/wiki/Chebyshev_polynomials).
-\[
-  \begin{split}
-  I_k
-    &= \int_{-1}^1 x^k \sqrt{1 - x^2} dx\\
-    &= \frac{(-1)^k + 1}{2} \times \frac{\sqrt{\pi} \Gamma(\frac{k+1}{2})}{(k + 2) \Gamma(\frac{k}{2} + 1)}
-  % = \begin{cases}
-  %   \frac{\pi k!}{(k+2) 2^k (\frac{k}{2})!^2}&\text{if $k$ even}\\
-  %   0&\text{if $k$ odd}
-  % \end{cases}
-  = \begin{cases}
-    \frac{\pi}{2}&\text{if $k = 0$}\\
-    0&\text{if $k = 1$}\\
-    I_{k-2} \times \frac{k-1}{k + 2}&\text{otherwise}
-  \end{cases}
-  \end{split}
-\]
 
 
 % \printbibliography{}
