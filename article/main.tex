@@ -1,4 +1,4 @@
-\documentclass{scrartcl}
+\documentclass[draft]{scrartcl}
 
 \usepackage[utf8]{inputenc}
 
@@ -56,12 +56,16 @@
 \end{abstract}
 
 
-\section{Volumes}
+\subsection*{The unit \textit{n}-ball}
+\[
+  S_n = \left\{(x_1,\dots,x_n): \sum_{i=1}^n x_i^2 \le 1\right\}
+\]
 
-\paragraph{Volume of a unit \textit{n}-ball}
+\begin{itemize}
+  \item Volume.
 
-\begin{equation}\label{ndimball}
-  I_n
+\begin{equation*}\label{ndimball}
+  |S_n|
   = \frac{\sqrt{\pi}^n}{\Gamma(\frac{n}{2}+1)}
   % = \begin{rcases}
   %   \begin{dcases}
@@ -72,39 +76,77 @@
   = \begin{cases}
      1&\text{if $n = 0$}\\
      2&\text{if $n = 1$}\\
-     I_{n-2} \times \frac{2\pi}{n}&\text{otherwise}
+     |S_{n-2}| \times \frac{2\pi}{n}&\text{otherwise}
   \end{cases}
-\end{equation}
+\end{equation*}
 
 From the explicit expression, it seems that $\sqrt{\pi}$ appears for odd dimensions.
 Also, it is not very clear how $I_n$ behaves in higher dimension.
 
 The recurrence makes it obvious: $I_n$ increases until about $n=5,6$, then decreases.
 
-
-\paragraph{Surface of a unit \textit{n}-sphere}
-
-\begin{equation}\label{ndimsphere}
-I_n
-= \frac{n \sqrt{\pi}^n}{\Gamma(\frac{n}{2}+1)}
-% = \begin{rcases}\begin{dcases}
-% \frac{n}{(\frac{n}{2})!} \pi^{\frac{n}{2}}&\text{if $n-1$ even}\\
-%   \frac{n2^{n+1}(\frac{n+1}{2})!}{(n+1)!}\pi^{\frac{n-1}{2}}&\text{if $n-1$ odd}
-% \end{dcases}
-% \end{rcases}
-= \begin{cases}
-  2&\text{if $n = 0$}\\
-  2\pi&\text{if $n = 1$}\\
-  I_{n-2} \times \frac{2\pi}{n - 2}&\text{otherwise}
-\end{cases}
-\end{equation}
-
-
-\paragraph{\textit{n}-dimensional Laguerre volume}
-
-\begin{equation}\label{ndimlaguerre}
+\item Monomial integral \cite{folland}.
+\[
   \begin{split}
-  I_n
+    I_{k_1,\dots,k_n}
+    &= \int_{S_n} x_1^{k_1}\cdots x_n^{k_n}\\
+    &= \frac{2^p}{p} |S_n|
+    =\begin{cases}
+      0&\text{if any $k_i$ is odd}\\
+      |S_n|&\text{if all $k_i=0$}\\
+      I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{(k_{i_0} - 1) r^2}{p - 2}&\text{if $k_{i_0} > 0$}
+    \end{cases}
+  \end{split}
+\]
+with $p=\sum_{i=1}^n (k_i+1)$.
+\end{itemize}
+
+\subsection*{The unit \textit{n--1}-sphere}
+\[
+  U_n = \left\{(x_1,\dots,x_n): \sum_{i=1}^n x_i^2 = 1\right\}
+\]
+
+\begin{itemize}
+  \item Volume.
+\begin{equation*}\label{ndimsphere}
+  |U_n|
+  = \frac{n \sqrt{\pi}^n}{\Gamma(\frac{n}{2}+1)}
+  % = \begin{rcases}\begin{dcases}
+  % \frac{n}{(\frac{n}{2})!} \pi^{\frac{n}{2}}&\text{if $n-1$ even}\\
+  %   \frac{n2^{n+1}(\frac{n+1}{2})!}{(n+1)!}\pi^{\frac{n-1}{2}}&\text{if $n-1$ odd}
+  % \end{dcases}
+  % \end{rcases}
+  = \begin{cases}
+    2&\text{if $n = 1$}\\
+    2\pi&\text{if $n = 2$}\\
+    |U_{n-2}| \times \frac{2\pi}{n - 2}&\text{otherwise}
+  \end{cases}
+\end{equation*}
+
+  \item Monomial integral \cite{folland}.
+\[
+  \begin{split}
+  I_{k_1,\dots,k_n}
+  &= \int_{U_n} x_1^{k_1}\cdots x_n^{k_n}\\
+  &= 2 \frac{\prod_{i=1}^n
+    \Gamma\left(\frac{k_i+1}{2}\right)}{\Gamma\left(\sum_{i=1}^n\frac{k_i+1}{2}\right)}
+  =\begin{cases}
+    0&\text{if any $k_i$ is odd}\\
+    |U_n|&\text{if all $k_i=0$}\\
+    I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0} - 1}{\sum_{i=1}^n (k_i+1) - 2}&\text{if $k_{i_0} > 0$}
+  \end{cases}
+  \end{split}
+\]
+\end{itemize}
+
+
+\subsection*{\textit{n}-dimensional Laguerre volume}
+
+\begin{itemize}
+  \item Volume.
+\begin{equation*}\label{ndimlaguerre}
+  \begin{split}
+  V_n
   &= \int_{\mathbb{R}^n} \exp\left(-\sqrt{x_1^2+\dots+x_n^2}\right)\\
   &= \frac{2 \sqrt{\pi}^n \Gamma(n)}{\Gamma(\frac{n}{2})}
   % = \begin{rcases}\begin{dcases}
@@ -115,15 +157,38 @@ I_n
   = \begin{cases}
     1&\text{if $n=0$}\\
     2&\text{if $n=1$}\\
-    I_{n-2} \times 2\pi(n-1)&\text{otherwise}
+    V_{n-2} \times 2\pi(n-1)&\text{otherwise}
   \end{cases}
   \end{split}
-\end{equation}
+\end{equation*}
 
-\paragraph{\textit{n}-dimensional Hermite volume (physicists')}
+\item Monomial integration.
 \[
   \begin{split}
-  I_n
+  I_{k_1,\dots,k_n}
+  &= \int_{\mathbb{R}^n} x_1^{k_1}\dots x_n^{k_n} \exp(-\sqrt{x_1^2+\dots+x_n^2})\\
+  &= \frac{
+    2 \left(\left(\sum_{i=1}^n k_i+1\right) - 1\right)
+    \left(\prod_{i=1}^n\Gamma\left(\frac{k_i + 1}{2}\right)\right)
+  }{
+    \Gamma\left(\sum_{i=1}^n\frac{k_i + 1}{2}\right)
+  }\\
+  &=\begin{cases}
+    0&\text{if any $k_i$ is odd}\\
+    V_n&\text{if all $k_i=0$}\\
+    I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times (k_{i_0} - 1) \left(\left(\sum_{i=1}^n
+    k_i+1\right) - 1\right)&\text{if $k_{i_0} > 0$}
+  \end{cases}
+  \end{split}
+\]
+\end{itemize}
+
+\subsection*{\textit{n}-dimensional Hermite (physicists')}
+\begin{itemize}
+  \item Volume.
+\[
+  \begin{split}
+  V_n
   &= \int_{\mathbb{R}^n} \exp\left(-(x_1^2+\dots+x_n^2)\right)\\
   &= \sqrt{\pi}^n
 %   = \begin{rcases}\begin{dcases}
@@ -134,20 +199,73 @@ I_n
    = \begin{cases}
      1&\text{if $n=0$}\\
      \sqrt{\pi}&\text{if $n=1$}\\
-     I_{n-2} \times \pi&\text{otherwise}
+     V_{n-2} \times \pi&\text{otherwise}
    \end{cases}
   \end{split}
 \]
+  \item Monomial 1D.
+% See [Wikipedia](https://en.wikipedia.org/wiki/Hermite_polynomials).
+\begin{equation*}
+  \begin{split}
+    I_k
+    &= \int_{-\infty}^\infty x^k \exp(-x^2) dx\\
+    &= \frac{(-1)^k + 1}{2} \times \Gamma\left(\frac{k+1}{2}\right)
+    % = \begin{cases}
+    % \frac{\sqrt{\pi}k!}{2^k (\frac{k}{2})!}&\text{if $k$ even}\\
+    % 0&\text{if $k$ odd}
+    % \end{cases}
+    = \begin{cases}
+      \sqrt{\pi}&\text{if $k = 0$}\\
+      0&\text{if $k = 1$}\\
+      I_{k-2} \times \frac{k-1}{2}&\text{otherwise}
+    \end{cases}
+  \end{split}
+\end{equation*}
 
-\paragraph{\textit{n}-dimensional Hermite volume (probablisists')}
+  \item Monomial integration.
+  \[
+    \begin{split}
+    I_{k_1,\dots,k_n}
+    &= \int_{\mathbb{R}^n} x_1^{k_1}\dots x_n^{k_n} \exp(-(x_1^2+\dots+x_n^2))\\
+    &= \prod_{i=1}^n \frac{(-1)^{k_i} + 1}{2} \times \Gamma\left(\frac{k_i+1}{2}\right)\\
+    &=\begin{cases}
+      0&\text{if any $k_i$ is odd}\\
+      V_n&\text{if all $k_i=0$}\\
+      I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0} - 1}{2}&\text{if $k_{i_0} > 0$}
+    \end{cases}
+    \end{split}
+  \]
+\end{itemize}
 
+
+\subsection*{\textit{n}-dimensional Hermite (probablisists')}
+\begin{itemize}
+  \item Volume.
 \[
-  I_n = \frac{1}{\sqrt{2\pi}^n} \int_{\mathbb{R}^n}
+  V_n = \frac{1}{\sqrt{2\pi}^n} \int_{\mathbb{R}^n}
   \exp\left(-\frac{1}{2}(x_1^2+\dots+x_n^2)\right) = 1
 \]
 
-
-\section{Monomial integrals}
+  \item Monomial 1D.
+% https://en.wikipedia.org/wiki/Hermite_polynomials
+\[
+  \begin{split}
+I_k
+    &= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty x^k \exp\left(-\frac{1}{2}x^2\right) dx\\
+    &= \frac{(-1)^k + 1}{2} \times \frac{2^{\frac{k+1}{2}}}{\sqrt{2\pi}}
+    \Gamma\left(\frac{k+1}{2}\right)
+    % = \begin{cases}
+    % \frac{k!}{2^{k/2} (\frac{k}{2})!}&\text{if $k$ even}\\
+    % 0&\text{if $k$ odd}
+    % \end{cases}
+    = \begin{cases}
+      1&\text{if $k = 0$}\\
+      0&\text{if $k = 1$}\\
+      I_{k-2} \times (k-1)&\text{otherwise}
+    \end{cases}
+  \end{split}
+\]
+\end{itemize}
 
 \paragraph{Chebyshev, first kind}
 % See [Wikipedia](https://en.wikipedia.org/wiki/Chebyshev_polynomials).
@@ -189,136 +307,27 @@ I_n
 \]
 
 
-\paragraph{Hermite (physicists')}
-
-% See [Wikipedia](https://en.wikipedia.org/wiki/Hermite_polynomials).
-\begin{equation}\label{ndimhermitephys}
-  \begin{split}
-    I_k
-    &= \int_{-\infty}^\infty x^k \exp(-x^2) dx\\
-    &= \frac{(-1)^k + 1}{2} \times \Gamma\left(\frac{k+1}{2}\right)
-    % = \begin{cases}
-    % \frac{\sqrt{\pi}k!}{2^k (\frac{k}{2})!}&\text{if $k$ even}\\
-    % 0&\text{if $k$ odd}
-    % \end{cases}
-    = \begin{cases}
-      \sqrt{\pi}&\text{if $k = 0$}\\
-      0&\text{if $k = 1$}\\
-      I_{k-2} \times \frac{k-1}{2}&\text{otherwise}
-    \end{cases}
-  \end{split}
-\end{equation}
-
-
-\paragraph{Hermite (probabilists')}
-% https://en.wikipedia.org/wiki/Hermite_polynomials
-\[
-  \begin{split}
-I_k
-    &= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty x^k \exp\left(-\frac{1}{2}x^2\right) dx\\
-    &= \frac{(-1)^k + 1}{2} \times \frac{2^{\frac{k+1}{2}}}{\sqrt{2\pi}}
-    \Gamma\left(\frac{k+1}{2}\right)
-    % = \begin{cases}
-    % \frac{k!}{2^{k/2} (\frac{k}{2})!}&\text{if $k$ even}\\
-    % 0&\text{if $k$ odd}
-    % \end{cases}
-    = \begin{cases}
-      1&\text{if $k = 0$}\\
-      0&\text{if $k = 1$}\\
-      I_{k-2} \times (k-1)&\text{otherwise}
-    \end{cases}
-  \end{split}
-\]
-
-\paragraph{Monomial integration over \textit{n}-dimensional Laguerre volume}
-\[
-  \begin{split}
-  I_{k_1,\dots,k_n}
-  &= \int_{\mathbb{R}^n} x_1^{k_1}\dots x_n^{k_n} \exp(-\sqrt{x_1^2+\dots+x_n^2})\\
-  &= \frac{
-    2 \left(\left(\sum_{i=1}^n k_i+1\right) - 1\right)
-    \left(\prod_{i=1}^n\Gamma\left(\frac{k_i + 1}{2}\right)\right)
-  }{
-    \Gamma\left(\sum_{i=1}^n\frac{k_i + 1}{2}\right)
-  }\\
-  &=\begin{cases}
-    0&\text{if any $k_i$ is odd}\\
-    I_{0,\dots,0} \text{ (see \eqref{ndimlaguerre}}&\text{if all $k_i=0$}\\
-    I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times (k_{i_0} - 1) \left(\left(\sum_{i=1}^n
-    k_i+1\right) - 1\right)&\text{if $k_{i_0} > 0$}
-  \end{cases}
-  \end{split}
-\]
-
-\paragraph{Monomial integration over \textit{n}-dimensional Hermite volume (physicists'}
-\[
-  \begin{split}
-  I_{k_1,\dots,k_n}
-  &= \int_{\mathbb{R}^n} x_1^{k_1}\dots x_n^{k_n} \exp(-(x_1^2+\dots+x_n^2))\\
-  &= \prod_{i=1}^n \Gamma\left(\frac{k_i+1}{2}\right)\\
-  &=\begin{cases}
-    0&\text{if any $k_i$ is odd}\\
-    I_{0,\dots,0} \text{ (see \eqref{ndimhermitephys}}&\text{if all $k_i=0$}\\
-    I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0} - 1}{2}&\text{if $k_{i_0} > 0$}
-  \end{cases}
-  \end{split}
-\]
-
-\paragraph{Monomial integration over \textit{n}-dimensional simplex}
+\subsection*{\textit{n}-dimensional simplex}
 \[
   T_n = \{(x_1,\dots,x_n):x_i \geq 0, \sum_{i=1}^n x_i \leq 1\}
 \]
 
-% https://math.stackexchange.com/q/207073/36678
-\[
-  \begin{split}
-  I_{k_1,\dots,k_n}
-  &= \int_{T_n} x_1^{k_1}\cdots x_n^{k_n}\\
-  &= \frac{\prod_{i=1}^n\Gamma(k_i)}{\Gamma\left(\sum_{i=1}^n k_i\right)}
-  =\begin{cases}
-    \frac{1}{n!}&\text{if all $k_i=0$}\\
-    I_{k_1,\dots,k_{i_0}-1,\dots,k_n} \times \frac{k_{i_0}}{\sum_{i=1}^n k_i+1}&\text{if $k_{i_0} > 0$}
-  \end{cases}
-\end{split}
-\]
-
-\paragraph{Monomial integration over the \textit{n}-sphere}
-\cite{folland}
-\[
-  U_n = \{(x_1,\dots,x_n): \sum_{i=1}^n x_i^2 = 1\}
-\]
-\[
-  \begin{split}
-  I_{k_1,\dots,k_n}
-  &= \int_{U_n} x_1^{k_1}\cdots x_n^{k_n}\\
-  &= 2 \frac{\prod_{i=1}^n
-    \Gamma\left(\frac{k_i+1}{2}\right)}{\Gamma\left(\sum_{i=1}^n\frac{k_i+1}{2}\right)}
-  =\begin{cases}
-    0&\text{if any $k_i$ is odd}\\
-    I_{0,\dots,0} \text{ (see \eqref{ndimsphere}}&\text{if all $k_i=0$}\\
-    I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0} - 1}{\sum_{i=1}^n (k_i+1) - 2}&\text{if $k_{i_0} > 0$}
-  \end{cases}
-  \end{split}
-\]
-
-
-\paragraph{Monomial integration over the \textit{n}-ball}
-\cite{folland}
-\[
-  S_n = \{(x_1,\dots,x_n): \sum_{i=1}^n x_i^2 \le 1\}
-\]
-\[
-  \begin{split}
+\begin{itemize}
+  \item Volume. TODO
+  \item Monomial integration.
+  % https://math.stackexchange.com/q/207073/36678
+  \[
+    \begin{split}
     I_{k_1,\dots,k_n}
-    &= \int_{S_n} x_1^{k_1}\cdots x_n^{k_n}\\
-    &= 2^{\sum_{i=1}^n (k_i+1)} \frac{I_{0,\dots,0}}{\sum_{i=1}^n (k_i+1)}
+    &= \int_{T_n} x_1^{k_1}\cdots x_n^{k_n}\\
+    &= \frac{\prod_{i=1}^n\Gamma(k_i)}{\Gamma\left(\sum_{i=1}^n k_i\right)}
     =\begin{cases}
-      0&\text{if any $k_i$ is odd}\\
-      I_{0,\dots,0} \text{ (see \eqref{ndimball}}&\text{if all $k_i=0$}\\
-      I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{(k_{i_0} - 1) r^2}{\sum_{i=1}^n (k_i+1) - 2}&\text{if $k_{i_0} > 0$}
+      \frac{1}{n!}&\text{if all $k_i=0$}\\
+      I_{k_1,\dots,k_{i_0}-1,\dots,k_n} \times \frac{k_{i_0}}{\sum_{i=1}^n k_i+1}&\text{if $k_{i_0} > 0$}
     \end{cases}
   \end{split}
-\]
+  \]
+\end{itemize}
 
 % \printbibliography{}
 \bibliography{bib}{}
