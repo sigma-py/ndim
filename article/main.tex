@@ -187,7 +187,7 @@ and monomial integrals}
     =\begin{cases}
       0&\text{if any $k_i$ is odd}\\
       |S_n|&\text{if all $k_i=0$}\\
-      I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{(k_{i_0} - 1) r^2}{p - 2}&\text{if $k_{i_0} > 0$}
+      I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{(k_{i_0} - 1)}{p - 2}&\text{if $k_{i_0} > 0$}
     \end{cases}
   \end{split}
 \end{equation}
@@ -197,7 +197,7 @@ with $p=\sum_{i=1}^n (k_i+1)$.
 \begin{figure}
 \centering
 \input{fig1.tex}
-  \caption{The volume of the $n$-dimensional ball (and sphere) mysteriously peak at $5$
+  \caption{The volumes of the $n$-dimensional ball (and sphere) mysteriously peak at $5$
   (and $7$, respectively). The recurrence relations make it obvious why: The factor
   $\frac{2\pi}{n}$ ($\frac{2\pi}{n-2}$) becomes smaller than $1$.}
 \end{figure}
@@ -333,24 +333,24 @@ Gegenbauer with $\lambda = +\frac{1}{2}.$
 \end{itemize}
 
 
-\subsection*{\textit{n}-dimensional Laguerre volume}
+\subsection*{\textit{n}-dimensional generalized Laguerre volume}
 
 \begin{itemize}
   \item Volume.
 \begin{equation*}\label{ndimlaguerre}
   \begin{split}
   V_n
-  &= \int_{\mathbb{R}^n} \exp\left(-\sqrt{x_1^2+\dots+x_n^2}\right)\\
-  &= \frac{2 \sqrt{\pi}^n \Gamma(n)}{\Gamma(\frac{n}{2})}
+    &= \int_{\mathbb{R}^n} \left(\sqrt{x_1^2+\dots+x_n^2}\right)^\alpha \exp\left(-\sqrt{x_1^2+\dots+x_n^2}\right)\\
+    &= \frac{2 \sqrt{\pi}^n \Gamma(n+\alpha)}{\Gamma(\frac{n}{2})}
   % = \begin{rcases}\begin{dcases}
   %   \frac{2 \pi^{\frac{n}{2}} (n - 1)!}{(\frac{n}{2} - 1)!} &\text{if $n$ even}\\
   %   \pi^{\frac{n - 1}{2}} 2^n \left(\frac{n - 1}{2}\right)! &\text{if $n$ odd}
   % \end{dcases}
   % \end{rcases}
   = \begin{cases}
-    1&\text{if $n=0$}\\
-    2&\text{if $n=1$}\\
-    V_{n-2} \times 2\pi(n-1)&\text{otherwise}
+    2\Gamma(1+\alpha)&\text{if $n=1$}\\
+    2\pi\Gamma(2 + \alpha)&\text{if $n=2$}\\
+    V_{n-2} \times \frac{2\pi(n+\alpha-1) (n+\alpha-2)}{n-2}&\text{otherwise}
   \end{cases}
   \end{split}
 \end{equation*}
@@ -359,7 +359,8 @@ Gegenbauer with $\lambda = +\frac{1}{2}.$
 \[
   \begin{split}
   I_{k_1,\dots,k_n}
-  &= \int_{\mathbb{R}^n} x_1^{k_1}\dots x_n^{k_n} \exp(-\sqrt{x_1^2+\dots+x_n^2})\\
+  &= \int_{\mathbb{R}^n} x_1^{k_1}\dots x_n^{k_n}
+    \exp\left(-\sqrt{x_1^2+\dots+x_n^2}\right)\\
   &= \frac{
     2 \left(\left(\sum_{i=1}^n k_i+1\right) - 1\right)
     \left(\prod_{i=1}^n\Gamma\left(\frac{k_i + 1}{2}\right)\right)
