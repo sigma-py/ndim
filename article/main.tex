@@ -228,7 +228,7 @@ with $p=\sum_{i=1}^n (k_i+1)$.
   \[
     \begin{split}
     I_{k_1,\dots,k_n}
-      &= \int_{S^n} x_1^{k_1}\dots x_n^{k_n} \left(1 - \sum_{i=1}^n
+      &= \int_{S^n} x_1^{k_1}\cdots x_n^{k_n} \left(1 - \sum_{i=1}^n
       x_i^2\right)^\lambda\\
       &= \frac{
         \Gamma(1+\lambda)\prod_{i=1}^n \Gamma\left(\frac{k_i+1}{2}\right)
@@ -273,7 +273,7 @@ Gegenbauer with $\lambda=-\frac{1}{2}.$
   \[
     \begin{split}
     I_{k_1,\dots,k_n}
-      &= \int_{S^n} \frac{x_1^{k_1}\dots x_n^{k_n}}{\sqrt{1 - \sum_{i=1}^n x_i^2}}\\
+      &= \int_{S^n} \frac{x_1^{k_1}\cdots x_n^{k_n}}{\sqrt{1 - \sum_{i=1}^n x_i^2}}\\
       &= \frac{
         \sqrt{\pi} \prod_{i=1}^n \Gamma\left(\frac{k_i+1}{2}\right)
       }{
@@ -316,7 +316,7 @@ Gegenbauer with $\lambda = +\frac{1}{2}.$
   \[
     \begin{split}
     I_{k_1,\dots,k_n}
-      &= \int_{S^n} x_1^{k_1}\dots x_n^{k_n} \sqrt{1 - \sum_{i=1}^n
+      &= \int_{S^n} x_1^{k_1}\cdots x_n^{k_n} \sqrt{1 - \sum_{i=1}^n
       x_i^2}\\
       &= \frac{
         \sqrt{\pi}\prod_{i=1}^n \Gamma\left(\frac{k_i+1}{2}\right)
@@ -334,6 +334,8 @@ Gegenbauer with $\lambda = +\frac{1}{2}.$
 
 
 \subsection*{\textit{n}-dimensional generalized Laguerre volume}
+
+$\alpha > -1.$
 
 \begin{itemize}
   \item Volume.
@@ -359,10 +361,10 @@ Gegenbauer with $\lambda = +\frac{1}{2}.$
 \[
   \begin{split}
   I_{k_1,\dots,k_n}
-  &= \int_{\mathbb{R}^n} x_1^{k_1}\dots x_n^{k_n}
-    \exp\left(-\sqrt{x_1^2+\dots+x_n^2}\right)\\
+  &= \int_{\mathbb{R}^n} x_1^{k_1}\cdots x_n^{k_n}
+    \left(\sqrt{x_1^2+\dots+x_n^2}\right)^\alpha \exp\left(-\sqrt{x_1^2+\dots+x_n^2}\right)\\
   &= \frac{
-    2 \left(\left(\sum_{i=1}^n k_i+1\right) - 1\right)
+    2 \Gamma\left(\alpha + \sum_{i=1}^n (k_i+1)\right)
     \left(\prod_{i=1}^n\Gamma\left(\frac{k_i + 1}{2}\right)\right)
   }{
     \Gamma\left(\sum_{i=1}^n\frac{k_i + 1}{2}\right)
@@ -370,11 +372,15 @@ Gegenbauer with $\lambda = +\frac{1}{2}.$
   &=\begin{cases}
     0&\text{if any $k_i$ is odd}\\
     V_n&\text{if all $k_i=0$}\\
-    I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times (k_{i_0} - 1) \left(\left(\sum_{i=1}^n
-    k_i+1\right) - 1\right)&\text{if $k_{i_0} > 0$}
+    I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{
+      (\alpha + p - 1) (\alpha + p - 2) (k_{i_0} - 1)
+    }{
+        p - 2
+    }&\text{if $k_{i_0} > 0$}
   \end{cases}
   \end{split}
 \]
+with $p=\sum_{k=1}^n (k_i + 1)$.
 \end{itemize}
 
 \subsection*{\textit{n}-dimensional Hermite (physicists')}
@@ -420,7 +426,7 @@ Gegenbauer with $\lambda = +\frac{1}{2}.$
   \[
     \begin{split}
     I_{k_1,\dots,k_n}
-    &= \int_{\mathbb{R}^n} x_1^{k_1}\dots x_n^{k_n} \exp(-(x_1^2+\dots+x_n^2))\\
+    &= \int_{\mathbb{R}^n} x_1^{k_1}\cdots x_n^{k_n} \exp(-(x_1^2+\dots+x_n^2))\\
     &= \prod_{i=1}^n \frac{(-1)^{k_i} + 1}{2} \times \Gamma\left(\frac{k_i+1}{2}\right)\\
     &=\begin{cases}
       0&\text{if any $k_i$ is odd}\\
@@ -463,7 +469,7 @@ Gegenbauer with $\lambda = +\frac{1}{2}.$
   \[
     \begin{split}
     I_{k_1,\dots,k_n}
-      &= \frac{1}{\sqrt{2\pi}^n} \int_{\mathbb{R}^n} x_1^{k_1}\dots x_n^{k_n}
+      &= \frac{1}{\sqrt{2\pi}^n} \int_{\mathbb{R}^n} x_1^{k_1}\cdots x_n^{k_n}
       \exp\left(-\frac{1}{2}(x_1^2+\dots+x_n^2)\right)\\
     &= \prod_{i=1}^n \frac{(-1)^{k_i} + 1}{2} \times
       \frac{2^{\frac{k_i+1}{2}}}{\sqrt{2\pi}} \Gamma\left(\frac{k_i+1}{2}\right)\\
