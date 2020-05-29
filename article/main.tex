@@ -12,7 +12,9 @@
 
 % \usepackage{pgfplots}
 % \pgfplotsset{compat=newest}
-\DeclareMathOperator{\Conv}{Conv}
+
+\usepackage{amsthm}
+\newtheorem*{remark}{Remark}
 
 \newcommand\mytitle{Useful recurrence relations\\
 for multidimensional volumes\\
@@ -101,12 +103,28 @@ and monomial integrals}
   \begin{align}\nonumber
     I_{k_1,\dots,k_n}
     &= \int_{T_n} x_1^{k_1}\cdots x_n^{k_n}\\
-    &= \frac{\prod_{i=1}^n\Gamma(k_i)}{\Gamma\left(\sum_{i=1}^n k_i\right)}
-    =\begin{cases}
+    &= \frac{\prod_{i=1}^n\Gamma(k_i)}{\Gamma\left(\sum_{i=1}^n
+    k_i\right)}\label{simplex:closed}\\
+    &=\begin{cases}
       |T_n|&\text{if all $k_i=0$}\\
-      I_{k_1,\dots,k_{i_0}-1,\dots,k_n} \times \frac{k_{i_0}}{\sum_{i=1}^n (k_i+1)}&\text{if $k_{i_0} > 0$}
-    \end{cases}
+      I_{k_1,\dots,k_{i_0}-1,\dots,k_n} \times \frac{k_{i_0}}{n + \sum_{i=1}^n k_i}&\text{if $k_{i_0} > 0$}
+    \end{cases}\label{simplex:rec}
   \end{align}
+  \begin{remark}
+  Note that both numerator and denominator in expression~\eqref{simplex:closed} will
+    assume very large values even for polynomials of moderate degree. This can lead to
+    difficulties when evaluating the expression on a computer; the registers will
+    overflow. A common countermeasure is to use the log-gamma function,
+    \[
+    \frac{\prod_{i=1}^n\Gamma(k_i)}{\Gamma\left(\sum_{i=1}^n k_i\right)}
+    = \exp\left(\sum_{i=1}^n\ln\Gamma(k_i) - \ln\Gamma\left(\sum_{i=1}^n
+    k_i\right)\right),
+    \]
+    but a simpler and arguably more elegant solution is to use the
+    recurrence~\eqref{simplex:rec}. This holds true for all such expressions in this
+    note.
+  \end{remark}
+
 \end{itemize}
 
 \subsection*{\textit{n}-dimensional unit sphere}
@@ -142,7 +160,7 @@ See also~\cite{tau}.
   =\begin{cases}
     0&\text{if any $k_i$ is odd}\\
     |U_n|&\text{if all $k_i=0$}\\
-    I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0} - 1}{\sum_{i=1}^n (k_i+1) - 2}&\text{if $k_{i_0} > 0$}
+    I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0} - 1}{n - 2 + \sum_{i=1}^n k_i}&\text{if $k_{i_0} > 0$}
   \end{cases}
 \end{align}
 \end{itemize}
@@ -176,22 +194,23 @@ See also~\cite{tau}.
 \begin{align}\nonumber
   I_{k_1,\dots,k_n}
   &= \int_{S_n} x_1^{k_1}\cdots x_n^{k_n}\\
-  &= \frac{2^p}{p} |S_n|
+  &= \frac{2^{n + p}}{n + p} |S_n|
   =\begin{cases}
     0&\text{if any $k_i$ is odd}\\
     |S_n|&\text{if all $k_i=0$}\\
-    I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{(k_{i_0} - 1)}{p - 2}&\text{if $k_{i_0} > 0$}
+    I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0} - 1}{n - 2 + p}&\text{if $k_{i_0} > 0$}
   \end{cases}
 \end{align}
-with $p=\sum_{i=1}^n (k_i+1)$.
+with $p=\sum_{i=1}^n k_i$.
 \end{itemize}
 
 \begin{figure}
 \centering
 \input{fig1.tex}
   \caption{The volumes of the $n$-dimensional ball (and sphere) mysteriously peak at $5$
-  (and $7$, respectively). The recurrence relations make it obvious why: The factor
-  $\frac{2\pi}{n}$ ($\frac{2\pi}{n-2}$) becomes smaller than $1$.}
+  (and $7$, respectively). The recurrence relations~\eqref{ndimsphere} and
+  \eqref{ndimball} make it obvious why: The factor $\frac{2\pi}{n}$ ($\frac{2\pi}{n-2}$)
+  becomes smaller than $1$.}
 \end{figure}
 
 \subsection*{\textit{n}-dimensional unit ball with Gegenbauer weight}
@@ -227,7 +246,7 @@ with $p=\sum_{i=1}^n (k_i+1)$.
       &= \begin{cases}
         0&\text{if any $k_i$ is odd}\\
         |G_n^{\lambda}|&\text{if all $k_i=0$}\\
-        I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0}-1}{2\lambda + \sum_{i=1}^n(k_i+1)}&\text{if $k_{i_0} > 0$}
+        I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0}-1}{2\lambda + n + \sum_{i=1}^n k_i}&\text{if $k_{i_0} > 0$}
       \end{cases}
   \end{align}
 \end{itemize}
@@ -267,7 +286,7 @@ Gegenbauer with $\lambda=-\frac{1}{2}.$
       &= \begin{cases}
         0&\text{if any $k_i$ is odd}\\
         |G_n^{-1/2}|&\text{if all $k_i=0$}\\
-        I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0}-1}{-1 + \sum_{i=1}^n(k_i+1)}&\text{if $k_{i_0} > 0$}
+        I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0}-1}{n-1 + \sum_{i=1}^n k_i}&\text{if $k_{i_0} > 0$}
       \end{cases}
     \end{align}
 \end{itemize}
@@ -307,7 +326,7 @@ Gegenbauer with $\lambda = +\frac{1}{2}.$
       &= \begin{cases}
         0&\text{if any $k_i$ is odd}\\
         |G_n^{+1/2}|&\text{if all $k_i=0$}\\
-        I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0}-1}{1 + \sum_{i=1}^n(k_i+1)}&\text{if $k_{i_0} > 0$}
+        I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0}-1}{n + 1 + \sum_{i=1}^n k_i}&\text{if $k_{i_0} > 0$}
       \end{cases}
     \end{align}
 \end{itemize}
@@ -341,7 +360,7 @@ $\alpha > -1.$
   &= \int_{\mathbb{R}^n} x_1^{k_1}\cdots x_n^{k_n}
     \left(\sqrt{x_1^2+\dots+x_n^2}\right)^\alpha \exp\left(-\sqrt{x_1^2+\dots+x_n^2}\right)\\
   &= \frac{
-    2 \Gamma\left(\alpha + \sum_{i=1}^n (k_i+1)\right)
+    2 \Gamma\left(\alpha + n + \sum_{i=1}^n k_i\right)
     \left(\prod_{i=1}^n\Gamma\left(\frac{k_i + 1}{2}\right)\right)
   }{
     \Gamma\left(\sum_{i=1}^n\frac{k_i + 1}{2}\right)
@@ -350,13 +369,13 @@ $\alpha > -1.$
     0&\text{if any $k_i$ is odd}\\
     V_n&\text{if all $k_i=0$}\\
     I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{
-      (\alpha + p - 1) (\alpha + p - 2) (k_{i_0} - 1)
+      (\alpha + n + p - 1) (\alpha + n + p - 2) (k_{i_0} - 1)
     }{
-        p - 2
+        n + p - 2
     }&\text{if $k_{i_0} > 0$}
   \end{cases}
 \end{align}
-with $p=\sum_{k=1}^n (k_i + 1)$.
+with $p=\sum_{k=1}^n k_i$.
 \end{itemize}
 
 \subsection*{\textit{n}-dimensional Hermite (physicists')}
