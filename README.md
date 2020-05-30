@@ -65,6 +65,48 @@ $$
 $$
 with $p=\sum_{i=1}^n k_i$.
 
+
+## _n_-dimensional unit ball with Gegenbauer weight
+  $\lambda > -1$.
+
+* Volume.
+$$
+    \begin{align}\nonumber
+    |G_n^{\lambda}|
+      &= \int_{S^n} \left(1 - \sum_{i=1}^n x_i^2\right)^\lambda\\\\
+      &= \frac{%
+        \Gamma(1+\lambda)\sqrt{\pi}^n
+      }{%
+        \Gamma\left(1+\lambda + \frac{n}{2}\right)
+      }
+      = \begin{cases}
+        1&\text{for $n=0$}\\\\
+        \frac{\Gamma(1+\lambda)\sqrt{\pi}}{\Gamma\left(\frac{3}{2} + \lambda\right)}&\text{for $n=1$}\\\\
+        |G_{n-2}^{\lambda}|\times \frac{2\pi}{2\lambda + n}&\text{otherwise}
+      \end{cases}
+  \end{align}
+$$
+* Monomial integration.
+$$
+  \begin{align}\nonumber
+    I_{k_1,\dots,k_n}
+      &= \int_{S^n} x_1^{k_1}\cdots x_n^{k_n} \left(1 - \sum_{i=1}^n
+      x_i^2\right)^\lambda\\\\
+      &= \frac{%
+        \Gamma(1+\lambda)\prod_{i=1}^n \Gamma\left(\frac{k_i+1}{2}\right)
+      }{%
+        \Gamma\left(1+\lambda + \sum_{i=1}^n \frac{k_i+1}{2}\right)
+      }\\\\
+      &= \begin{cases}
+        0&\text{if any $k_i$ is odd}\\\\
+        |G_n^{\lambda}|&\text{if all $k_i=0$}\\\\
+        I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0}-1}{2\lambda + n + \sum_{i=1}^n k_i}&\text{if $k_{i_0} > 0$}
+      \end{cases}
+  \end{align}
+$$
+
+
+
 ## Volumes
 
 ### Volume of a unit $n$-ball
