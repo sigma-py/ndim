@@ -5,7 +5,7 @@
 
 ## _n_-dimensional unit sphere
 $$
-  U_n = \left\{(x_1,\dots,x_n): \sum_{i=1}^n x_i^2 = 1\right\}
+  U_n = \{(x_1,\dots,x_n): \sum_{i=1}^n x_i^2 = 1\}
 $$
 
  * Volume.
@@ -20,6 +20,7 @@ $$
   $$
   * Monomial integral.
   $$
+  \begin{align*}
     I_{k_1,\dots,k_n}
     &= \int_{U_n} x_1^{k_1}\cdots x_n^{k_n}\\
     &= \frac{2\prod_{i=1}^n
@@ -29,6 +30,7 @@ $$
       |U_n|&\text{if all $k_i=0$}\\
       I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0} - 1}{n - 2 + \sum_{i=1}^n k_i}&\text{if $k_{i_0} > 0$}
     \end{cases}
+  \end{align*}
   $$
 
 ## Volumes
