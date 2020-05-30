@@ -6,7 +6,7 @@ This note gives closed formulas and recurrence expressions for many $n$-dimensio
 volumes and monomial integrals. The recurrence expressions are often much simpler, more
 instructive, and better suited for numerical computation.
 
-## _n_-dimensional unit cube}
+## _n_-dimensional unit cube
 $$
   C_n = \left\\{(x_1,\dots,x_n): -1 \le x_i \le 1\right\\}
 $$
@@ -34,13 +34,13 @@ $$
 
 ## _n_-dimensional unit simplex
 $$
-  T_n = \left\{(x_1,\dots,x_n):x_i \geq 0, \sum_{i=1}^n x_i \leq 1\right\}
+  T_n = \left\\{(x_1,\dots,x_n):x_i \geq 0, \sum_{i=1}^n x_i \leq 1\right\\}
 $$
 
 * Volume.
 $$
       |T_n| = \frac{1}{n!} = \begin{cases}
-        1&\text{if $n=0$}\\
+        1&\text{if $n=0$}\\\\
         |T_{n-1}| \times \frac{1}{n}&\text{otherwise}
       \end{cases}
 $$
@@ -48,11 +48,11 @@ $$
 $$
   \begin{align}\nonumber
     I_{k_1,\dots,k_n}
-    &= \int_{T_n} x_1^{k_1}\cdots x_n^{k_n}\\
+    &= \int_{T_n} x_1^{k_1}\cdots x_n^{k_n}\\\\
     &= \frac{\prod_{i=1}^n\Gamma(k_i)}{\Gamma\left(\sum_{i=1}^n
-    k_i\right)}\label{simplex:closed}\\
+    k_i\right)}\label{simplex:closed}\\\\
     &=\begin{cases}
-      |T_n|&\text{if all $k_i=0$}\\
+      |T_n|&\text{if all $k_i=0$}\\\\
       I_{k_1,\dots,k_{i_0}-1,\dots,k_n} \times \frac{k_{i_0}}{n + \sum_{i=1}^n k_i}&\text{if $k_{i_0} > 0$}
     \end{cases}\label{simplex:rec}
   \end{align}
