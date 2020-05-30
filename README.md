@@ -5,7 +5,7 @@
 
 ## _n_-dimensional unit sphere
 $$
-  U_n = \{(x_1,\dots,x_n): \sum_{i=1}^n x_i^2 = 1\}
+  U_n = \\{(x_1,\dots,x_n): \sum_{i=1}^n x_i^2 = 1\\}
 $$
 
  * Volume.
@@ -13,8 +13,8 @@ $$
   |U_n|
   = \frac{n \sqrt{\pi}^n}{\Gamma(\frac{n}{2}+1)}
   = \begin{cases}
-    2&\text{if $n = 1$}\\
-    2\pi&\text{if $n = 2$}\\
+    2&\text{if $n = 1$}\\\\
+    2\pi&\text{if $n = 2$}\\\\
     |U_{n-2}| \times \frac{2\pi}{n - 2}&\text{otherwise}
   \end{cases}
   $$
@@ -22,12 +22,12 @@ $$
   $$
   \begin{align*}
     I_{k_1,\dots,k_n}
-    &= \int_{U_n} x_1^{k_1}\cdots x_n^{k_n}\\
+    &= \int_{U_n} x_1^{k_1}\cdots x_n^{k_n}\\\\
     &= \frac{2\prod_{i=1}^n
-      \Gamma\left(\frac{k_i+1}{2}\right)}{\Gamma\left(\sum_{i=1}^n\frac{k_i+1}{2}\right)}\label{sphere:closed}\\
+      \Gamma\left(\frac{k_i+1}{2}\right)}{\Gamma\left(\sum_{i=1}^n\frac{k_i+1}{2}\right)}\label{sphere:closed}\\\\
     &=\begin{cases}
-      0&\text{if any $k_i$ is odd}\\
-      |U_n|&\text{if all $k_i=0$}\\
+      0&\text{if any $k_i$ is odd}\\\\
+      |U_n|&\text{if all $k_i=0$}\\\\
       I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0} - 1}{n - 2 + \sum_{i=1}^n k_i}&\text{if $k_{i_0} > 0$}
     \end{cases}
   \end{align*}
