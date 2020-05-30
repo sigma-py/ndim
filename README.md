@@ -34,7 +34,7 @@ $$
   $$
 
 
-## _n_-dimensional unit ball}
+## _n_-dimensional unit ball
 $$
   S_n = \left\\{(x_1,\dots,x_n): \sum_{i=1}^n x_i^2 \le 1\right\\}
 $$
@@ -44,8 +44,8 @@ $$
   |S_n|
   = \frac{\sqrt{\pi}^n}{\Gamma(\frac{n}{2}+1)}
   = \begin{cases}
-     1&\text{if $n = 0$}\\
-     2&\text{if $n = 1$}\\
+     1&\text{if $n = 0$}\\\\
+     2&\text{if $n = 1$}\\\\
      |S_{n-2}| \times \frac{2\pi}{n}&\text{otherwise}
   \end{cases}
   $$
