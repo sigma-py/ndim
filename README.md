@@ -33,6 +33,38 @@ $$
   \end{align*}
   $$
 
+
+## _n_-dimensional unit ball}
+$$
+  S_n = \left\\{(x_1,\dots,x_n): \sum_{i=1}^n x_i^2 \le 1\right\\}
+$$
+
+* Volume.
+  $$
+  |S_n|
+  = \frac{\sqrt{\pi}^n}{\Gamma(\frac{n}{2}+1)}
+  = \begin{cases}
+     1&\text{if $n = 0$}\\
+     2&\text{if $n = 1$}\\
+     |S_{n-2}| \times \frac{2\pi}{n}&\text{otherwise}
+  \end{cases}
+  $$
+
+* Monomial integral.
+$$
+\begin{align}\nonumber
+  I_{k_1,\dots,k_n}
+  &= \int_{S_n} x_1^{k_1}\cdots x_n^{k_n}\\\\
+  &= \frac{2^{n + p}}{n + p} |S_n|
+  =\begin{cases}
+    0&\text{if any $k_i$ is odd}\\\\
+    |S_n|&\text{if all $k_i=0$}\\\\
+    I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0} - 1}{n - 2 + p}&\text{if $k_{i_0} > 0$}
+  \end{cases}
+\end{align}
+$$
+with $p=\sum_{i=1}^n k_i$.
+
 ## Volumes
 
 ### Volume of a unit $n$-ball
