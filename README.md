@@ -2,69 +2,282 @@
 
 [![green-pi](https://img.shields.io/badge/Rendered%20with-Green%20Pi-00d571?style=flat-square)](https://github.com/nschloe/green-pi?activate&inlineMath=$)
 
-## Volumes
 
-### Volume of a unit $n$-ball
+## _n_-dimensional unit sphere
+$$
+  U_n = \left\\{(x_1,\dots,x_n): \sum_{i=1}^n x_i^2 = 1\right\\}
+$$
 
-See [Wikipedia](https://en.wikipedia.org/wiki/Volume_of_an_n-ball).
-
-$$V_n = \frac{\sqrt{\pi}^n}{\Gamma(\frac{n}{2}+1)}$$ | $$V_n = \begin{cases}\frac{\pi^{n/2}}{(n/2)!}\quad&\text{if $n$ even}\\\\ \frac{(n+1)!}{2^{n+1} \left(\frac{n+1}{2}\right)!} \pi^{\frac{n+1}{2}}\quad&\text{if $n$ odd}\end{cases}$$| $$V_n = V_{n-2} \times \frac{2\pi}{n},\quad V_0 = 1,\quad V_1 = 2$$
-|:-----------:|:-------------:|:-----------:|
-
-
-### Surface of a unit $n$-sphere
-
-$$S_{n-1} = \frac{n \sqrt{\pi}^n}{\Gamma(\frac{n}{2}+1)}$$ |$$S_{n-1} = \begin{cases}\frac{n}{(\frac{n}{2})!} \pi^{\frac{n}{2}}\quad&\text{if $n-1$ even}\\\\ 0\quad&\text{if $n-1$ odd}\end{cases}$$ | $$S_n = S_{n-2} \times \frac{2\pi}{n - 1},\quad S_0 = 2,\quad S_1 = 2\pi$$
-|:-----------:|:-------------:|:-----------:|
-
-### $n$-dimensional Laguerre volume
-
-$$I_n = \int_{\mathbb{R}^n} \exp\left(-\sqrt{x_1^2+\dots+x_n^2}\right)$$
-
-$$I_n = \frac{2 \sqrt{\pi}^n \Gamma(n)}{\Gamma(\frac{n}{2})}$$ |$$I_n=\begin{cases}1\quad&\text{if $n$ even}\\\\0\quad&\text{if $n$ odd}\end{cases}$$ | $$E_n = E_{n-2} \times 2\pi(n-1), \quad E_0=1, \quad E_1=2$$
-|:-----------:|:-------------:|:-----------:|
-
-### $n$-dimensional Hermite volume (physicists')
-$$I_n = \int_{\mathbb{R}^n} \exp\left(-(x_1^2+\dots+x_n^2)\right)$$
-
-$$I_n = \sqrt{\pi}^n$$ | $$I_n=\begin{cases}1\quad&\text{if $n$ even}\\\\0\quad&\text{if $n$ odd}\end{cases}$$| $$I_n = E_{n-2} \times \pi, \quad I_0=1, I_1=\sqrt{\pi}$$ or $$I_n = I_{n-1} \times \sqrt{\pi}, \quad I_0=1$$
-|:-----------:|:-------------:|:-----------:|
-
-### $n$-dimensional Hermite volume (probablisists')
-
-$$\frac{1}{\sqrt{2\pi}^n} \int_{\mathbb{R}^n} \exp\left(-\frac{1}{2}(x_1^2+\dots+x_n^2)\right)$$ | $$I_n=\begin{cases}1\quad&\text{if $n$ even}\\\\0\quad&\text{if $n$ odd}\end{cases}$$ | $$E^{(2)}_n = 1$$ |
-|:-----------:|:-------------:|:-----------:|
+ * Volume.
+ $$
+  |U_n|
+  = \frac{n \sqrt{\pi}^n}{\Gamma(\frac{n}{2}+1)}
+  = \begin{cases}
+    2&\text{if $n = 1$}\\\\
+    2\pi&\text{if $n = 2$}\\\\
+    |U_{n-2}| \times \frac{2\pi}{n - 2}&\text{otherwise}
+  \end{cases}
+  $$
+  * Monomial integral.
+  $$
+  \begin{align*}
+    I_{k_1,\dots,k_n}
+    &= \int_{U_n} x_1^{k_1}\cdots x_n^{k_n}\\\\
+    &= \frac{2\prod_{i=1}^n
+      \Gamma\left(\frac{k_i+1}{2}\right)}{\Gamma\left(\sum_{i=1}^n\frac{k_i+1}{2}\right)}\label{sphere:closed}\\\\
+    &=\begin{cases}
+      0&\text{if any $k_i$ is odd}\\\\
+      |U_n|&\text{if all $k_i=0$}\\\\
+      I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0} - 1}{n - 2 + \sum_{i=1}^n k_i}&\text{if $k_{i_0} > 0$}
+    \end{cases}
+  \end{align*}
+  $$
 
 
-## Monomial integrals
+## _n_-dimensional unit ball
+$$
+  S_n = \left\\{(x_1,\dots,x_n): \sum_{i=1}^n x_i^2 \le 1\right\\}
+$$
 
-### Chebyshev, first kind
-See [Wikipedia](https://en.wikipedia.org/wiki/Chebyshev_polynomials).
+* Volume.
+  $$
+  |S_n|
+  = \frac{\sqrt{\pi}^n}{\Gamma(\frac{n}{2}+1)}
+  = \begin{cases}
+     1&\text{if $n = 0$}\\\\
+     2&\text{if $n = 1$}\\\\
+     |S_{n-2}| \times \frac{2\pi}{n}&\text{otherwise}
+  \end{cases}
+  $$
 
-$$I_k = \int_{-1}^1 \frac{x^k}{\sqrt{1 - x^2}} dx$$
+* Monomial integral.
+$$
+\begin{align}\nonumber
+  I_{k_1,\dots,k_n}
+  &= \int_{S_n} x_1^{k_1}\cdots x_n^{k_n}\\\\
+  &= \frac{2^{n + p}}{n + p} |S_n|
+  =\begin{cases}
+    0&\text{if any $k_i$ is odd}\\\\
+    |S_n|&\text{if all $k_i=0$}\\\\
+    I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0} - 1}{n - 2 + p}&\text{if $k_{i_0} > 0$}
+  \end{cases}
+\end{align}
+$$
+with $p=\sum_{i=1}^n k_i$.
 
-$$I_k = \frac{(-1)^k + 1}{2} \frac{\sqrt{\pi} \Gamma(\frac{k+1}{2})}{\Gamma(\frac{k}{2} + 1)}$$ | $$I_k=\begin{cases}\frac{\pi k!}{2^k (\frac{k}{2})!^2}\quad&\text{if $k$ even}\\\\0\quad&\text{if $k$ odd}\end{cases}$$ | $$I_k = I_{k-2} \times \frac{k-1}{k},\quad I_0 = \pi,\quad I_1 = 0$$
-|:-----------:|:-------------:|:-----------:|
 
-### Chebyshev, second kind
-See [Wikipedia](https://en.wikipedia.org/wiki/Chebyshev_polynomials).
-$$\int_{-1}^1 x^k \sqrt{1 - x^2} dx$$
+## _n_-dimensional unit ball with Gegenbauer weight
+  $\lambda > -1$.
 
-$$I_k = \frac{(-1)^k + 1}{2} \frac{\sqrt{\pi} \Gamma(\frac{k+1}{2})}{(k + 2) \Gamma(\frac{k}{2} + 1)}$$ |$$I_k=\begin{cases}\frac{\pi k!}{(k+2) 2^k (\frac{k}{2})!^2}\quad&\text{if $k$ even}\\\\0\quad&\text{if $k$ odd}\end{cases}$$| $$I_k = I_{k-2} \times \frac{k-1}{k + 2},\quad I_0 = \frac{\pi}{2},\quad I_1 = 0$$
-|:-----------:|:-------------:|:-----------:|
+* Volume.
+$$
+    \begin{align}\nonumber
+    |G_n^{\lambda}|
+      &= \int_{S^n} \left(1 - \sum_{i=1}^n x_i^2\right)^\lambda\\\\
+      &= \frac{%
+        \Gamma(1+\lambda)\sqrt{\pi}^n
+      }{%
+        \Gamma\left(1+\lambda + \frac{n}{2}\right)
+      }
+      = \begin{cases}
+        1&\text{for $n=0$}\\\\
+        \frac{\Gamma(1+\lambda)\sqrt{\pi}}{\Gamma\left(\frac{3}{2} + \lambda\right)}&\text{for $n=1$}\\\\
+        |G_{n-2}^{\lambda}|\times \frac{2\pi}{2\lambda + n}&\text{otherwise}
+      \end{cases}
+  \end{align}
+$$
+* Monomial integration.
+$$
+  \begin{align}\nonumber
+    I_{k_1,\dots,k_n}
+      &= \int_{S^n} x_1^{k_1}\cdots x_n^{k_n} \left(1 - \sum_{i=1}^n
+      x_i^2\right)^\lambda\\\\
+      &= \frac{%
+        \Gamma(1+\lambda)\prod_{i=1}^n \Gamma\left(\frac{k_i+1}{2}\right)
+      }{%
+        \Gamma\left(1+\lambda + \sum_{i=1}^n \frac{k_i+1}{2}\right)
+      }\\\\
+      &= \begin{cases}
+        0&\text{if any $k_i$ is odd}\\\\
+        |G_n^{\lambda}|&\text{if all $k_i=0$}\\\\
+        I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0}-1}{2\lambda + n + \sum_{i=1}^n k_i}&\text{if $k_{i_0} > 0$}
+      \end{cases}
+  \end{align}
+$$
+
+## _n_-dimensional unit ball with Chebyshev-1 weight
+Gegenbauer with $\lambda=-\frac{1}{2}$.
+
+* Volume.
+$$
+    \begin{align}\nonumber
+    |G_n^{-1/2}|
+      &= \int_{S^n} \frac{1}{\sqrt{1 - \sum_{i=1}^n x_i^2}}\\\\
+      &= \frac{%
+        \sqrt{\pi}^{n+1}
+      }{%
+        \Gamma\left(\frac{n+1}{2}\right)
+      }
+      =\begin{cases}
+        1&\text{if $n=0$}\\\\
+        \pi&\text{if $n=1$}\\\\
+        |G_{n-2}^{-1/2}| \times \frac{2\pi}{n-1}&\text{otherwise}
+      \end{cases}
+    \end{align}
+$$
+* Monomial integration.
+$$
+    \begin{align}\nonumber
+    I_{k_1,\dots,k_n}
+      &= \int_{S^n} \frac{x_1^{k_1}\cdots x_n^{k_n}}{\sqrt{1 - \sum_{i=1}^n x_i^2}}\\\\
+      &= \frac{%
+        \sqrt{\pi} \prod_{i=1}^n \Gamma\left(\frac{k_i+1}{2}\right)
+      }{%
+        \Gamma\left(\frac{1}{2} + \sum_{i=1}^n \frac{k_i+1}{2}\right)
+      }\\
+      &= \begin{cases}
+        0&\text{if any $k_i$ is odd}\\\\
+        |G_n^{-1/2}|&\text{if all $k_i=0$}\\\\
+        I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0}-1}{n-1 + \sum_{i=1}^n k_i}&\text{if $k_{i_0} > 0$}
+      \end{cases}
+    \end{align}
+$$
 
 
-### Hermite (Physicists')
+## _n_-dimensional unit ball with Chebyshev-2 weight
+Gegenbauer with $\lambda = +\frac{1}{2}$.
 
-See [Wikipedia](https://en.wikipedia.org/wiki/Hermite_polynomials).
-$$\int_{-\infty}^\infty x^k \exp(-x^2) dx$$
+* Volume.
+$$
+    \begin{align}\nonumber
+    |G_n^{+1/2}|
+      &= \int_{S^n} \sqrt{1 - \sum_{i=1}^n x_i^2}\\\\
+      &= \frac{%
+        \sqrt{\pi}^{n+1}
+      }{%
+        2\Gamma\left(\frac{n+3}{2}\right)
+      }
+      = \begin{cases}
+        1&\text{if $n=0$}\\\\
+        \frac{\pi}{2}&\text{if $n=1$}\\\\
+        |G_{n-2}^{+1/2}| \times \frac{2\pi}{n+1}&\text{otherwise}
+      \end{cases}
+    \end{align}
+$$
+* Monomial integration.
+$$
+    \begin{align}\nonumber
+    I_{k_1,\dots,k_n}
+      &= \int_{S^n} x_1^{k_1}\cdots x_n^{k_n} \sqrt{1 - \sum_{i=1}^n
+      x_i^2}\\\\
+      &= \frac{%
+        \sqrt{\pi}\prod_{i=1}^n \Gamma\left(\frac{k_i+1}{2}\right)
+      }{%
+        2\Gamma\left(\frac{3}{2} + \sum_{i=1}^n \frac{k_i+1}{2}\right)
+      }\\
+      &= \begin{cases}
+        0&\text{if any $k_i$ is odd}\\\\
+        |G_n^{+1/2}|&\text{if all $k_i=0$}\\\\
+        I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0}-1}{n + 1 + \sum_{i=1}^n k_i}&\text{if $k_{i_0} > 0$}
+      \end{cases}
+    \end{align}
+$$
 
-$$I_k = \frac{(-1)^k + 1}{2} \Gamma\left(\frac{k+1}{2}\right)$$ | $$I_k=\begin{cases}\frac{\sqrt{\pi}k!}{2^k (\frac{k}{2})!}\quad&\text{if $k$ even}\\\\0\quad&\text{if $k$ odd}\end{cases}$$| $$I_k = I_{k-2} \times \frac{k-1}{2},\quad I_0 = \sqrt{\pi},\quad I_1 = 0$$
-|:-----------:|:-------------:|:-----------:|
+## _n_-dimensional generalized Laguerre volume
 
-### Hermite (Probabilists')
-https://en.wikipedia.org/wiki/Hermite_polynomials
-$$\frac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty x^k \exp\left(-\frac{1}{2}x^2\right) dx$$
+$\alpha > -1$.
 
-$$I_k = \frac{(-1)^k + 1}{2} \frac{2^{\frac{k+1}{2}}}{\sqrt{2\pi}} \Gamma\left(\frac{k+1}{2}\right)$$ |$$I_k=\begin{cases}\frac{k!}{2^{k/2} (\frac{k}{2})!}\quad&\text{if $k$ even}\\\\0\quad&\text{if $k$ odd}\end{cases}$$| $$I_k = I_{k-2} \times (k-1),\quad I_0 = 1,\quad I_1 = 0$$
-|:-----------:|:-------------:|:-----------:|
+* Volume
+$$
+    \begin{align}\nonumber
+  V_n
+    &= \int_{\mathbb{R}^n} \left(\sqrt{x_1^2+\cdots+x_n^2}\right)^\alpha \exp\left(-\sqrt{x_1^2+\dots+x_n^2}\right)\\\\
+    &= \frac{2 \sqrt{\pi}^n \Gamma(n+\alpha)}{\Gamma(\frac{n}{2})}
+  = \begin{cases}
+    2\Gamma(1+\alpha)&\text{if $n=1$}\\\\
+    2\pi\Gamma(2 + \alpha)&\text{if $n=2$}\\\\
+    V_{n-2} \times \frac{2\pi(n+\alpha-1) (n+\alpha-2)}{n-2}&\text{otherwise}
+  \end{cases}
+\end{align}
+$$
+* Monomial integration.
+$$
+  \begin{align}\nonumber
+  I_{k_1,\dots,k_n}
+  &= \int_{\mathbb{R}^n} x_1^{k_1}\cdots x_n^{k_n}
+    \left(\sqrt{x_1^2+\dots+x_n^2}\right)^\alpha \exp\left(-\sqrt{x_1^2+\dots+x_n^2}\right)\\\\
+  &= \frac{%
+    2 \Gamma\left(\alpha + n + \sum_{i=1}^n k_i\right)
+    \left(\prod_{i=1}^n\Gamma\left(\frac{k_i + 1}{2}\right)\right)
+  }{%
+    \Gamma\left(\sum_{i=1}^n\frac{k_i + 1}{2}\right)
+  }\\\\
+  &=\begin{cases}
+    0&\text{if any $k_i$ is odd}\\\\
+    V_n&\text{if all $k_i=0$}\\\\
+    I_{k_1,\dots,k_{i_0}-2,\ldots,k_n} \times \frac{%
+      (\alpha + n + p - 1) (\alpha + n + p - 2) (k_{i_0} - 1)
+    }{%
+        n + p - 2
+    }&\text{if $k_{i_0} > 0$}
+  \end{cases}
+\end{align}
+$$
+with $p=\sum_{k=1}^n k_i$.
+
+## _n_-dimensional Hermite (physicists')
+* Volume.
+$$
+\begin{align}\nonumber
+  V_n
+  &= \int_{\mathbb{R}^n} \exp\left(-(x_1^2+\cdots+x_n^2)\right)\\\\
+  &= \sqrt{\pi}^n
+   = \begin{cases}
+     1&\text{if $n=0$}\\\\
+     \sqrt{\pi}&\text{if $n=1$}\\\\
+     V_{n-2} \times \pi&\text{otherwise}
+   \end{cases}
+\end{align}
+$$
+
+* Monomial integration.
+$$
+\begin{align}\nonumber
+    I_{k_1,\dots,k_n}
+    &= \int_{\mathbb{R}^n} x_1^{k_1}\cdots x_n^{k_n} \exp(-(x_1^2+\cdots+x_n^2))\\\\
+    &= \prod_{i=1}^n \frac{(-1)^{k_i} + 1}{2} \times \Gamma\left(\frac{k_i+1}{2}\right)\\\\
+    &=\begin{cases}
+      0&\text{if any $k_i$ is odd}\\\\
+      V_n&\text{if all $k_i=0$}\\\\
+      I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0} - 1}{2}&\text{if $k_{i_0} > 0$}
+    \end{cases}
+\end{align}
+$$
+
+
+## _n_-dimensional Hermite (probabilists')
+
+* Volume.
+$$
+    V_n = \frac{1}{\sqrt{2\pi}^n} \int_{\mathbb{R}^n}
+    \exp\left(-\frac{1}{2}(x_1^2+\cdots+x_n^2)\right) = 1
+$$
+
+* Monomial integration.
+$$
+  \begin{align}\nonumber
+    I_{k_1,\dots,k_n}
+      &= \frac{1}{\sqrt{2\pi}^n} \int_{\mathbb{R}^n} x_1^{k_1}\cdots x_n^{k_n}
+      \exp\left(-\frac{1}{2}(x_1^2+\cdots+x_n^2)\right)\\\\
+    &= \prod_{i=1}^n \frac{(-1)^{k_i} + 1}{2} \times
+      \frac{2^{\frac{k_i+1}{2}}}{\sqrt{2\pi}} \Gamma\left(\frac{k_i+1}{2}\right)\\\\
+    &=\begin{cases}
+      0&\text{if any $k_i$ is odd}\\\\
+      V_n&\text{if all $k_i=0$}\\\\
+      I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times (k_{i_0} - 1)&\text{if $k_{i_0} > 0$}
+    \end{cases}
+  \end{align}
+$$
+
+### License
+The sources of this article are published under the [CC-BY 4.0 license](https://creativecommons.org/licenses/by/4.0/).
