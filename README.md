@@ -5,7 +5,7 @@
 
 ## _n_-dimensional unit sphere
 $$
-  U_n = \\{(x_1,\dots,x_n): \sum_{i=1}^n x_i^2 = 1\\}
+  U_n = \left\\{(x_1,\dots,x_n): \sum_{i=1}^n x_i^2 = 1\right\\}
 $$
 
  * Volume.
