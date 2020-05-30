@@ -144,7 +144,7 @@ $$
 $$
 
 
-$$ _n_-dimensional unit ball with Chebyshev-2 weight
+## _n_-dimensional unit ball with Chebyshev-2 weight
 Gegenbauer with $\lambda = +\frac{1}{2}$.
 
 * Volume.
@@ -252,7 +252,6 @@ $$
       I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0} - 1}{2}&\text{if $k_{i_0} > 0$}
     \end{cases}
 \end{align}
-\end{itemize}
 $$
 
 
@@ -278,5 +277,4 @@ $$
       I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times (k_{i_0} - 1)&\text{if $k_{i_0} > 0$}
     \end{cases}
   \end{align}
-\end{itemize}
 $$
