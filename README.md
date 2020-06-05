@@ -2,6 +2,9 @@
 
 [![green-pi](https://img.shields.io/badge/Rendered%20with-Green%20Pi-00d571?style=flat-square)](https://github.com/nschloe/green-pi?activate&inlineMath=$)
 
+A PDF version of the text can be found
+[here](https://nschloe.github.io/useful-recurrence-relations/useful-recurrence-relations.pdf).
+
 This note gives closed formulas and recurrence expressions for many $n$-dimensional
 volumes and monomial integrals. The recurrence expressions are often much simpler, more
 instructive, and better suited for numerical computation.
