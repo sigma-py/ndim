@@ -3,16 +3,18 @@ import math
 import sympy
 
 
-def volume(n, symbolic):
-    assert n >= 1
-
+def volume(n, symbolic=False):
     pi = sympy.pi if symbolic else math.pi
 
-    if n == 1:
-        return 2
-    elif n == 2:
-        return 2 * pi
-    return volume(n - 2) * 2 * pi / (n - 2)
+    def _recurrence(n):
+        assert n >= 1
+        if n == 1:
+            return 2
+        elif n == 2:
+            return 2 * pi
+        return _recurrence(n - 2) * 2 * pi / (n - 2)
+
+    return _recurrence(n)
 
 
 def integrate_monomial(exponents, symbolic=False):

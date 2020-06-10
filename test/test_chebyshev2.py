@@ -5,6 +5,8 @@ from math import factorial, gamma, pi, sqrt
 
 import pytest
 
+import ndim
+
 
 def closed(k):
     return (
@@ -20,18 +22,11 @@ def cases(k):
     return 0
 
 
-def recurrence(k):
-    assert k >= 0
-    if k == 0:
-        return pi / 2
-    elif k == 1:
-        return 0
-    return recurrence(k - 2) * (k - 1) / (k + 2)
-
-
 @pytest.mark.parametrize("n", range(10))
 def test(n):
     ref = closed(n)
     tol = 1.0e-14
     assert abs(ref - cases(n)) < (1 + abs(ref)) * tol
-    assert abs(ref - recurrence(n)) < (1 + abs(ref)) * tol
+    assert (
+        abs(ref - ndim.nball.integrate_monomial([n], lmbda=+0.5)) < (1 + abs(ref)) * tol
+    )

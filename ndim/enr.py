@@ -9,7 +9,14 @@ def _volume(n, alpha, pi, gamma):
         return 2 * gamma(1 + alpha)
     elif n == 2:
         return 2 * pi * gamma(2 + alpha)
-    return _volume(n - 2, alpha) * 2 * pi * (n + alpha - 1) * (n + alpha - 2) / (n - 2)
+    return (
+        _volume(n - 2, alpha, pi, gamma)
+        * 2
+        * pi
+        * (n + alpha - 1)
+        * (n + alpha - 2)
+        / (n - 2)
+    )
 
 
 def volume(n, alpha=0, symbolic=False):

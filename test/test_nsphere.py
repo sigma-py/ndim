@@ -1,3 +1,4 @@
+import ndim
 from math import factorial, gamma, pi, sqrt
 
 import pytest
@@ -20,18 +21,9 @@ def cases(n):
     )
 
 
-def recurrence(n):
-    assert n >= 1
-    if n == 1:
-        return 2
-    elif n == 2:
-        return 2 * pi
-    return recurrence(n - 2) * 2 * pi / (n - 2)
-
-
 @pytest.mark.parametrize("n", range(1, 10))
 def test(n):
     ref = closed(n)
     tol = 1.0e-14
     assert abs(ref - cases(n)) < abs(ref) * tol
-    assert abs(ref - recurrence(n)) < abs(ref) * tol
+    assert abs(ref - ndim.nsphere.volume(n)) < abs(ref) * tol

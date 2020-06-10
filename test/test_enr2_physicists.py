@@ -2,6 +2,7 @@
 exp(-(x_1^2 + ... + x_n^2))
 """
 from math import pi, sqrt
+import ndim
 
 import pytest
 
@@ -16,18 +17,9 @@ def cases(n):
     return sqrt(pi) * pi ** ((n - 1) / 2)
 
 
-def recurrence(n):
-    assert n >= 0
-    if n == 0:
-        return 1
-    elif n == 1:
-        return sqrt(pi)
-    return recurrence(n - 2) * pi
-
-
 @pytest.mark.parametrize("n", range(10))
 def test(n):
     ref = closed(n)
     tol = 1.0e-14
     assert abs(ref - cases(n)) < abs(ref) * tol
-    assert abs(ref - recurrence(n)) < abs(ref) * tol
+    assert abs(ref - ndim.enr2.volume(n, "physicists")) < abs(ref) * tol
