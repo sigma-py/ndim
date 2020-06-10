@@ -1,9 +1,18 @@
-## Useful recurrence relations for multidimensional volumes and monomial integrals
+## ndim
 
+Useful recurrence relations for multidimensional volumes and monomial integrals.
+
+[![gh-actions](https://img.shields.io/github/workflow/status/nschloe/ndim/ci?style=flat-square)](https://github.com/nschloe/ndim/actions?query=workflow%3Aci)
+[![codecov](https://img.shields.io/codecov/c/github/nschloe/ndim.svg?style=flat-square)](https://codecov.io/gh/nschloe/ndim)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg?style=flat-square)](https://github.com/psf/black)
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/ndim.svg?style=flat-square)](https://pypi.org/pypi/ndim/)
+[![PyPi Version](https://img.shields.io/pypi/v/ndim.svg?style=flat-square)](https://pypi.python.org/pypi/ndim)
+[![GitHub stars](https://img.shields.io/github/stars/nschloe/ndim.svg?style=flat-square&logo=github&label=Stars&logoColor=white)](https://github.com/nschloe/ndim)
+[![PyPi downloads](https://img.shields.io/pypi/dm/ndim.svg?style=flat-square)](https://pypistats.org/packages/ndim)
 [![green-pi](https://img.shields.io/badge/Rendered%20with-Green%20Pi-00d571?style=flat-square)](https://github.com/nschloe/green-pi?activate&inlineMath=$)
 
 A PDF version of the text can be found
-[here](https://nschloe.github.io/useful-recurrence-relations/useful-recurrence-relations.pdf).
+[here](https://nschloe.github.io/ndim/useful-recurrence-relations.pdf).
 
 This note gives closed formulas and recurrence expressions for many $n$-dimensional
 volumes and monomial integrals. The recurrence expressions are often much simpler, more
@@ -352,4 +361,4 @@ $$
 $$
 
 ### License
-The sources of this article are published under the [CC-BY 4.0 license](https://creativecommons.org/licenses/by/4.0/).
+This software is published under the [GPLv3 license](https://www.gnu.org/licenses/gpl-3.0.en.html).

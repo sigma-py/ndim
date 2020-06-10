@@ -1,6 +1,8 @@
 from math import pi
+
 import matplotlib.pyplot as plt
 import numpy
+
 import dufte
 import tikzplotlib
 

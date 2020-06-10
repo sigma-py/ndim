@@ -2,6 +2,8 @@ from math import factorial, gamma, pi, sqrt
 
 import pytest
 
+import ndim
+
 
 def closed(n):
     return sqrt(pi) ** n / gamma(n / 2 + 1)
@@ -16,18 +18,9 @@ def cases(n):
     )
 
 
-def recurrence(n):
-    assert n >= 0
-    if n == 0:
-        return 1
-    elif n == 1:
-        return 2
-    return recurrence(n - 2) * 2 * pi / n
-
-
 @pytest.mark.parametrize("n", range(10))
 def test(n):
     ref = closed(n)
     tol = 1.0e-14
     assert abs(ref - cases(n)) < abs(ref) * tol
-    assert abs(ref - recurrence(n)) < abs(ref) * tol
+    assert abs(ref - ndim.nball.volume(n)) < abs(ref) * tol
