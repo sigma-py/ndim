@@ -352,4 +352,4 @@ $$
 $$
 
 ### License
-The sources of this article are published under the [CC-BY 4.0 license](https://creativecommons.org/licenses/by/4.0/).
+This software is published under the [GPLv3 license](https://www.gnu.org/licenses/gpl-3.0.en.html).
