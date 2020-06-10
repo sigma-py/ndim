@@ -2,9 +2,10 @@
 exp(-(x_1^2 + ... + x_n^2))
 """
 from math import pi, sqrt
-import ndim
 
 import pytest
+
+import ndim
 
 
 def closed(n):

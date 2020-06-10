@@ -1,8 +1,9 @@
 """
 exp(-(x_1^2 + ... + x_n^2)/2) / sqrt(2*pi) ** n
 """
-import ndim
 import pytest
+
+import ndim
 
 
 def closed(n):

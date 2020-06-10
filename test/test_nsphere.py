@@ -1,7 +1,8 @@
-import ndim
 from math import factorial, gamma, pi, sqrt
 
 import pytest
+
+import ndim
 
 
 def closed(n):

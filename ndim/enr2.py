@@ -6,20 +6,19 @@ import math
 import sympy
 
 
-def _volume(n, pi, sqrt):
-    assert n >= 0
-
-    if n == 0:
-        return 1
-    elif n == 1:
-        return sqrt(pi)
-    return _volume(n - 2, pi, sqrt) * pi
-
-
 def volume_physicists(n, symbolic):
     pi = sympy.pi if symbolic else math.pi
     sqrt = sympy.sqrt if symbolic else math.sqrt
-    return _volume(n, pi, sqrt)
+
+    def _recurrence(n):
+        assert n >= 0
+        if n == 0:
+            return 1
+        elif n == 1:
+            return sqrt(pi)
+        return _recurrence(n - 2) * pi
+
+    return _recurrence(n)
 
 
 def integrate_monomial_physicists(exponents, symbolic=False):
@@ -28,15 +27,18 @@ def integrate_monomial_physicists(exponents, symbolic=False):
     if any(k % 2 == 1 for k in exponents):
         return 0
 
-    if all(k == 0 for k in exponents):
-        n = len(exponents)
-        return volume_physicists(n, symbolic)
+    def _recurrence(exponents):
+        if all(k == 0 for k in exponents):
+            n = len(exponents)
+            return volume_physicists(n, symbolic)
 
-    # find first nonzero
-    idx, k0 = next((i, k) for i, k in enumerate(exponents) if k > 0)
-    k2 = exponents.copy()
-    k2[idx] -= 2
-    return integrate_monomial_physicists(k2, symbolic) * frac(k0 - 1, 2)
+        # find first nonzero
+        idx, k0 = next((i, k) for i, k in enumerate(exponents) if k > 0)
+        k2 = exponents.copy()
+        k2[idx] -= 2
+        return _recurrence(k2) * frac(k0 - 1, 2)
+
+    return _recurrence(exponents)
 
 
 def volume_probabilists(n):
@@ -47,15 +49,18 @@ def integrate_monomial_probabilists(exponents):
     if any(k % 2 == 1 for k in exponents):
         return 0
 
-    if all(k == 0 for k in exponents):
-        n = len(exponents)
-        return volume_probabilists(n)
+    def _recurrence(exponents):
+        if all(k == 0 for k in exponents):
+            n = len(exponents)
+            return volume_probabilists(n)
 
-    # find first nonzero
-    idx, k0 = next((i, k) for i, k in enumerate(exponents) if k > 0)
-    k2 = exponents.copy()
-    k2[idx] -= 2
-    return integrate_monomial_probabilists(k2) * (k0 - 1)
+        # find first nonzero
+        idx, k0 = next((i, k) for i, k in enumerate(exponents) if k > 0)
+        k2 = exponents.copy()
+        k2[idx] -= 2
+        return _recurrence(k2) * (k0 - 1)
+
+    return _recurrence(exponents)
 
 
 def volume(n, variant, symbolic=False):
