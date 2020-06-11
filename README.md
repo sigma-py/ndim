@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/nschloe/ndim"><img alt="ndim" src="https://nschloe.github.io/ndim/logo.svg" width="60%"></a>
+  <a href="https://github.com/nschloe/ndim"><img alt="ndim" src="https://nschloe.github.io/ndim/logo.svg" width="50%"></a>
   <p align="center">Useful recurrence relations for multidimensional volumes and monomial integrals.</p>
 </p>
 
