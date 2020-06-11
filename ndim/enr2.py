@@ -77,4 +77,4 @@ def integrate_monomial(n, variant, symbolic=False):
     if variant == "physicists":
         return integrate_monomial_physicists(n, symbolic)
     assert variant == "probabilists"
-    return integrate_monomial_probabilists(n, symbolic)
+    return integrate_monomial_probabilists(n)
