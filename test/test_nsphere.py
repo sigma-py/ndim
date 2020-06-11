@@ -1,30 +1,27 @@
-from math import factorial, gamma, pi, sqrt
+import random
+from math import gamma, pi, sqrt
 
 import pytest
 
 import ndim
-
-
-def closed(n):
-    return n * sqrt(pi) ** n / gamma(n / 2 + 1)
-
-
-def cases(n):
-    if n % 2 == 0:
-        return n * pi ** (n / 2) / factorial(n / 2)
-
-    return (
-        n
-        * pi ** ((n - 1) / 2)
-        * 2 ** (n + 1)
-        * factorial((n + 1) / 2)
-        / factorial(n + 1)
-    )
+from helpers import prod
 
 
 @pytest.mark.parametrize("n", range(1, 10))
-def test(n):
-    ref = closed(n)
+def test_volume(n):
+    ref = n * sqrt(pi) ** n / gamma(n / 2 + 1)
     tol = 1.0e-14
-    assert abs(ref - cases(n)) < abs(ref) * tol
     assert abs(ref - ndim.nsphere.volume(n)) < abs(ref) * tol
+
+
+@pytest.mark.parametrize("n", range(1, 10))
+def test_monomial(n):
+    random.seed(0)
+    k = [random.randrange(0, 11, 2) for _ in range(n)]
+
+    ref = (
+        2 * prod(gamma((kk + 1) / 2) for kk in k) / gamma(sum((kk + 1) / 2 for kk in k))
+    )
+
+    tol = 1.0e-14
+    assert abs(ref - ndim.nsphere.integrate_monomial(k)) < abs(ref) * tol

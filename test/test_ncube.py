@@ -3,7 +3,6 @@ import random
 import pytest
 
 import ndim
-
 from helpers import prod
 
 
