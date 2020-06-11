@@ -1,26 +1,28 @@
 """
 exp(-(x_1^2 + ... + x_n^2))
 """
-from math import pi, sqrt
+import random
+from math import gamma, pi, sqrt
 
 import pytest
 
 import ndim
-
-
-def closed(n):
-    return sqrt(pi) ** n
-
-
-def cases(n):
-    if n % 2 == 0:
-        return pi ** (n / 2)
-    return sqrt(pi) * pi ** ((n - 1) / 2)
+from helpers import prod
 
 
 @pytest.mark.parametrize("n", range(10))
-def test(n):
-    ref = closed(n)
+def test_volume(n):
+    ref = sqrt(pi) ** n
     tol = 1.0e-14
-    assert abs(ref - cases(n)) < abs(ref) * tol
     assert abs(ref - ndim.enr2.volume(n, "physicists")) < abs(ref) * tol
+
+
+@pytest.mark.parametrize("n", range(1, 10))
+def test_monomial(n):
+    random.seed(0)
+    k = [random.randrange(0, 11, 2) for _ in range(n)]
+
+    ref = prod((1 + (-1) ** kk) / 2 * gamma((kk + 1) / 2) for kk in k)
+
+    tol = 1.0e-14
+    assert abs(ref - ndim.enr2.integrate_monomial(k, "physicists")) < abs(ref) * tol
