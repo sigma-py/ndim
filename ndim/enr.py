@@ -21,6 +21,7 @@ def volume(n, alpha=0, symbolic=False):
 
 def integrate_monomial(exponents, alpha=0, symbolic=False):
     S = sympy.S if symbolic else lambda x: x
+    exponents = list(exponents)
     n = S(len(exponents))
 
     if any(k % 2 == 1 for k in exponents):
