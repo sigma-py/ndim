@@ -18,8 +18,8 @@ def volume(n, symbolic=False):
 
 
 def integrate_monomial(exponents, symbolic=False):
-    frac = sympy.Rational if symbolic else lambda a, b: a / b
     n = len(exponents)
+    n = sympy.S(n) if symbolic else n
 
     if any(k % 2 == 1 for k in exponents):
         return 0
@@ -30,9 +30,8 @@ def integrate_monomial(exponents, symbolic=False):
 
         # find first nonzero
         idx, k0 = next((i, k) for i, k in enumerate(exponents) if k > 0)
-        alpha = frac(k0 - 1, sum(exponents) + n - 2)
         k2 = exponents.copy()
         k2[idx] -= 2
-        return _recurrence(k2) * alpha
+        return _recurrence(k2) * (k0 - 1) / (sum(exponents) + n - 2)
 
     return _recurrence(exponents)

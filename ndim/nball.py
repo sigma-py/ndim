@@ -23,19 +23,21 @@ def volume(n, lmbda=0, symbolic=False):
 
 
 def integrate_monomial(exponents, lmbda=0, symbolic=False):
+    exponents = list(exponents)
     n = len(exponents)
     n = sympy.S(n) if symbolic else n
 
     if any(k % 2 == 1 for k in exponents):
         return 0
 
-    if all(k == 0 for k in exponents):
-        return volume(n, lmbda, symbolic)
+    def _recurrence(exponents):
+        if all(k == 0 for k in exponents):
+            return volume(n, lmbda, symbolic)
 
-    # find first nonzero
-    idx, k0 = next((i, k) for i, k in enumerate(exponents) if k > 0)
-    k2 = exponents.copy()
-    k2[idx] -= 2
-    # TODO -2?
-    p = sum(exponents)
-    return integrate_monomial(k2, lmbda, symbolic) * (k0 - 1) / (2 * lmbda + p + n)
+        # find first nonzero
+        idx, k0 = next((i, k) for i, k in enumerate(exponents) if k > 0)
+        k2 = exponents.copy()
+        k2[idx] -= 2
+        return _recurrence(k2) * (k0 - 1) / (2 * lmbda + sum(exponents) + n)
+
+    return _recurrence(exponents)
