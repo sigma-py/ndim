@@ -14,6 +14,7 @@ def volume(n, symbolic=False):
 
 def integrate_monomial(exponents, symbolic=False):
     frac = sympy.Rational if symbolic else lambda a, b: a / b
+    exponents = list(exponents)
     n = len(exponents)
 
     def _recurrence(exponents):

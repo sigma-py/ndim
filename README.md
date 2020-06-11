@@ -140,7 +140,7 @@ $$
   =\begin{cases}
     0&\text{if any $k_i$ is odd}\\\\
     |S_n|&\text{if all $k_i=0$}\\\\
-    I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0} - 1}{n - 2 + p}&\text{if $k_{i_0} > 0$}
+    I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0} - 1}{n + p}&\text{if $k_{i_0} > 0$}
   \end{cases}
 \end{align}
 $$

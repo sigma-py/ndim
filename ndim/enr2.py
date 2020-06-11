@@ -23,6 +23,7 @@ def volume_physicists(n, symbolic):
 
 def integrate_monomial_physicists(exponents, symbolic=False):
     frac = sympy.Rational if symbolic else lambda a, b: a / b
+    exponents = list(exponents)
 
     if any(k % 2 == 1 for k in exponents):
         return 0
@@ -46,6 +47,8 @@ def volume_probabilists(n):
 
 
 def integrate_monomial_probabilists(exponents):
+    exponents = list(exponents)
+
     if any(k % 2 == 1 for k in exponents):
         return 0
 
@@ -71,7 +74,7 @@ def volume(n, variant, symbolic=False):
 
 
 def integrate_monomial(n, variant, symbolic=False):
-    if variant == "physicsts":
+    if variant == "physicists":
         return integrate_monomial_physicists(n, symbolic)
     assert variant == "probabilists"
     return integrate_monomial_probabilists(n, symbolic)
