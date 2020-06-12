@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/nschloe/ndim"><img alt="ndim" src="https://nschloe.github.io/ndim/logo.svg" width="50%"></a>
-  <p align="center">Useful recurrence relations for multidimensional volumes and monomial integrals.</p>
+  <p align="center">Multidimensional volumes and monomial integrals.</p>
 </p>
 
 
@@ -13,6 +13,25 @@
 [![PyPi downloads](https://img.shields.io/pypi/dm/ndim.svg?style=flat-square)](https://pypistats.org/packages/ndim)
 [![green-pi](https://img.shields.io/badge/Rendered%20with-Green%20Pi-00d571?style=flat-square)](https://github.com/nschloe/green-pi?activate&inlineMath=$)
 
+ndim computes all kinds of volumes and integrals of monomials over such volumes in a
+fast, numerically stable way, using recurrence relations.
+
+Install with
+```
+pip install ndim
+```
+and use like
+```python
+import ndim
+
+ndim.nball.volume(17)
+
+ndim.nball.integrate_monomial((4, 10, 6, 0, 2), lmbda=-0.5)
+```
+
+
+### The formulas
+
 A PDF version of the text can be found
 [here](https://nschloe.github.io/ndim/useful-recurrence-relations.pdf).
 
@@ -20,7 +39,7 @@ This note gives closed formulas and recurrence expressions for many $n$-dimensio
 volumes and monomial integrals. The recurrence expressions are often much simpler, more
 instructive, and better suited for numerical computation.
 
-## _n_-dimensional unit cube
+#### _n_-dimensional unit cube
 $$
   C_n = \left\\{(x_1,\dots,x_n): -1 \le x_i \le 1\right\\}
 $$
@@ -46,7 +65,7 @@ $$
   \end{align}
 $$
 
-## _n_-dimensional unit simplex
+#### _n_-dimensional unit simplex
 $$
   T_n = \left\\{(x_1,\dots,x_n):x_i \geq 0, \sum_{i=1}^n x_i \leq 1\right\\}
 $$
@@ -86,7 +105,7 @@ but a simpler and arguably more elegant solution is to use the recurrence. This 
 true for all such expressions in this note.
 
 
-## _n_-dimensional unit sphere
+#### _n_-dimensional unit sphere
 $$
   U_n = \left\\{(x_1,\dots,x_n): \sum_{i=1}^n x_i^2 = 1\right\\}
 $$
@@ -117,7 +136,7 @@ $$
   $$
 
 
-## _n_-dimensional unit ball
+#### _n_-dimensional unit ball
 $$
   S_n = \left\\{(x_1,\dots,x_n): \sum_{i=1}^n x_i^2 \le 1\right\\}
 $$
@@ -149,7 +168,7 @@ $$
 with $p=\sum_{i=1}^n k_i$.
 
 
-## _n_-dimensional unit ball with Gegenbauer weight
+#### _n_-dimensional unit ball with Gegenbauer weight
   $\lambda > -1$.
 
 * Volume.
@@ -188,7 +207,7 @@ $$
   \end{align}
 $$
 
-## _n_-dimensional unit ball with Chebyshev-1 weight
+#### _n_-dimensional unit ball with Chebyshev-1 weight
 Gegenbauer with $\lambda=-\frac{1}{2}$.
 
 * Volume.
@@ -227,7 +246,7 @@ $$
 $$
 
 
-## _n_-dimensional unit ball with Chebyshev-2 weight
+#### _n_-dimensional unit ball with Chebyshev-2 weight
 Gegenbauer with $\lambda = +\frac{1}{2}$.
 
 * Volume.
@@ -266,7 +285,7 @@ $$
     \end{align}
 $$
 
-## _n_-dimensional generalized Laguerre volume
+#### _n_-dimensional generalized Laguerre volume
 
 $\alpha > -1$.
 
@@ -308,7 +327,7 @@ $$
 $$
 with $p=\sum_{k=1}^n k_i$.
 
-## _n_-dimensional Hermite (physicists')
+#### _n_-dimensional Hermite (physicists')
 * Volume.
 $$
 \begin{align}\nonumber
@@ -338,7 +357,7 @@ $$
 $$
 
 
-## _n_-dimensional Hermite (probabilists')
+#### _n_-dimensional Hermite (probabilists')
 
 * Volume.
 $$
@@ -361,6 +380,14 @@ $$
     \end{cases}
   \end{align}
 $$
+
+
+### Testing
+
+To run the meshio unit tests, check out this repository and type
+```
+pytest
+```
 
 ### License
 This software is published under the [GPLv3 license](https://www.gnu.org/licenses/gpl-3.0.en.html).
