@@ -1,6 +1,5 @@
-from numpy import pi, sin, cos
 import matplotlib.pyplot as plt
-
+from numpy import cos, pi, sin
 
 ax = plt.gca()
 
