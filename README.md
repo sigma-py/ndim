@@ -11,7 +11,6 @@
 [![PyPi Version](https://img.shields.io/pypi/v/ndim.svg?style=flat-square)](https://pypi.python.org/pypi/ndim)
 [![GitHub stars](https://img.shields.io/github/stars/nschloe/ndim.svg?style=flat-square&logo=github&label=Stars&logoColor=white)](https://github.com/nschloe/ndim)
 [![PyPi downloads](https://img.shields.io/pypi/dm/ndim.svg?style=flat-square)](https://pypistats.org/packages/ndim)
-[![green-pi](https://img.shields.io/badge/Rendered%20with-Green%20Pi-00d571?style=flat-square)](https://github.com/nschloe/green-pi?activate&inlineMath=$)
 
 ndim computes all kinds of volumes and integrals of monomials over such volumes in a
 fast, numerically stable way, using recurrence relations.
@@ -46,6 +45,7 @@ ndim.nball.volume(17, symbolic=True)
 ```
 
 ### The formulas
+[![green-pi](https://img.shields.io/badge/Rendered%20with-Green%20Pi-00d571?style=flat-square)](https://github.com/nschloe/green-pi?activate&inlineMath=$)
 
 A PDF version of the text can be found
 [here](https://nschloe.github.io/ndim/useful-recurrence-relations.pdf).
