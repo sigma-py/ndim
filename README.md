@@ -27,8 +27,23 @@ import ndim
 ndim.nball.volume(17)
 
 ndim.nball.integrate_monomial((4, 10, 6, 0, 2), lmbda=-0.5)
-```
 
+# or nsphere, enr, enr2, ncube, nsimplex
+```
+```
+0.14098110691713894
+1.0339122278806983e-07
+```
+All function have the `symbolic` argument; if set to `True`, computations are performed
+symbolically.
+```python
+import ndim
+
+ndim.nball.volume(17, symbolic=True)
+```
+```
+512*pi**8/34459425
+```
 
 ### The formulas
 
