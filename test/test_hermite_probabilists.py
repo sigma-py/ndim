@@ -14,7 +14,7 @@ def closed(k):
 
 def cases(k):
     if k % 2 == 0:
-        return factorial(k) / (2 ** (k / 2) * factorial(k / 2))
+        return factorial(k) / (2 ** (k / 2) * factorial(k // 2))
     return 0
 
 
