@@ -2,9 +2,9 @@ import random
 from math import gamma, pi, sqrt
 
 import pytest
+from helpers import prod
 
 import ndim
-from helpers import prod
 
 
 @pytest.mark.parametrize("n", range(10))

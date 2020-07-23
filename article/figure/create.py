@@ -1,9 +1,8 @@
 from math import pi
 
+import dufte
 import matplotlib.pyplot as plt
 import numpy
-
-import dufte
 import tikzplotlib
 
 plt.style.use(dufte.style)
