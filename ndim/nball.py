@@ -3,7 +3,7 @@ import math
 import sympy
 
 
-def volume(n, lmbda=0, symbolic=False):
+def volume(n, lmbda=0, r=1, symbolic=False):
     pi = sympy.pi if symbolic else math.pi
     beta_one_half = (
         (lambda a: sympy.beta(a, sympy.Rational(1, 2)))
@@ -16,8 +16,8 @@ def volume(n, lmbda=0, symbolic=False):
         if n == 0:
             return 1
         elif n == 1:
-            return beta_one_half(lmbda + 1)
-        return _recurrence(n - 2) * 2 * pi / (2 * lmbda + n)
+            return beta_one_half(lmbda + 1) * r ** (1 + 2 * lmbda)
+        return _recurrence(n - 2) * 2 * pi / (2 * lmbda + n) * r ** 2
 
     return _recurrence(n)
 
@@ -32,7 +32,7 @@ def integrate_monomial(exponents, lmbda=0, symbolic=False):
 
     def _recurrence(exponents):
         if all(k == 0 for k in exponents):
-            return volume(n, lmbda, symbolic)
+            return volume(n, lmbda=lmbda, symbolic=symbolic)
 
         # find first nonzero
         idx, k0 = next((i, k) for i, k in enumerate(exponents) if k > 0)

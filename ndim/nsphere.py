@@ -3,7 +3,7 @@ import math
 import sympy
 
 
-def volume(n, symbolic=False):
+def volume(n, r=1, symbolic=False):
     pi = sympy.pi if symbolic else math.pi
 
     def _recurrence(n):
@@ -11,8 +11,8 @@ def volume(n, symbolic=False):
         if n == 1:
             return 2
         elif n == 2:
-            return 2 * pi
-        return _recurrence(n - 2) * 2 * pi / (n - 2)
+            return 2 * pi * r
+        return _recurrence(n - 2) * 2 * pi / (n - 2) * r ** 2
 
     return _recurrence(n)
 
@@ -27,7 +27,7 @@ def integrate_monomial(exponents, symbolic=False):
 
     def _recurrence(exponents):
         if all(k == 0 for k in exponents):
-            return volume(n, symbolic)
+            return volume(n, symbolic=symbolic)
 
         # find first nonzero
         idx, k0 = next((i, k) for i, k in enumerate(exponents) if k > 0)
