@@ -46,7 +46,7 @@ ndim.nball.volume(17, symbolic=True)
 ```
 
 ### The formulas
-[![purple-pi](https://img.shields.io/badge/Rendered%20with-Green%20Pi-00d571?style=flat-square)](https://github.com/nschloe/purple-pi?activate&inlineMath=$)
+[![purple-pi](https://img.shields.io/badge/Rendered%20with-Purple%20Pi-bd00ff?style=flat-square)](https://github.com/nschloe/purple-pi?activate&inlineMath=$)
 
 A PDF version of the text can be found
 [here](https://nschloe.github.io/ndim/useful-recurrence-relations.pdf).
@@ -402,7 +402,7 @@ $$
 
 To run the meshio unit tests, check out this repository and type
 ```
-pytest
+tox
 ```
 
 ### License
