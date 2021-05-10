@@ -46,7 +46,7 @@ ndim.nball.volume(17, symbolic=True)
 ```
 
 ### The formulas
-[![green-pi](https://img.shields.io/badge/Rendered%20with-Green%20Pi-00d571?style=flat-square)](https://github.com/nschloe/green-pi?activate&inlineMath=$)
+[![purple-pi](https://img.shields.io/badge/Rendered%20with-Green%20Pi-00d571?style=flat-square)](https://github.com/nschloe/purple-pi?activate&inlineMath=$)
 
 A PDF version of the text can be found
 [here](https://nschloe.github.io/ndim/useful-recurrence-relations.pdf).
