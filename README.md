@@ -24,29 +24,34 @@ and use like
 ```python
 import ndim
 
-ndim.nball.volume(17)
+val = ndim.nball.volume(17)
+print(val)
 
-ndim.nball.integrate_monomial((4, 10, 6, 0, 2), lmbda=-0.5)
+val = ndim.nball.integrate_monomial((4, 10, 6, 0, 2), lmbda=-0.5)
+print(val)
 
 # or nsphere, enr, enr2, ncube, nsimplex
 ```
+<!--pytest-codeblocks:expected-output-->
 ```
 0.14098110691713894
 1.0339122278806983e-07
 ```
-All function have the `symbolic` argument; if set to `True`, computations are performed
+All functions have the `symbolic` argument; if set to `True`, computations are performed
 symbolically.
 ```python
 import ndim
 
-ndim.nball.volume(17, symbolic=True)
+vol = ndim.nball.volume(17, symbolic=True)
+print(vol)
 ```
+<!--pytest-codeblocks:expected-output-->
 ```
 512*pi**8/34459425
 ```
 
 ### The formulas
-[![purple-pi](https://img.shields.io/badge/Rendered%20with-Green%20Pi-00d571?style=flat-square)](https://github.com/nschloe/purple-pi?activate&inlineMath=$)
+[![purple-pi](https://img.shields.io/badge/Rendered%20with-Purple%20Pi-bd00ff?style=flat-square)](https://github.com/nschloe/purple-pi?activate&inlineMath=$)
 
 A PDF version of the text can be found
 [here](https://nschloe.github.io/ndim/useful-recurrence-relations.pdf).
@@ -402,7 +407,7 @@ $$
 
 To run the meshio unit tests, check out this repository and type
 ```
-pytest
+tox
 ```
 
 ### License
