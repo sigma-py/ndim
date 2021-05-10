@@ -11,6 +11,7 @@
 [![PyPi Version](https://img.shields.io/pypi/v/ndim.svg?style=flat-square)](https://pypi.python.org/pypi/ndim)
 [![GitHub stars](https://img.shields.io/github/stars/nschloe/ndim.svg?style=flat-square&logo=github&label=Stars&logoColor=white)](https://github.com/nschloe/ndim)
 [![PyPi downloads](https://img.shields.io/pypi/dm/ndim.svg?style=flat-square)](https://pypistats.org/packages/ndim)
+[![Discord](https://img.shields.io/static/v1?logo=discord&label=chat&message=on%20discord&color=7289da&style=flat-square)](https://discord.gg/hnTJ5MRX2Y)
 
 ndim computes all kinds of volumes and integrals of monomials over such volumes in a
 fast, numerically stable way, using recurrence relations.

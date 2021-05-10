@@ -9,7 +9,7 @@ r1 = 0.5
 for k in range(n):
     center = (r0 * cos(2 * k * pi / n), r0 * sin(2 * k * pi / n))
     circle1 = plt.Circle(center, r1, ec="#555", linewidth=2.0, fill=False)
-    ax.add_artist(circle1)
+    ax.add_patch(circle1)
 
 # fig.savefig('plotcircles.png')
 plt.xlim(-2, 2)
