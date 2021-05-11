@@ -74,7 +74,7 @@ $$
 $$
 * Monomial integration.
 $$
-  \begin{align}\nonumber
+  \begin{align}
     I_{k_1,\dots,k_n}
     &= \int_{C_n} x_1^{k_1}\cdots x_n^{k_n}\\\\
       &= \prod_{i=1}^n \frac{1 + (-1)^{k_i}}{k_i+1}
@@ -100,15 +100,15 @@ $$
 $$
 * Monomial integration.
 $$
-  \begin{align}\nonumber
+  \begin{align}
     I_{k_1,\dots,k_n}
     &= \int_{T_n} x_1^{k_1}\cdots x_n^{k_n}\\\\
     &= \frac{\prod_{i=1}^n\Gamma(k_i + 1)}{\Gamma\left(n + 1 + \sum_{i=1}^n
-    k_i\right)}\label{simplex:closed}\\\\
+    k_i\right)}\\\\
     &=\begin{cases}
       |T_n|&\text{if all $k_i=0$}\\\\
       I_{k_1,\dots,k_{i_0}-1,\dots,k_n} \times \frac{k_{i_0}}{n + \sum_{i=1}^n k_i}&\text{if $k_{i_0} > 0$}
-    \end{cases}\label{simplex:rec}
+    \end{cases}
   \end{align}
 $$
 
@@ -147,7 +147,7 @@ $$
     I_{k_1,\dots,k_n}
     &= \int_{U_n} x_1^{k_1}\cdots x_n^{k_n}\\\\
     &= \frac{2\prod_{i=1}^n
-      \Gamma\left(\frac{k_i+1}{2}\right)}{\Gamma\left(\sum_{i=1}^n\frac{k_i+1}{2}\right)}\label{sphere:closed}\\\\
+      \Gamma\left(\frac{k_i+1}{2}\right)}{\Gamma\left(\sum_{i=1}^n\frac{k_i+1}{2}\right)}\\\\
     &=\begin{cases}
       0&\text{if any $k_i$ is odd}\\\\
       |U_n|&\text{if all $k_i=0$}\\\\
@@ -175,7 +175,7 @@ $$
 
 * Monomial integral.
 $$
-\begin{align}\nonumber
+\begin{align}
   I_{k_1,\dots,k_n}
   &= \int_{S_n} x_1^{k_1}\cdots x_n^{k_n}\\\\
   &= \frac{2^{n + p}}{n + p} |S_n|
@@ -194,7 +194,7 @@ with $p=\sum_{i=1}^n k_i$.
 
 * Volume.
 $$
-    \begin{align}\nonumber
+    \begin{align}
     |G_n^{\lambda}|
       &= \int_{S^n} \left(1 - \sum_{i=1}^n x_i^2\right)^\lambda\\\\
       &= \frac{%
@@ -211,7 +211,7 @@ $$
 $$
 * Monomial integration.
 $$
-  \begin{align}\nonumber
+  \begin{align}
     I_{k_1,\dots,k_n}
       &= \int_{S^n} x_1^{k_1}\cdots x_n^{k_n} \left(1 - \sum_{i=1}^n
       x_i^2\right)^\lambda\\\\
@@ -233,7 +233,7 @@ Gegenbauer with $\lambda=-\frac{1}{2}$.
 
 * Volume.
 $$
-    \begin{align}\nonumber
+    \begin{align}
     |G_n^{-1/2}|
       &= \int_{S^n} \frac{1}{\sqrt{1 - \sum_{i=1}^n x_i^2}}\\\\
       &= \frac{%
@@ -250,7 +250,7 @@ $$
 $$
 * Monomial integration.
 $$
-    \begin{align}\nonumber
+    \begin{align}
     I_{k_1,\dots,k_n}
       &= \int_{S^n} \frac{x_1^{k_1}\cdots x_n^{k_n}}{\sqrt{1 - \sum_{i=1}^n x_i^2}}\\\\
       &= \frac{%
@@ -272,7 +272,7 @@ Gegenbauer with $\lambda = +\frac{1}{2}$.
 
 * Volume.
 $$
-    \begin{align}\nonumber
+    \begin{align}
     |G_n^{+1/2}|
       &= \int_{S^n} \sqrt{1 - \sum_{i=1}^n x_i^2}\\\\
       &= \frac{%
@@ -289,7 +289,7 @@ $$
 $$
 * Monomial integration.
 $$
-    \begin{align}\nonumber
+    \begin{align}
     I_{k_1,\dots,k_n}
       &= \int_{S^n} x_1^{k_1}\cdots x_n^{k_n} \sqrt{1 - \sum_{i=1}^n
       x_i^2}\\\\
@@ -312,7 +312,7 @@ $\alpha > -1$.
 
 * Volume
 $$
-    \begin{align}\nonumber
+    \begin{align}
   V_n
     &= \int_{\mathbb{R}^n} \left(\sqrt{x_1^2+\cdots+x_n^2}\right)^\alpha \exp\left(-\sqrt{x_1^2+\dots+x_n^2}\right)\\\\
     &= \frac{2 \sqrt{\pi}^n \Gamma(n+\alpha)}{\Gamma(\frac{n}{2})}
@@ -325,7 +325,7 @@ $$
 $$
 * Monomial integration.
 $$
-  \begin{align}\nonumber
+  \begin{align}
   I_{k_1,\dots,k_n}
   &= \int_{\mathbb{R}^n} x_1^{k_1}\cdots x_n^{k_n}
     \left(\sqrt{x_1^2+\dots+x_n^2}\right)^\alpha \exp\left(-\sqrt{x_1^2+\dots+x_n^2}\right)\\\\
@@ -351,7 +351,7 @@ with $p=\sum_{k=1}^n k_i$.
 #### _n_-dimensional Hermite (physicists')
 * Volume.
 $$
-\begin{align}\nonumber
+\begin{align}
   V_n
   &= \int_{\mathbb{R}^n} \exp\left(-(x_1^2+\cdots+x_n^2)\right)\\\\
   &= \sqrt{\pi}^n
@@ -365,7 +365,7 @@ $$
 
 * Monomial integration.
 $$
-\begin{align}\nonumber
+\begin{align}
     I_{k_1,\dots,k_n}
     &= \int_{\mathbb{R}^n} x_1^{k_1}\cdots x_n^{k_n} \exp(-(x_1^2+\cdots+x_n^2))\\\\
     &= \prod_{i=1}^n \frac{(-1)^{k_i} + 1}{2} \times \Gamma\left(\frac{k_i+1}{2}\right)\\\\
@@ -388,7 +388,7 @@ $$
 
 * Monomial integration.
 $$
-  \begin{align}\nonumber
+  \begin{align}
     I_{k_1,\dots,k_n}
       &= \frac{1}{\sqrt{2\pi}^n} \int_{\mathbb{R}^n} x_1^{k_1}\cdots x_n^{k_n}
       \exp\left(-\frac{1}{2}(x_1^2+\cdots+x_n^2)\right)\\\\
