@@ -51,7 +51,7 @@ print(vol)
 ```
 
 ### The formulas
-[![purple-pi](https://img.shields.io/badge/Rendered%20with-Purple%20Pi-bd00ff?style=flat-square)](https://github.com/nschloe/purple-pi?activate&inlineMath=$)
+[![purple-pi](https://img.shields.io/badge/Rendered%20with-Purple%20Pi-bd00ff?style=flat-square)](https://github.com/nschloe/purple-pi)
 
 A PDF version of the text can be found
 [here](https://nschloe.github.io/ndim/useful-recurrence-relations.pdf).
@@ -61,75 +61,75 @@ volumes and monomial integrals. The recurrence expressions are often much simple
 instructive, and better suited for numerical computation.
 
 #### _n_-dimensional unit cube
-$$
-  C_n = \left\\{(x_1,\dots,x_n): -1 \le x_i \le 1\right\\}
-$$
+```math
+C_n = \left\{(x_1,\dots,x_n): -1 \le x_i \le 1\right\}
+```
 
 * Volume.
-$$
-  |C_n| = 2^n = \begin{cases}
-    1&\text{if $n=0$}\\\\
-    |C_{n-1}| \times 2&\text{otherwise}
-  \end{cases}
-$$
+```math
+|C_n| = 2^n = \begin{cases}
+  1&\text{if $n=0$}\\
+  |C_{n-1}| \times 2&\text{otherwise}
+\end{cases}
+```
 * Monomial integration.
-$$
-  \begin{align}
-    I_{k_1,\dots,k_n}
-    &= \int_{C_n} x_1^{k_1}\cdots x_n^{k_n}\\\\
-      &= \prod_{i=1}^n \frac{1 + (-1)^{k_i}}{k_i+1}
-    =\begin{cases}
-      0&\text{if any $k_i$ is odd}\\\\
-      |C_n|&\text{if all $k_i=0$}\\\\
-      I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0}-1}{k_{i_0}+1}&\text{if $k_{i_0} > 0$}
-    \end{cases}
-  \end{align}
-$$
+```math
+\begin{align}
+  I_{k_1,\dots,k_n}
+  &= \int_{C_n} x_1^{k_1}\cdots x_n^{k_n}\\
+    &= \prod_{i=1}^n \frac{1 + (-1)^{k_i}}{k_i+1}
+  =\begin{cases}
+    0&\text{if any $k_i$ is odd}\\
+    |C_n|&\text{if all $k_i=0$}\\
+    I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0}-1}{k_{i_0}+1}&\text{if $k_{i_0} > 0$}
+  \end{cases}
+\end{align}
+```
 
 #### _n_-dimensional unit simplex
-$$
-  T_n = \left\\{(x_1,\dots,x_n):x_i \geq 0, \sum_{i=1}^n x_i \leq 1\right\\}
-$$
+```math
+ T_n = \left\{(x_1,\dots,x_n):x_i \geq 0, \sum_{i=1}^n x_i \leq 1\right\}
+```
 
 * Volume.
-$$
-      |T_n| = \frac{1}{n!} = \begin{cases}
-        1&\text{if $n=0$}\\\\
-        |T_{n-1}| \times \frac{1}{n}&\text{otherwise}
-      \end{cases}
-$$
+```math
+|T_n| = \frac{1}{n!} = \begin{cases}
+  1&\text{if $n=0$}\\
+  |T_{n-1}| \times \frac{1}{n}&\text{otherwise}
+\end{cases}
+```
 * Monomial integration.
-$$
-  \begin{align}
-    I_{k_1,\dots,k_n}
-    &= \int_{T_n} x_1^{k_1}\cdots x_n^{k_n}\\\\
-    &= \frac{\prod_{i=1}^n\Gamma(k_i + 1)}{\Gamma\left(n + 1 + \sum_{i=1}^n
-    k_i\right)}\\\\
-    &=\begin{cases}
-      |T_n|&\text{if all $k_i=0$}\\\\
-      I_{k_1,\dots,k_{i_0}-1,\dots,k_n} \times \frac{k_{i_0}}{n + \sum_{i=1}^n k_i}&\text{if $k_{i_0} > 0$}
-    \end{cases}
-  \end{align}
-$$
+```math
+\begin{align}
+  I_{k_1,\dots,k_n}
+  &= \int_{T_n} x_1^{k_1}\cdots x_n^{k_n}\\
+  &= \frac{\prod_{i=1}^n\Gamma(k_i + 1)}{\Gamma\left(n + 1 + \sum_{i=1}^n
+  k_i\right)}\\
+  &=\begin{cases}
+    |T_n|&\text{if all $k_i=0$}\\
+    I_{k_1,\dots,k_{i_0}-1,\dots,k_n} \times \frac{k_{i_0}}{n + \sum_{i=1}^n k_i}&\text{if $k_{i_0} > 0$}
+  \end{cases}
+\end{align}
+```
 
 #### Remark
 Note that both numerator and denominator in the closed expression will assume very large
 values even for polynomials of moderate degree. This can lead to difficulties when
-evaluating the expression on a computer; the registers will overflow.  A common
+evaluating the expression on a computer; the registers will overflow. A common
 countermeasure is to use the log-gamma function,
-$$
-    \frac{\prod_{i=1}^n\Gamma(k_i)}{\Gamma\left(\sum_{i=1}^n k_i\right)}
-    = \exp\left(\sum_{i=1}^n\ln\Gamma(k_i) - \ln\Gamma\left(\sum_{i=1}^n
-    k_i\right)\right),
-$$
+```math
+\frac{\prod_{i=1}^n\Gamma(k_i)}{\Gamma\left(\sum_{i=1}^n k_i\right)}
+= \exp\left(\sum_{i=1}^n\ln\Gamma(k_i) - \ln\Gamma\left(\sum_{i=1}^n
+k_i\right)\right),
+```
 but a simpler and arguably more elegant solution is to use the recurrence. This holds
 true for all such expressions in this note.
 
 
 #### _n_-dimensional unit sphere
-$$
-  U_n = \left\\{(x_1,\dots,x_n): \sum_{i=1}^n x_i^2 = 1\right\\}
-$$
+```math
+U_n = \left\{(x_1,\dots,x_n): \sum_{i=1}^n x_i^2 = 1\right\}
+```
 
  * Volume.
  $$
