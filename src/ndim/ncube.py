@@ -1,11 +1,13 @@
+from typing import List
+
 import sympy
 
 
-def volume(n):
+def volume(n: int):
     return 2 ** n
 
 
-def integrate_monomial(exponents, symbolic=False):
+def integrate_monomial(exponents: List[int], symbolic: bool = False):
     frac = sympy.Rational if symbolic else lambda a, b: a / b
     exponents = list(exponents)
     n = len(exponents)
