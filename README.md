@@ -163,7 +163,7 @@ S_n = \left\{(x_1,\dots,x_n): \sum_{i=1}^n x_i^2 \le 1\right\}
 ```
 
 * Volume.
-  ```
+  ```math
   |S_n|
   = \frac{\sqrt{\pi}^n}{\Gamma(\frac{n}{2}+1)}
   = \begin{cases}
@@ -229,7 +229,7 @@ with $`p=\sum_{i=1}^n k_i`$.
 ```
 
 #### _n_-dimensional unit ball with Chebyshev-1 weight
-Gegenbauer with $\lambda=-\frac{1}{2}$.
+Gegenbauer with $`\lambda=-\frac{1}{2}`$.
 
 * Volume.
 ```math
