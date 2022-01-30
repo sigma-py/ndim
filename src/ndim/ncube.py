@@ -4,7 +4,7 @@ import sympy
 
 
 def volume(n: int):
-    return 2 ** n
+    return 2**n
 
 
 def integrate_monomial(exponents: List[int], symbolic: bool = False):

@@ -1,3 +1,38 @@
 [build-system]
-requires = ["setuptools>=42", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.isort]
+profile = "black"
+
+[project]
+name = "ndim"
+authors = [{name = "Nico Schlömer", email = "nico.schloemer@gmail.com"}]
+description = "Multidimensional volumes and monomial integrals"
+readme = "README.md"
+license = {file = "LICENSE"}
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.6",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Topic :: Scientific/Engineering",
+  "Topic :: Utilities",
+]
+dynamic = ["version"]
+requires-python = ">=3.6"
+dependencies = [
+  "sympy"
+]
+
+[project.urls]
+Code = "https://github.com/nschloe/ndim"
+Issues = "https://github.com/nschloe/ndim/issues"
+Funding = "https://github.com/sponsors/nschloe"

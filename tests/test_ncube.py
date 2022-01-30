@@ -8,7 +8,7 @@ import ndim
 
 @pytest.mark.parametrize("n", range(1, 10))
 def test_volume(n):
-    ref = 2 ** n
+    ref = 2**n
     tol = 1.0e-14
     assert abs(ref - ndim.ncube.volume(n)) < abs(ref) * tol
 

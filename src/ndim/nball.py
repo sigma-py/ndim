@@ -17,7 +17,7 @@ def volume(n, lmbda=0, r=1, symbolic=False):
             return 1
         elif n == 1:
             return beta_one_half(lmbda + 1) * r ** (1 + 2 * lmbda)
-        return _recurrence(n - 2) * 2 * pi / (2 * lmbda + n) * r ** 2
+        return _recurrence(n - 2) * 2 * pi / (2 * lmbda + n) * r**2
 
     return _recurrence(n)
 
