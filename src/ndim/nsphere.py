@@ -12,7 +12,7 @@ def volume(n, r=1, symbolic=False):
             return 2
         elif n == 2:
             return 2 * pi * r
-        return _recurrence(n - 2) * 2 * pi / (n - 2) * r ** 2
+        return _recurrence(n - 2) * 2 * pi / (n - 2) * r**2
 
     return _recurrence(n)
 
