@@ -14,10 +14,13 @@ ndim computes all kinds of volumes and integrals of monomials over such volumes 
 fast, numerically stable way, using recurrence relations.
 
 Install with
+
 ```
 pip install ndim
 ```
+
 and use like
+
 ```python
 import ndim
 
@@ -29,25 +32,32 @@ print(val)
 
 # or nsphere, enr, enr2, ncube, nsimplex
 ```
+
 <!--pytest-codeblocks:expected-output-->
+
 ```
 0.14098110691713894
 1.0339122278806983e-07
 ```
+
 All functions have the `symbolic` argument; if set to `True`, computations are performed
 symbolically.
+
 ```python
 import ndim
 
 vol = ndim.nball.volume(17, symbolic=True)
 print(vol)
 ```
+
 <!--pytest-codeblocks:expected-output-->
+
 ```
 512*pi**8/34459425
 ```
 
 ### The formulas
+
 [![xdoc](https://img.shields.io/badge/Rendered%20with-xdoc-f2eecb?style=flat-square)](https://chrome.google.com/webstore/detail/xdoc/anidddebgkllnnnnjfkmjcaallemhjee)
 
 A PDF version of the text can be found
@@ -58,18 +68,22 @@ volumes and monomial integrals. The recurrence expressions are often much simple
 instructive, and better suited for numerical computation.
 
 #### _n_-dimensional unit cube
+
 ```math
 C_n = \left\{(x_1,\dots,x_n): -1 \le x_i \le 1\right\}
 ```
 
-* Volume.
+- Volume.
+
 ```math
 |C_n| = 2^n = \begin{cases}
   1&\text{if $n=0$}\\
   |C_{n-1}| \times 2&\text{otherwise}
 \end{cases}
 ```
-* Monomial integration.
+
+- Monomial integration.
+
 ```math
 \begin{align}
   I_{k_1,\dots,k_n}
@@ -84,18 +98,22 @@ C_n = \left\{(x_1,\dots,x_n): -1 \le x_i \le 1\right\}
 ```
 
 #### _n_-dimensional unit simplex
+
 ```math
  T_n = \left\{(x_1,\dots,x_n):x_i \geq 0, \sum_{i=1}^n x_i \leq 1\right\}
 ```
 
-* Volume.
+- Volume.
+
 ```math
 |T_n| = \frac{1}{n!} = \begin{cases}
   1&\text{if $n=0$}\\
   |T_{n-1}| \times \frac{1}{n}&\text{otherwise}
 \end{cases}
 ```
-* Monomial integration.
+
+- Monomial integration.
+
 ```math
 \begin{align}
   I_{k_1,\dots,k_n}
@@ -110,56 +128,63 @@ C_n = \left\{(x_1,\dots,x_n): -1 \le x_i \le 1\right\}
 ```
 
 #### Remark
+
 Note that both numerator and denominator in the closed expression will assume very large
 values even for polynomials of moderate degree. This can lead to difficulties when
 evaluating the expression on a computer; the registers will overflow. A common
 countermeasure is to use the log-gamma function,
+
 ```math
 \frac{\prod_{i=1}^n\Gamma(k_i)}{\Gamma\left(\sum_{i=1}^n k_i\right)}
 = \exp\left(\sum_{i=1}^n\ln\Gamma(k_i) - \ln\Gamma\left(\sum_{i=1}^n
 k_i\right)\right),
 ```
+
 but a simpler and arguably more elegant solution is to use the recurrence. This holds
 true for all such expressions in this note.
 
-
 #### _n_-dimensional unit sphere
+
 ```math
 U_n = \left\{(x_1,\dots,x_n): \sum_{i=1}^n x_i^2 = 1\right\}
 ```
 
- * Volume.
- ```math
-  |U_n|
-  = \frac{n \sqrt{\pi}^n}{\Gamma(\frac{n}{2}+1)}
-  = \begin{cases}
-    2&\text{if $n = 1$}\\
-    2\pi&\text{if $n = 2$}\\
-    |U_{n-2}| \times \frac{2\pi}{n - 2}&\text{otherwise}
-  \end{cases}
-  ```
-  * Monomial integral.
-  ```math
-  \begin{align*}
-    I_{k_1,\dots,k_n}
-    &= \int_{U_n} x_1^{k_1}\cdots x_n^{k_n}\\
-    &= \frac{2\prod_{i=1}^n
-      \Gamma\left(\frac{k_i+1}{2}\right)}{\Gamma\left(\sum_{i=1}^n\frac{k_i+1}{2}\right)}\\\\
-    &=\begin{cases}
-      0&\text{if any $k_i$ is odd}\\
-      |U_n|&\text{if all $k_i=0$}\\
-      I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0} - 1}{n - 2 + \sum_{i=1}^n k_i}&\text{if $k_{i_0} > 0$}
-    \end{cases}
-  \end{align*}
-  ```
+- Volume.
 
+```math
+ |U_n|
+ = \frac{n \sqrt{\pi}^n}{\Gamma(\frac{n}{2}+1)}
+ = \begin{cases}
+   2&\text{if $n = 1$}\\
+   2\pi&\text{if $n = 2$}\\
+   |U_{n-2}| \times \frac{2\pi}{n - 2}&\text{otherwise}
+ \end{cases}
+```
+
+- Monomial integral.
+
+```math
+\begin{align*}
+  I_{k_1,\dots,k_n}
+  &= \int_{U_n} x_1^{k_1}\cdots x_n^{k_n}\\
+  &= \frac{2\prod_{i=1}^n
+    \Gamma\left(\frac{k_i+1}{2}\right)}{\Gamma\left(\sum_{i=1}^n\frac{k_i+1}{2}\right)}\\\\
+  &=\begin{cases}
+    0&\text{if any $k_i$ is odd}\\
+    |U_n|&\text{if all $k_i=0$}\\
+    I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0} - 1}{n - 2 + \sum_{i=1}^n k_i}&\text{if $k_{i_0} > 0$}
+  \end{cases}
+\end{align*}
+```
 
 #### _n_-dimensional unit ball
+
 ```math
 S_n = \left\{(x_1,\dots,x_n): \sum_{i=1}^n x_i^2 \le 1\right\}
 ```
 
-* Volume.
+- Volume.
+
   ```math
   |S_n|
   = \frac{\sqrt{\pi}^n}{\Gamma(\frac{n}{2}+1)}
@@ -170,7 +195,8 @@ S_n = \left\{(x_1,\dots,x_n): \sum_{i=1}^n x_i^2 \le 1\right\}
   \end{cases}
   ```
 
-* Monomial integral.
+- Monomial integral.
+
 ```math
 \begin{align}
   I_{k_1,\dots,k_n}
@@ -183,13 +209,15 @@ S_n = \left\{(x_1,\dots,x_n): \sum_{i=1}^n x_i^2 \le 1\right\}
   \end{cases}
 \end{align}
 ```
+
 with $`p=\sum_{i=1}^n k_i`$.
 
-
 #### _n_-dimensional unit ball with Gegenbauer weight
-  $`\lambda > -1`$.
 
-* Volume.
+$`\lambda > -1`$.
+
+- Volume.
+
 ```math
     \begin{align}
     |G_n^{\lambda}|
@@ -206,7 +234,9 @@ with $`p=\sum_{i=1}^n k_i`$.
       \end{cases}
   \end{align}
 ```
-* Monomial integration.
+
+- Monomial integration.
+
 ```math
 \begin{align}
   I_{k_1,\dots,k_n}
@@ -226,9 +256,11 @@ with $`p=\sum_{i=1}^n k_i`$.
 ```
 
 #### _n_-dimensional unit ball with Chebyshev-1 weight
+
 Gegenbauer with $`\lambda=-\frac{1}{2}`$.
 
-* Volume.
+- Volume.
+
 ```math
 \begin{align}
 |G_n^{-1/2}|
@@ -245,7 +277,9 @@ Gegenbauer with $`\lambda=-\frac{1}{2}`$.
   \end{cases}
 \end{align}
 ```
-* Monomial integration.
+
+- Monomial integration.
+
 ```math
 \begin{align}
 I_{k_1,\dots,k_n}
@@ -263,11 +297,12 @@ I_{k_1,\dots,k_n}
 \end{align}
 ```
 
-
 #### _n_-dimensional unit ball with Chebyshev-2 weight
+
 Gegenbauer with $`\lambda = +\frac{1}{2}`$.
 
-* Volume.
+- Volume.
+
 ```math
 \begin{align}
 |G_n^{+1/2}|
@@ -284,7 +319,9 @@ Gegenbauer with $`\lambda = +\frac{1}{2}`$.
   \end{cases}
 \end{align}
 ```
-* Monomial integration.
+
+- Monomial integration.
+
 ```math
 \begin{align}
 I_{k_1,\dots,k_n}
@@ -304,9 +341,11 @@ I_{k_1,\dots,k_n}
 ```
 
 #### _n_-dimensional generalized Laguerre volume
+
 $`\alpha > -1`$.
 
-* Volume
+- Volume
+
 ```math
 \begin{align}
   V_n
@@ -319,7 +358,9 @@ $`\alpha > -1`$.
   \end{cases}
 \end{align}
 ```
-* Monomial integration.
+
+- Monomial integration.
+
 ```math
   \begin{align}
   I_{k_1,\dots,k_n}
@@ -342,10 +383,13 @@ $`\alpha > -1`$.
   \end{cases}
 \end{align}
 ```
+
 with $`p=\sum_{k=1}^n k_i`$.
 
 #### _n_-dimensional Hermite (physicists')
-* Volume.
+
+- Volume.
+
 ```math
 \begin{align}
   V_n
@@ -359,7 +403,8 @@ with $`p=\sum_{k=1}^n k_i`$.
 \end{align}
 ```
 
-* Monomial integration.
+- Monomial integration.
+
 ```math
 \begin{align}
     I_{k_1,\dots,k_n}
@@ -373,16 +418,17 @@ with $`p=\sum_{k=1}^n k_i`$.
 \end{align}
 ```
 
-
 #### _n_-dimensional Hermite (probabilists')
 
-* Volume.
+- Volume.
+
 ```math
 V_n = \frac{1}{\sqrt{2\pi}^n} \int_{\mathbb{R}^n}
 \exp\left(-\frac{1}{2}(x_1^2+\cdots+x_n^2)\right) = 1
 ```
 
-* Monomial integration.
+- Monomial integration.
+
 ```math
 \begin{align}
   I_{k_1,\dots,k_n}
