@@ -58,8 +58,6 @@ print(vol)
 
 ### The formulas
 
-[![xdoc](https://img.shields.io/badge/Rendered%20with-xdoc-f2eecb?style=flat-square)](https://chrome.google.com/webstore/detail/xdoc/anidddebgkllnnnnjfkmjcaallemhjee)
-
 A PDF version of the text can be found
 [here](https://raw.githubusercontent.com/sigma-py/ndim/assets/useful-recurrence-relations.pdf).
 
@@ -143,7 +141,7 @@ k_i\right)\right),
 but a simpler and arguably more elegant solution is to use the recurrence. This holds
 true for all such expressions in this note.
 
-#### _n_-dimensional unit sphere
+#### _n_-dimensional unit sphere (surface)
 
 ```math
 U_n = \left\{(x_1,\dots,x_n): \sum_{i=1}^n x_i^2 = 1\right\}
@@ -337,6 +335,44 @@ I_{k_1,\dots,k_n}
     |G_n^{+1/2}|&\text{if all $k_i=0$}\\
     I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0}-1}{n + 1 + \sum_{i=1}^n k_i}&\text{if $k_{i_0} > 0$}
   \end{cases}
+\end{align}
+```
+
+#### _n_-dimensional generalized Cauchy volume
+
+As appearing in the [Cauchy
+distribution](https://en.wikipedia.org/wiki/Cauchy_distribution) and [Student's
+_t_-distribution](https://en.wikipedia.org/wiki/Student%27s_t-distribution).
+
+- Volume. $2 \lambda > n$.
+
+```math
+    \begin{align}
+    |Y_n^{\lambda}|
+      &= \int_{\mathbb{R}^n} \left(1 + \sum_{i=1}^n x_i^2\right)^{-\lambda}\\
+      &= |U_{n-1}| \frac{1}{2} B(\lambda - \frac{n}{2}, \frac{n}{2})\\
+      &= \begin{cases}
+        1&\text{for $n=0$}\\
+        B\left(\lambda - \frac{1}{2}, \frac{1}{2}\right)&\text{for $n=1$}\\
+        |Y_{n-2}^{\lambda}|\times \frac{2\pi}{2\lambda - n}&\text{otherwise}
+      \end{cases}
+  \end{align}
+```
+
+- Monomial integration. $2 \lambda > n + \sum_i k_i$.
+
+```math
+\begin{align}
+  I_{k_1,\dots,k_n}
+    &= \int_{\mathbb{R}^n} x_1^{k_1}\cdots x_n^{k_n} \left(1 + \sum_{i=1}^n
+    x_i^2\right)^{-\lambda}\\
+    &= \frac{\Gamma(\frac{n+\sum k_i}{2}) \Gamma(\lambda - \frac{n - \sum k_i}{2})}{2 \Gamma(\lambda)}
+       \times \frac{2\prod_i \Gamma(\tfrac{k_i+1}{2})}{\Gamma(\sum_i \tfrac{k_i+1}{2})}\\
+    &= \begin{cases}
+      0&\text{if any $k_i$ is odd}\\
+      |Y_n^{\lambda}|&\text{if all $k_i=0$}\\
+      I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0}-1}{2\lambda - \left(n + \sum_i k_i\right)}&\text{if $k_{i_0} > 0$}
+    \end{cases}
 \end{align}
 ```
 
