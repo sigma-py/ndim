@@ -86,7 +86,7 @@ C_n = \left\{(x_1,\dots,x_n): -1 \le x_i \le 1\right\}
 \begin{align}
   I_{k_1,\dots,k_n}
   &= \int_{C_n} x_1^{k_1}\cdots x_n^{k_n}\\
-    &= \prod_{i=1}^n \frac{1 + (-1)^{k_i}}{k_i+1}
+    &= \prod_i \frac{1 + (-1)^{k_i}}{k_i+1}
   =\begin{cases}
     0&\text{if any $k_i$ is odd}\\
     |C_n|&\text{if all $k_i=0$}\\
@@ -116,11 +116,10 @@ C_n = \left\{(x_1,\dots,x_n): -1 \le x_i \le 1\right\}
 \begin{align}
   I_{k_1,\dots,k_n}
   &= \int_{T_n} x_1^{k_1}\cdots x_n^{k_n}\\
-  &= \frac{\prod_{i=1}^n\Gamma(k_i + 1)}{\Gamma\left(n + 1 + \sum_{i=1}^n
-  k_i\right)}\\
+  &= \frac{\prod_i\Gamma(k_i + 1)}{\Gamma\left(n + 1 + \sum_i k_i\right)}\\
   &=\begin{cases}
     |T_n|&\text{if all $k_i=0$}\\
-    I_{k_1,\dots,k_{i_0}-1,\dots,k_n} \times \frac{k_{i_0}}{n + \sum_{i=1}^n k_i}&\text{if $k_{i_0} > 0$}
+    I_{k_1,\dots,k_{i_0}-1,\dots,k_n} \times \frac{k_{i_0}}{n + \sum_i k_i}&\text{if $k_{i_0} > 0$}
   \end{cases}
 \end{align}
 ```
@@ -133,9 +132,8 @@ evaluating the expression on a computer; the registers will overflow. A common
 countermeasure is to use the log-gamma function,
 
 ```math
-\frac{\prod_{i=1}^n\Gamma(k_i)}{\Gamma\left(\sum_{i=1}^n k_i\right)}
-= \exp\left(\sum_{i=1}^n\ln\Gamma(k_i) - \ln\Gamma\left(\sum_{i=1}^n
-k_i\right)\right),
+\frac{\prod_i\Gamma(k_i)}{\Gamma\left(\sum_i k_i\right)}
+= \exp\left(\sum_i \ln\Gamma(k_i) - \ln\Gamma\left(\sum_i k_i\right)\right),
 ```
 
 but a simpler and arguably more elegant solution is to use the recurrence. This holds
@@ -165,12 +163,12 @@ U_n = \left\{(x_1,\dots,x_n): \sum_{i=1}^n x_i^2 = 1\right\}
 \begin{align*}
   I_{k_1,\dots,k_n}
   &= \int_{U_n} x_1^{k_1}\cdots x_n^{k_n}\\
-  &= \frac{2\prod_{i=1}^n
-    \Gamma\left(\frac{k_i+1}{2}\right)}{\Gamma\left(\sum_{i=1}^n\frac{k_i+1}{2}\right)}\\\\
+  &= \frac{2\prod_i
+    \Gamma\left(\frac{k_i+1}{2}\right)}{\Gamma\left(\sum_i \frac{k_i+1}{2}\right)}\\\\
   &=\begin{cases}
     0&\text{if any $k_i$ is odd}\\
     |U_n|&\text{if all $k_i=0$}\\
-    I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0} - 1}{n - 2 + \sum_{i=1}^n k_i}&\text{if $k_{i_0} > 0$}
+    I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0} - 1}{n - 2 + \sum_i k_i}&\text{if $k_{i_0} > 0$}
   \end{cases}
 \end{align*}
 ```
@@ -208,18 +206,18 @@ S_n = \left\{(x_1,\dots,x_n): \sum_{i=1}^n x_i^2 \le 1\right\}
 \end{align}
 ```
 
-with $`p=\sum_{i=1}^n k_i`$.
+with $p=\sum_i k_i$.
 
 #### _n_-dimensional unit ball with Gegenbauer weight
 
-$`\lambda > -1`$.
+$\lambda > -1$.
 
 - Volume.
 
 ```math
     \begin{align}
     |G_n^{\lambda}|
-      &= \int_{S^n} \left(1 - \sum_{i=1}^n x_i^2\right)^\lambda\\
+      &= \int_{S^n} \left(1 - \sum_i x_i^2\right)^\lambda\\
       &= \frac{%
         \Gamma(1+\lambda)\sqrt{\pi}^n
       }{%
@@ -238,31 +236,30 @@ $`\lambda > -1`$.
 ```math
 \begin{align}
   I_{k_1,\dots,k_n}
-    &= \int_{S^n} x_1^{k_1}\cdots x_n^{k_n} \left(1 - \sum_{i=1}^n
-    x_i^2\right)^\lambda\\
+    &= \int_{S^n} x_1^{k_1}\cdots x_n^{k_n} \left(1 - \sum_i x_i^2\right)^\lambda\\
     &= \frac{%
-      \Gamma(1+\lambda)\prod_{i=1}^n \Gamma\left(\frac{k_i+1}{2}\right)
+      \Gamma(1+\lambda)\prod_i \Gamma\left(\frac{k_i+1}{2}\right)
     }{%
-      \Gamma\left(1+\lambda + \sum_{i=1}^n \frac{k_i+1}{2}\right)
+      \Gamma\left(1+\lambda + \sum_i \frac{k_i+1}{2}\right)
     }\\
     &= \begin{cases}
       0&\text{if any $k_i$ is odd}\\
       |G_n^{\lambda}|&\text{if all $k_i=0$}\\
-      I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0}-1}{2\lambda + n + \sum_{i=1}^n k_i}&\text{if $k_{i_0} > 0$}
+      I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0}-1}{2\lambda + n + \sum_i k_i}&\text{if $k_{i_0} > 0$}
     \end{cases}
 \end{align}
 ```
 
 #### _n_-dimensional unit ball with Chebyshev-1 weight
 
-Gegenbauer with $`\lambda=-\frac{1}{2}`$.
+Gegenbauer with $\lambda=-\frac{1}{2}$.
 
 - Volume.
 
 ```math
 \begin{align}
 |G_n^{-1/2}|
-  &= \int_{S^n} \frac{1}{\sqrt{1 - \sum_{i=1}^n x_i^2}}\\
+  &= \int_{S^n} \frac{1}{\sqrt{1 - \sum_i x_i^2}}\\
   &= \frac{%
     \sqrt{\pi}^{n+1}
   }{%
@@ -281,30 +278,30 @@ Gegenbauer with $`\lambda=-\frac{1}{2}`$.
 ```math
 \begin{align}
 I_{k_1,\dots,k_n}
-  &= \int_{S^n} \frac{x_1^{k_1}\cdots x_n^{k_n}}{\sqrt{1 - \sum_{i=1}^n x_i^2}}\\
+  &= \int_{S^n} \frac{x_1^{k_1}\cdots x_n^{k_n}}{\sqrt{1 - \sum_i x_i^2}}\\
   &= \frac{%
-    \sqrt{\pi} \prod_{i=1}^n \Gamma\left(\frac{k_i+1}{2}\right)
+    \sqrt{\pi} \prod_i \Gamma\left(\frac{k_i+1}{2}\right)
   }{%
-    \Gamma\left(\frac{1}{2} + \sum_{i=1}^n \frac{k_i+1}{2}\right)
+    \Gamma\left(\frac{1}{2} + \sum_i \frac{k_i+1}{2}\right)
   }\\
   &= \begin{cases}
     0&\text{if any $k_i$ is odd}\\
     |G_n^{-1/2}|&\text{if all $k_i=0$}\\
-    I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0}-1}{n-1 + \sum_{i=1}^n k_i}&\text{if $k_{i_0} > 0$}
+    I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0}-1}{n-1 + \sum_i k_i}&\text{if $k_{i_0} > 0$}
   \end{cases}
 \end{align}
 ```
 
 #### _n_-dimensional unit ball with Chebyshev-2 weight
 
-Gegenbauer with $`\lambda = +\frac{1}{2}`$.
+Gegenbauer with $\lambda = +\frac{1}{2}$.
 
 - Volume.
 
 ```math
 \begin{align}
 |G_n^{+1/2}|
-  &= \int_{S^n} \sqrt{1 - \sum_{i=1}^n x_i^2}\\
+  &= \int_{S^n} \sqrt{1 - \sum_i x_i^2}\\
   &= \frac{%
     \sqrt{\pi}^{n+1}
   }{%
@@ -323,17 +320,16 @@ Gegenbauer with $`\lambda = +\frac{1}{2}`$.
 ```math
 \begin{align}
 I_{k_1,\dots,k_n}
-  &= \int_{S^n} x_1^{k_1}\cdots x_n^{k_n} \sqrt{1 - \sum_{i=1}^n
-  x_i^2}\\
+  &= \int_{S^n} x_1^{k_1}\cdots x_n^{k_n} \sqrt{1 - \sum_i x_i^2}\\
   &= \frac{%
-    \sqrt{\pi}\prod_{i=1}^n \Gamma\left(\frac{k_i+1}{2}\right)
+    \sqrt{\pi}\prod_i \Gamma\left(\frac{k_i+1}{2}\right)
   }{%
-    2\Gamma\left(\frac{3}{2} + \sum_{i=1}^n \frac{k_i+1}{2}\right)
+    2\Gamma\left(\frac{3}{2} + \sum_i \frac{k_i+1}{2}\right)
   }\\
   &= \begin{cases}
     0&\text{if any $k_i$ is odd}\\
     |G_n^{+1/2}|&\text{if all $k_i=0$}\\
-    I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0}-1}{n + 1 + \sum_{i=1}^n k_i}&\text{if $k_{i_0} > 0$}
+    I_{k_1,\dots,k_{i_0}-2,\dots,k_n} \times \frac{k_{i_0}-1}{n + 1 + \sum_i k_i}&\text{if $k_{i_0} > 0$}
   \end{cases}
 \end{align}
 ```
@@ -349,7 +345,7 @@ _t_-distribution](https://en.wikipedia.org/wiki/Student%27s_t-distribution).
 ```math
     \begin{align}
     |Y_n^{\lambda}|
-      &= \int_{\mathbb{R}^n} \left(1 + \sum_{i=1}^n x_i^2\right)^{-\lambda}\\
+      &= \int_{\mathbb{R}^n} \left(1 + \sum_i x_i^2\right)^{-\lambda}\\
       &= |U_{n-1}| \frac{1}{2} B(\lambda - \frac{n}{2}, \frac{n}{2})\\
       &= \begin{cases}
         1&\text{for $n=0$}\\
@@ -364,8 +360,7 @@ _t_-distribution](https://en.wikipedia.org/wiki/Student%27s_t-distribution).
 ```math
 \begin{align}
   I_{k_1,\dots,k_n}
-    &= \int_{\mathbb{R}^n} x_1^{k_1}\cdots x_n^{k_n} \left(1 + \sum_{i=1}^n
-    x_i^2\right)^{-\lambda}\\
+    &= \int_{\mathbb{R}^n} x_1^{k_1}\cdots x_n^{k_n} \left(1 + \sum_i x_i^2\right)^{-\lambda}\\
     &= \frac{\Gamma(\frac{n+\sum k_i}{2}) \Gamma(\lambda - \frac{n - \sum k_i}{2})}{2 \Gamma(\lambda)}
        \times \frac{2\prod_i \Gamma(\tfrac{k_i+1}{2})}{\Gamma(\sum_i \tfrac{k_i+1}{2})}\\
     &= \begin{cases}
@@ -378,7 +373,7 @@ _t_-distribution](https://en.wikipedia.org/wiki/Student%27s_t-distribution).
 
 #### _n_-dimensional generalized Laguerre volume
 
-$`\alpha > -1`$.
+$\alpha > -1$.
 
 - Volume
 
@@ -403,10 +398,10 @@ $`\alpha > -1`$.
   &= \int_{\mathbb{R}^n} x_1^{k_1}\cdots x_n^{k_n}
     \left(\sqrt{x_1^2+\dots+x_n^2}\right)^\alpha \exp\left(-\sqrt{x_1^2+\dots+x_n^2}\right)\\
   &= \frac{%
-    2 \Gamma\left(\alpha + n + \sum_{i=1}^n k_i\right)
-    \left(\prod_{i=1}^n\Gamma\left(\frac{k_i + 1}{2}\right)\right)
+    2 \Gamma\left(\alpha + n + \sum_i k_i\right)
+    \left(\prod_i \Gamma\left(\frac{k_i + 1}{2}\right)\right)
   }{%
-    \Gamma\left(\sum_{i=1}^n\frac{k_i + 1}{2}\right)
+    \Gamma\left(\sum_i \frac{k_i + 1}{2}\right)
   }\\
   &=\begin{cases}
     0&\text{if any $k_i$ is odd}\\
@@ -420,7 +415,7 @@ $`\alpha > -1`$.
 \end{align}
 ```
 
-with $`p=\sum_{k=1}^n k_i`$.
+with $p=\sum_i k_i$.
 
 #### _n_-dimensional Hermite (physicists')
 
@@ -445,7 +440,7 @@ with $`p=\sum_{k=1}^n k_i`$.
 \begin{align}
     I_{k_1,\dots,k_n}
     &= \int_{\mathbb{R}^n} x_1^{k_1}\cdots x_n^{k_n} \exp(-(x_1^2+\cdots+x_n^2))\\
-    &= \prod_{i=1}^n \frac{(-1)^{k_i} + 1}{2} \times \Gamma\left(\frac{k_i+1}{2}\right)\\
+    &= \prod_i \frac{(-1)^{k_i} + 1}{2} \times \Gamma\left(\frac{k_i+1}{2}\right)\\
     &=\begin{cases}
       0&\text{if any $k_i$ is odd}\\
       V_n&\text{if all $k_i=0$}\\
@@ -470,7 +465,7 @@ V_n = \frac{1}{\sqrt{2\pi}^n} \int_{\mathbb{R}^n}
   I_{k_1,\dots,k_n}
     &= \frac{1}{\sqrt{2\pi}^n} \int_{\mathbb{R}^n} x_1^{k_1}\cdots x_n^{k_n}
     \exp\left(-\frac{1}{2}(x_1^2+\cdots+x_n^2)\right)\\
-  &= \prod_{i=1}^n \frac{(-1)^{k_i} + 1}{2} \times
+  &= \prod_i \frac{(-1)^{k_i} + 1}{2} \times
     \frac{2^{\frac{k_i+1}{2}}}{\sqrt{2\pi}} \Gamma\left(\frac{k_i+1}{2}\right)\\
   &=\begin{cases}
     0&\text{if any $k_i$ is odd}\\
