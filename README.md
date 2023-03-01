@@ -13,13 +13,30 @@
 ndim computes all kinds of volumes and integrals of monomials over such volumes in a
 fast, numerically stable way, using recurrence relations.
 
-Install with
+### Installation
+
+Install ndim [from PyPI](https://pypi.org/project/ndim/) with
 
 ```
 pip install ndim
 ```
 
-and use like
+### How to get a license
+
+Licenses for personal and academic use can be purchased
+[here](https://buy.stripe.com/aEUg1H38OgDw5qMfZ3).
+You'll receive a confirmation email with a license key.
+Install the key with
+
+```
+plm add <your-license-key>
+```
+
+on your machine and you're good to go.
+
+For commerical use, please contact support@mondaytech.com.
+
+### Use ndim
 
 ```python
 import ndim
