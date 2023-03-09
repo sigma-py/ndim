@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/sigma-py/ndim"><img alt="ndim" src="https://raw.githubusercontent.com/sigma-py/ndim/assets/logo.svg" width="50%"></a>
+  <a href="https://github.com/sigma-py/ndim"><img alt="ndim" src="https://raw.githubusercontent.com/sigma-py/ndim/main/logo/ndim-logo.svg" width="50%"></a>
   <p align="center">Multidimensional volumes and monomial integrals.</p>
 </p>
 
